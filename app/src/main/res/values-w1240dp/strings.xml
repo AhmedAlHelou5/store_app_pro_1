@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="another_account">هل لديك حساب ؟</string>
+    <string name="tv_login">تسجيل الدخول</string>
+    <string name="btn_new_user">تسجيل جديد</string>
+    <string name="tv_accept_privacy">الموافقة على الشروط والاحكام</string>
+    <string name="hint_password">كلمة المرور</string>
+    <string name="hint_phone">رقم الجوال</string>
+    <string name="label_phone">رقم الجوال</string>
+    <string name="hint_full_name">الاسم بالكامل</string>
+    <string name="label_full_name">الاسم بالكامل</string>
+    <string name="log_in_by_google">التسجيل بواسطة جوجل</string>
+    <string name="enjoy_create_account">استمتع بانشاء حسابك معنا</string>
+    <string name="tv_create_account">انشاء حساب جديد</string>
+    <string name="privacy_and">الشروط والاحكام</string>
+</resources>

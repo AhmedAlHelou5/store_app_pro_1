@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activites.splash.one.OnBoardingOneActivity">
+
+
+    <ImageView
+        android:id="@+id/logo_image_splash_one_screen"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_width="@dimen/_137sdp"
+        android:layout_height="@dimen/_64sdp"
+        android:contentDescription="tc bike app"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/onBoarding_1_splash_one_screen"
+        android:layout_width="@dimen/_375sdp"
+        android:layout_height="@dimen/_240sdp"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:contentDescription="tc bike app"
+        android:src="@drawable/splash_image_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_image_splash_one_screen" />
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:text="تمتع بأفضل الأسعار والعروض"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15ssp"
+        android:fontFamily="@font/almarai_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onBoarding_1_splash_one_screen" />
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/almarai_regular"
+        android:text="تمتع معنا باسعارنا الرائعة وعروضنا القوية"
+        android:textColor="@color/secondary_text_color"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_1" />
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:text="التالي"
+        android:background="@drawable/on_boarding_btn_next"
+        android:textColor="@color/white"
+        android:fontFamily="@font/almarai_regular"
+        android:textSize="@dimen/_12ssp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_2" />
+
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/on_boarding_btn_login"
+        android:fontFamily="@font/almarai_regular"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:textSize="@dimen/_12ssp"
+        android:text="تسجيل الدخول"
+        android:textColor="@color/primary_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_next" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
