@@ -15,6 +15,7 @@
         <activity
             android:name=".ui.activites.privacy.PrivacyActivity"
             android:exported="true"
+            android:theme="@style/Theme.Store_app_pro_1.toolBar"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
