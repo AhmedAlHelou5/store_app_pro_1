@@ -10,6 +10,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -36,10 +37,23 @@ public class PrivacyActivity extends AppCompatActivity {
 
         window.setStatusBarColor( getResources().getColor(R.color.primary_color) );
         setSupportActionBar(binding.toolbar);
+        binding.tvTermsAllText.setMovementMethod(new ScrollingMovementMethod());
 
 
 
-         }
+        binding.btnAccept.setOnClickListener(view -> {
+            Intent intent=new Intent(PrivacyActivity.this, RegisterActivity.class);
+            intent.putExtra("result", 1);
+            setResult(RESULT_OK, intent);
+             PrivacyActivity.super.onBackPressed();
+        });
+
+
+
+
+
+
+    }
 
 
 
@@ -54,6 +68,8 @@ public class PrivacyActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.nav_back){
 
             Intent intent=new Intent(PrivacyActivity.this, RegisterActivity.class);
+            intent.putExtra("result", 0);
+            setResult(RESULT_CANCELED, intent);
             startActivity(intent);
             finish();
 //            Toast.makeText(this, "Click Search Icon.", Toast.LENGTH_SHORT).show();

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_color"
     tools:context=".ui.activites.register.RegisterActivity">
 
 
@@ -15,7 +16,8 @@
         android:layout_marginRight="@dimen/_12sdp"
         android:src="@drawable/ic_baseline_arrow_forward_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black" />
 
 
     <TextView
@@ -201,8 +203,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:onClick="ShowHidePass"
             android:layout_centerInParent="true"
+            android:onClick="ShowHidePass"
             android:src="@drawable/ic_baseline_visibility_off_24" />
 
 
@@ -245,6 +247,7 @@
         app:layout_constraintTop_toBottomOf="@+id/relative_password_layout">
 
         <TextView
+            android:id="@+id/tv_checked_terms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_accept_privacy"
@@ -261,6 +264,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="false"
+            android:checked="false"
             android:buttonTint="@color/checkbox_filter_tint"
 
             />
@@ -268,15 +272,15 @@
 
 
     <Button
-        android:id="@+id/btn_start_now"
+        android:id="@+id/btn_new_register"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
-        android:background="@drawable/on_boarding_btn_sign_up_un_check"
         android:fontFamily="@font/almarai_regular"
         android:text="@string/btn_new_user"
         android:textColor="@color/white"
+        android:background="@drawable/on_boarding_btn_sign_up_un_check"
         android:layout_marginTop="@dimen/_23sdp"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -292,16 +296,20 @@
         android:layout_marginTop="@dimen/_15sdp"
         android:text="@string/another_account"
         android:textSize="@dimen/_12ssp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_start_now"
+        android:fontFamily="@font/almarai_regular"
+
+        app:layout_constraintEnd_toEndOf="@+id/btn_new_register"
         app:layout_constraintHorizontal_bias="0.692"
-        app:layout_constraintStart_toStartOf="@+id/btn_start_now"
-        app:layout_constraintTop_toBottomOf="@+id/btn_start_now" />
+        app:layout_constraintStart_toStartOf="@+id/btn_new_register"
+        app:layout_constraintTop_toBottomOf="@+id/btn_new_register" />
 
     <TextView
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_login"
+        android:fontFamily="@font/almarai_regular"
+
         android:textSize="@dimen/_12ssp"
         android:textColor="@color/primary_color"
         android:layout_marginRight="@dimen/_3sdp"

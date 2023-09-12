@@ -16,7 +16,8 @@
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
 
     <ImageView
@@ -27,6 +28,7 @@
         android:src="@drawable/ic_baseline_arrow_forward_24"
         app:layout_constraintBottom_toBottomOf="@+id/logo_image_splash_two_screen"
         app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/black"
         app:layout_constraintHorizontal_bias="0.985"
         app:layout_constraintStart_toEndOf="@+id/logo_image_splash_two_screen"
         app:layout_constraintTop_toTopOf="@+id/logo_image_splash_two_screen" />
