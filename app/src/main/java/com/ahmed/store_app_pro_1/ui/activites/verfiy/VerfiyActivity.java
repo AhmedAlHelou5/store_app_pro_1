@@ -25,24 +25,8 @@ public class VerfiyActivity extends AppCompatActivity {
         binding = ActivityVerfiyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-//        if (TextUtils.isEmpty(binding.otpEt1.getText().toString()) && TextUtils.isEmpty(binding.otpEt2.getText().toString()) && TextUtils.isEmpty(binding.otpEt3.getText().toString()) && TextUtils.isEmpty(binding.otpEt4.getText().toString())) {
-//            btnSendIsActive(false, getResources().getDrawable(R.drawable.on_boarding_btn_sign_up_un_check));
-//        }
-//        else {
-//            btnSendIsActive(true, getResources().getDrawable(R.drawable.on_boarding_btn_next));
-//        }
-
-
-        checkLengthEt(binding.otpEt1);
-        checkLengthEt(binding.otpEt2);
-        checkLengthEt(binding.otpEt3);
-        checkLengthEt(binding.otpEt4);
-
-
-
-
-
+        checkLengthEt();
+        focusEditText();
 
         binding.iconBackOnBoarding.setOnClickListener(view -> {
             Intent intent=new Intent(VerfiyActivity.this, LoginActivity.class);
@@ -65,32 +49,230 @@ public class VerfiyActivity extends AppCompatActivity {
 
     }
 
-    void  checkLengthEt(EditText view){
-        view.addTextChangedListener(new TextWatcher() {
+    void  checkLengthEt(){
 
+        binding.otpEt1.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+
                 if (s.length() >= 1) {
                     btnSendIsActive(true, getResources().getDrawable(R.drawable.on_boarding_btn_next));
                 }
                 else {
                     if (binding.otpEt1.getText().toString().isEmpty()&& binding.otpEt2.getText().toString().isEmpty()&& binding.otpEt3.getText().toString().isEmpty()&& binding.otpEt4.getText().toString().isEmpty())
                     btnSendIsActive(false, getResources().getDrawable(R.drawable.on_boarding_btn_sign_up_un_check));
-
-
                 }
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
+
             }
         });
+        binding.otpEt2.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                if (s.length() >= 1) {
+                    btnSendIsActive(true, getResources().getDrawable(R.drawable.on_boarding_btn_next));
+
+                }
+                else {
+                    if (binding.otpEt1.getText().toString().isEmpty()&& binding.otpEt2.getText().toString().isEmpty()&& binding.otpEt3.getText().toString().isEmpty()&& binding.otpEt4.getText().toString().isEmpty())
+                    btnSendIsActive(false, getResources().getDrawable(R.drawable.on_boarding_btn_sign_up_un_check));
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+            }
+        });
+        binding.otpEt3.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                if (s.length() >= 1) {
+                    btnSendIsActive(true, getResources().getDrawable(R.drawable.on_boarding_btn_next));
+
+                }
+                else {
+                    if (binding.otpEt1.getText().toString().isEmpty()&& binding.otpEt2.getText().toString().isEmpty()&& binding.otpEt3.getText().toString().isEmpty()&& binding.otpEt4.getText().toString().isEmpty())
+                    btnSendIsActive(false, getResources().getDrawable(R.drawable.on_boarding_btn_sign_up_un_check));
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+            }
+        });
+        binding.otpEt4.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                if (s.length() >= 1) {
+                    btnSendIsActive(true, getResources().getDrawable(R.drawable.on_boarding_btn_next));
+
+
+                }
+                else {
+                    if (binding.otpEt1.getText().toString().isEmpty()&& binding.otpEt2.getText().toString().isEmpty()&& binding.otpEt3.getText().toString().isEmpty()&& binding.otpEt4.getText().toString().isEmpty())
+                    btnSendIsActive(false, getResources().getDrawable(R.drawable.on_boarding_btn_sign_up_un_check));
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+
+
+            }
+        });
+
+    }
+
+    void focusEditText(){
+
+        binding.otpEt1.setOnFocusChangeListener(
+                (v, hasFocus) -> {
+
+
+                    if (hasFocus){
+
+                        binding.otpEt1.setBackground(getResources().getDrawable(R.drawable.on_boarding_btn_next));
+                        binding.otpEt1.setTextColor(getResources().getColor(R.color.white));
+
+                    }
+                    else {
+
+
+                        binding.otpEt1.setBackground(getResources().getDrawable(R.drawable.bg_btn_sign_google));
+                        binding.otpEt1.setTextColor(getResources().getColor(R.color.black));
+                    }
+
+
+
+
+
+                }
+        );
+
+
+        binding.otpEt2.setOnFocusChangeListener(
+                (v, hasFocus) -> {
+
+
+                    if (hasFocus){
+
+                        binding.otpEt2.setBackground(getResources().getDrawable(R.drawable.on_boarding_btn_next));
+                        binding.otpEt2.setTextColor(getResources().getColor(R.color.white));
+
+                    }
+                    else {
+
+
+                        binding.otpEt2.setBackground(getResources().getDrawable(R.drawable.bg_btn_sign_google));
+                        binding.otpEt2.setTextColor(getResources().getColor(R.color.black));
+                    }
+
+
+
+
+
+                }
+        );
+        binding.otpEt3.setOnFocusChangeListener(
+                (v, hasFocus) -> {
+
+
+                    if (hasFocus){
+
+                        binding.otpEt3.setBackground(getResources().getDrawable(R.drawable.on_boarding_btn_next));
+                        binding.otpEt3.setTextColor(getResources().getColor(R.color.white));
+
+                    }
+                    else {
+
+
+                        binding.otpEt3.setBackground(getResources().getDrawable(R.drawable.bg_btn_sign_google));
+                        binding.otpEt3.setTextColor(getResources().getColor(R.color.black));
+                    }
+
+
+
+
+
+                }
+        );
+        binding.otpEt4.setOnFocusChangeListener(
+                (v, hasFocus) -> {
+
+
+                    if (hasFocus){
+
+                        binding.otpEt4.setBackground(getResources().getDrawable(R.drawable.on_boarding_btn_next));
+                        binding.otpEt4.setTextColor(getResources().getColor(R.color.white));
+
+                    }
+                    else {
+
+
+                        binding.otpEt4.setBackground(getResources().getDrawable(R.drawable.bg_btn_sign_google));
+                        binding.otpEt4.setTextColor(getResources().getColor(R.color.black));
+                    }
+
+
+
+
+
+                }
+        );
+
+
+
 
     }
 

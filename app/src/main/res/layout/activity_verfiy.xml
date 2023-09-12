@@ -64,7 +64,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_53sdp"
-
         android:layout_marginEnd="@dimen/_40sdp"
         android:gravity="center"
         android:orientation="horizontal"
@@ -83,7 +82,9 @@
             android:layout_weight="1"
             android:background="@drawable/bg_btn_sign_google"
             android:fontFamily="@font/poppins_regular"
-
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            tools:ignore="LableFor"
             android:gravity="center"
             android:inputType="number"
             android:maxLength="1"
@@ -103,7 +104,9 @@
             android:layout_weight="1"
             android:background="@drawable/bg_btn_sign_google"
             android:fontFamily="@font/poppins_regular"
-
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            tools:ignore="LableFor"
             android:gravity="center"
             android:inputType="number"
             android:maxLength="1"
@@ -123,7 +126,9 @@
             android:layout_weight="1"
             android:background="@drawable/bg_btn_sign_google"
             android:fontFamily="@font/poppins_regular"
-
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            tools:ignore="LableFor"
             android:gravity="center"
             android:inputType="number"
             android:maxLength="1"
@@ -142,7 +147,9 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_weight="1"
             android:background="@drawable/bg_btn_sign_google"
-
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            tools:ignore="LableFor"
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
             android:inputType="number"
