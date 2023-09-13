@@ -89,8 +89,6 @@ public class RegisterActivity extends AppCompatActivity {
         binding.linerCheckBoxAccept.setOnClickListener(view -> {
            activityResultLauncher.launch(new Intent(RegisterActivity.this, PrivacyActivity.class));
 
-
-
         }
         );
 

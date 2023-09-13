@@ -10,6 +10,7 @@
 
 
         <com.google.android.material.appbar.AppBarLayout
+
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,8 +23,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:elevation="0dp"
-                    android:minHeight="@dimen/_40sdp"
+
                     app:menu="@menu/menu_privacy">
 
                         <TextView

@@ -2,6 +2,7 @@ package com.ahmed.store_app_pro_1.ui.activites.verfiy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.ActivityVerfiyBinding;
 import com.ahmed.store_app_pro_1.ui.activites.login.LoginActivity;
+import com.ahmed.store_app_pro_1.ui.activites.reset_password.ResetPasswordActivity;
 import com.ahmed.store_app_pro_1.ui.activites.splash.two.OnBoardingTwoActivity;
 
 public class VerfiyActivity extends AppCompatActivity {
@@ -33,6 +35,14 @@ public class VerfiyActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        binding.btnSendVerifyCode.setOnClickListener(view -> {
+
+             Intent intent=new Intent(VerfiyActivity.this, ResetPasswordActivity.class);
+             startActivity(intent);
+             finish();
+        });
+
 
 
 
@@ -119,6 +129,7 @@ public class VerfiyActivity extends AppCompatActivity {
 
             }
 
+            @SuppressLint("SuspiciousIndentation")
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 

@@ -37,6 +37,14 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        binding.tvLogin.setOnClickListener(
+             view->{
+                 Intent intent=new Intent(LoginActivity.this, RegisterActivity.class);
+                 startActivity(intent);
+                 finish();
+             }
+        );
+
 
 
 

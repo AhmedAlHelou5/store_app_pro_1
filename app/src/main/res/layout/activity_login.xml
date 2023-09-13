@@ -120,6 +120,7 @@
         android:id="@+id/ed_text_phone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
+        android:fontFamily="@font/almarai_regular"
         android:inputType="phone"
         android:hint="@string/hint_phone"
         android:gravity="right|center"
@@ -184,6 +185,8 @@
             android:layout_marginRight="@dimen/_24sdp"
             android:background="@null"
             android:ellipsize="start"
+            android:fontFamily="@font/almarai_regular"
+
             android:cursorVisible="true"
             android:gravity="right|center"
             android:hint="@string/hint_password"
@@ -214,25 +217,25 @@
         app:layout_constraintTop_toBottomOf="@+id/relative_password_layout">
 
         <TextView
-            android:id="@+id/tv_checked_terms"
+            android:id="@+id/tv_remember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/remember_me"
-            android:fontFamily="@font/almarai_regular"
-            android:textSize="@dimen/_9ssp"
-            android:textColor="@color/text_color_on_boarding_second"
             android:layout_marginEnd="@dimen/_8sdp"
+            android:fontFamily="@font/almarai_regular"
+            android:text="@string/remember_me"
+            android:textColor="@color/text_color_on_boarding_second"
+            android:textSize="@dimen/_9ssp"
 
             />
 
         <CheckBox
             android:id="@+id/check_box_accept"
-            android:theme="@style/checkBoxStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="false"
-            android:checked="false"
             android:buttonTint="@color/checkbox_filter_tint"
+            android:checked="false"
+            android:clickable="false"
+            android:theme="@style/checkBoxStyle"
 
             />
     </LinearLayout>
@@ -276,7 +279,6 @@
         android:text="@string/register_now"
         android:textSize="@dimen/_10ssp"
         android:fontFamily="@font/almarai_regular"
-
         android:textColor="@color/primary_color"
         android:layout_marginRight="@dimen/_3sdp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_have_account"
@@ -287,14 +289,13 @@
         android:id="@+id/tv_forget_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/forget_password"
         android:layout_marginStart="@dimen/_20sdp"
         android:fontFamily="@font/almarai_regular"
-        android:textSize="@dimen/_10ssp"
+        android:text="@string/forget_password"
         android:textColor="@color/primary_color"
+        android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toBottomOf="@+id/liner_check_box_accept"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/liner_check_box_accept" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
