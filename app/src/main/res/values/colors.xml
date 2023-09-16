@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary_color">#03B0F5</color>
+    <color name="dot_un_select_color">#67C1E4</color>
     <color name="secondary_color">#EF7F26</color>
     <color name="text_color">#000000</color>
     <color name="secondary_text_color">#111827</color>
@@ -19,6 +20,9 @@
     <color name="transparent">#00000000</color>
     <color name="view_diver">#707070</color>
     <color name="text_terms_conditions">#525961</color>
+    <color name="offer_color">#FF0000</color>
+    <color name="dash_offer_count_minus_color">#0D0D0D</color>
+    <color name="text_offer_description_color">#A0A0A0</color>
 
 <!--    <selector xmlns:android="http://schemas.android.com/apk/res/android">-->
 <!--        <item android:color="@color/text_color_on_boarding_second"-->

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_marginHorizontal="@dimen/_3sdp"
+    android:layout_marginVertical="@dimen/_4sdp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_85sdp"
+    android:layout_height="@dimen/_70sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_9sdp"
+    app:cardBackgroundColor="@color/dot_un_select_color" >
+
+    <ImageView
+        android:id="@+id/image_category"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/image_slider1"
+        android:scaleType="centerCrop"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_title_category"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="ahmed"
+        android:textColor="@color/white"
+        android:fontFamily="@font/almarai_bold"
+        android:textSize="@dimen/_9ssp" />
+
+
+
+
+
+
+
+
+
+
+</androidx.cardview.widget.CardView>

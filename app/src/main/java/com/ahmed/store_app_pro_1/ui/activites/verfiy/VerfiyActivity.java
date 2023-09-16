@@ -69,6 +69,7 @@ public class VerfiyActivity extends AppCompatActivity {
 
             }
 
+            @SuppressLint("SuspiciousIndentation")
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
@@ -80,6 +81,7 @@ public class VerfiyActivity extends AppCompatActivity {
                 else {
                     if (binding.otpEt1.getText().toString().isEmpty()&& binding.otpEt2.getText().toString().isEmpty()&& binding.otpEt3.getText().toString().isEmpty()&& binding.otpEt4.getText().toString().isEmpty())
                     btnSendIsActive(false, getResources().getDrawable(R.drawable.on_boarding_btn_sign_up_un_check));
+
                 }
 
             }
