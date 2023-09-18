@@ -3,8 +3,11 @@ package com.ahmed.store_app_pro_1.ui.activites.details;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
@@ -16,16 +19,19 @@ import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.ActivityDetailsBinding;
 
+import com.ahmed.store_app_pro_1.ui.activites.home.home_fragment.HomeFragment;
+import com.ahmed.store_app_pro_1.ui.adapters.ColorProductRvAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.PagerAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.SliderAdapter;
 
-import com.ahmed.store_app_pro_1.ui.models.SliderImageHomeModel;
+import com.ahmed.store_app_pro_1.ui.models.ProductModel;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-public class DetailsActivity extends AppCompatActivity {
+public class DetailsActivity extends AppCompatActivity implements HomeFragment.OnFragmentClickListener {
     ActivityDetailsBinding binding;
     Handler handler = new Handler();
     Runnable runnable;
@@ -41,8 +47,37 @@ public class DetailsActivity extends AppCompatActivity {
         Window window = getWindow();
         window.setStatusBarColor( getResources().getColor(R.color.transparent) );
         binding.tvDescriptionProduct.setMovementMethod(new ScrollingMovementMethod());
-        ArrayList<SliderImageHomeModel> images = Utils.FillImagesForProduct();
-        SliderAdapter sliderAdapter = new SliderAdapter(images);
+
+        binding.cardViewBack.setOnClickListener(v -> {
+            finish();
+        });
+
+
+
+
+
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        ArrayList<Integer> imageList = extras.getIntegerArrayList("images");
+        ArrayList<Integer> colors = extras.getIntegerArrayList("colors");
+        String title = extras.getString("title");
+        String price = extras.getString("price");
+        String description = extras.getString("description");
+        boolean like = extras.getBoolean("isLike");
+
+
+
+
+
+
+        binding.tvTitle.setText(title);
+        binding.tvPrice.setText(price);
+        binding.tvDescriptionProduct.setText(description);
+
+//        ArrayList<SliderImageHomeModel> images = Utils.FillImagesForProduct();
+        SliderAdapter sliderAdapter = new SliderAdapter(imageList);
+
 
 
 
@@ -65,7 +100,7 @@ public class DetailsActivity extends AppCompatActivity {
             public void run() {
                 int pos = binding.viewPager.getCurrentItem();
                 pos = pos + 1;
-                if (pos >= images.size()) pos = 0;
+                if (pos >= imageList.size()) pos = 0;
                 binding.viewPager.setCurrentItem(pos);
                 handler.postDelayed(runnable, 3000);
             }
@@ -75,7 +110,29 @@ public class DetailsActivity extends AppCompatActivity {
 
 
 
-//
+        ColorProductRvAdapter allOffersAdapter = new ColorProductRvAdapter(colors);
+
+
+        binding.recColorItem.setAdapter(allOffersAdapter);
+        binding.recColorItem.setHasFixedSize(true);
+        binding.recColorItem.setClipToPadding(false);
+        binding.recColorItem.setClipChildren(false);
+
+        binding.recColorItem.setLayoutManager(new
+                LinearLayoutManager(this,
+                RecyclerView.HORIZONTAL,false));
+
+
+
+
+
+
+
+
+
+
+
+        //
         ArrayList<Fragment> fragments = new ArrayList<>();
 
 
@@ -110,8 +167,39 @@ public class DetailsActivity extends AppCompatActivity {
             ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
             p.setMargins(10, 0, 10, 0);
             tab.requestLayout();
+
+
         }
 
+
+
+
+
+
+
+
+    }
+
+    @Override
+    public void OnFragmentInteraction(ProductModel product) {
+
+
+//        binding.tvDescriptionProduct.setText(product.getDescription());
+//        binding.tvTitle.setText(product.getTitle());
+//        binding.tvPrice.setText(product.getPrice());
+
+//        ProductModel offerModels = product.getColors();
+        ColorProductRvAdapter allOffersAdapter = new ColorProductRvAdapter(product.getColors());
+
+
+        binding.recColorItem.setAdapter(allOffersAdapter);
+        binding.recColorItem.setHasFixedSize(true);
+        binding.recColorItem.setClipToPadding(false);
+        binding.recColorItem.setClipChildren(false);
+
+        binding.recColorItem.setLayoutManager(new
+                LinearLayoutManager(this,
+                RecyclerView.HORIZONTAL,false));
 
 
 

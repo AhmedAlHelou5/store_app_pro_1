@@ -1,6 +1,7 @@
 package com.ahmed.store_app_pro_1.ui.activites.home.home_fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,6 +23,7 @@ import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.CustomItemImgaeSliderHomeFragmentBinding;
 import com.ahmed.store_app_pro_1.databinding.FragmentHomeBinding;
+import com.ahmed.store_app_pro_1.ui.activites.details.DetailsActivity;
 import com.ahmed.store_app_pro_1.ui.activites.home.HomeActivity;
 import com.ahmed.store_app_pro_1.ui.activites.home.cart_fragment.CartFragment;
 import com.ahmed.store_app_pro_1.ui.activites.home.category_fragment.CategoryFragment;
@@ -31,6 +33,7 @@ import com.ahmed.store_app_pro_1.ui.adapters.OffersHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.PopularHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.ProductHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.SliderAdapter;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
 import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
 import com.ahmed.store_app_pro_1.ui.models.OfferModel;
 import com.ahmed.store_app_pro_1.ui.models.PopularModel;
@@ -38,6 +41,7 @@ import com.ahmed.store_app_pro_1.ui.models.ProductModel;
 import com.ahmed.store_app_pro_1.ui.models.SliderImageHomeModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -59,6 +63,8 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
 //    private String mParam1;
 //    private String mParam2;
+    private OnFragmentClickListener listener;
+
 
     public HomeFragment() {
         // Required empty public constructor
@@ -81,6 +87,9 @@ public class HomeFragment extends Fragment {
 //        fragment.setArguments(args);
         return fragment;
     }
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -107,7 +116,7 @@ public class HomeFragment extends Fragment {
 //        images.add(new SliderImageHomeModel(R.drawable.image2));
 //        images.add(new SliderImageHomeModel(R.drawable.image_slider1));
 //        images.add(new SliderImageHomeModel(R.drawable.image2));
-        ArrayList<SliderImageHomeModel> images = Utils.FillImages();
+        ArrayList<Integer> images = Utils.FillImages();
         SliderAdapter sliderAdapter = new SliderAdapter(images);
 
 
@@ -195,8 +204,27 @@ public class HomeFragment extends Fragment {
 
 
 
-        ArrayList<PopularModel> popularModels = Utils.FillPopulars();
-        PopularHomeAdapter allPopularAdapter = new PopularHomeAdapter(popularModels);
+        ArrayList<ProductModel> popularModels = Utils.FillProducts();
+        PopularHomeAdapter allPopularAdapter = new PopularHomeAdapter(popularModels, new OnItemClickListener() {
+            @Override
+            public void onItemClick(ProductModel popularModel) {
+//                listener.OnFragmentInteraction(popularModel);
+
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putIntegerArrayList("images", (ArrayList<Integer>) popularModel.getSliderImageHomeModels());
+                bundle.putIntegerArrayList("colors", (ArrayList<Integer>) popularModel.getColors());
+                bundle.putString("title", popularModel.getTitle());
+                bundle.putString("price", popularModel.getPrice());
+                bundle.putString("description", popularModel.getDescription());
+                bundle.putBoolean("isLike", popularModel.isFavorite());
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+
+
+            }
+        });
 
 
         binding.rvMostPopular.setAdapter(allPopularAdapter);
@@ -238,6 +266,8 @@ public class HomeFragment extends Fragment {
 
 }
 
-
+    public interface OnFragmentClickListener{
+        void OnFragmentInteraction(ProductModel product);
+    }
 
 }

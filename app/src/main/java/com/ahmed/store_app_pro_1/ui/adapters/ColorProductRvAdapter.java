@@ -15,15 +15,18 @@ import com.ahmed.store_app_pro_1.ui.models.ColorProductModel;
 import com.ahmed.store_app_pro_1.ui.models.ProductModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ColorProductRvAdapter extends RecyclerView.Adapter<ColorProductRvAdapter.ProductViewHolder> {
 
 
-    ArrayList<ProductModel> colorProductList;
+    List<Integer> colorProductList;
 
-    public ColorProductRvAdapter(ArrayList<ProductModel> colorProductList) {
+    public ColorProductRvAdapter(List<Integer> colorProductList) {
         this.colorProductList = colorProductList;
     }
+
 
     @NonNull
     @Override
@@ -35,7 +38,7 @@ public class ColorProductRvAdapter extends RecyclerView.Adapter<ColorProductRvAd
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        ProductModel colorProductModel = colorProductList.get(position);
+        List<Integer> colorProductModel = Collections.singletonList(colorProductList.get(position));
         holder.bind(colorProductModel);
     }
 
@@ -46,7 +49,7 @@ public class ColorProductRvAdapter extends RecyclerView.Adapter<ColorProductRvAd
 
     class  ProductViewHolder extends RecyclerView.ViewHolder {
         CustomColorItemProductDetailScreenBinding binding;
-        ProductModel colorProductModel;
+        List<Integer> colorProductModel;
 
 
         public ProductViewHolder(View itemView) {
@@ -56,10 +59,10 @@ public class ColorProductRvAdapter extends RecyclerView.Adapter<ColorProductRvAd
         }
 
 
-        public void bind(ProductModel colorProductModel){
+        public void bind(List<Integer> colorProductModel){
             this.colorProductModel = colorProductModel;
 
-            binding.imageColor.setImageDrawable((Drawable) colorProductModel.getColors());
+            binding.imageColor.setImageResource(colorProductModel.get(0));
 
 //            binding.colorItem.;
 

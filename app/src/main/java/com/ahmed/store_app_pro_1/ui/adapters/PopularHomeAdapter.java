@@ -11,17 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomOffersItemHomeFragmentBinding;
 import com.ahmed.store_app_pro_1.databinding.CustomPopularItemHomeFragmentBinding;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
 import com.ahmed.store_app_pro_1.ui.models.PopularModel;
+import com.ahmed.store_app_pro_1.ui.models.ProductModel;
 
 import java.util.ArrayList;
 
 public class PopularHomeAdapter extends RecyclerView.Adapter<PopularHomeAdapter.PopularViewHolder> {
 
 
-    ArrayList<PopularModel> popularList;
+    ArrayList<ProductModel> popularList;
+    OnItemClickListener onItemClickListener;
 
-    public PopularHomeAdapter(ArrayList<PopularModel> popularList) {
+    public PopularHomeAdapter(ArrayList<ProductModel> popularList, OnItemClickListener onItemClickListener) {
         this.popularList = popularList;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -34,7 +38,7 @@ public class PopularHomeAdapter extends RecyclerView.Adapter<PopularHomeAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull PopularViewHolder holder, int position) {
-        PopularModel popularModel = popularList.get(position);
+        ProductModel popularModel = popularList.get(position);
         holder.bind(popularModel);
     }
 
@@ -45,20 +49,26 @@ public class PopularHomeAdapter extends RecyclerView.Adapter<PopularHomeAdapter.
 
     class  PopularViewHolder extends RecyclerView.ViewHolder {
         CustomPopularItemHomeFragmentBinding binding;
-        PopularModel popularModel;
+        ProductModel popularModel;
 
 
         public PopularViewHolder(View itemView) {
             super(itemView);
             binding = CustomPopularItemHomeFragmentBinding.bind(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(popularModel);
+                }
+            });
 
         }
 
 
-        public void bind(PopularModel popularModel){
+        public void bind(ProductModel popularModel){
             this.popularModel = popularModel;
             binding.imageCategory.setImageResource(popularModel.getImage());
-            binding.title.setText(popularModel.getName());
+            binding.title.setText(popularModel.getTitle());
             binding.description.setText(popularModel.getDescription());
             binding.newPrice.setText(popularModel.getPrice());
 

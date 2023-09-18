@@ -110,6 +110,10 @@
 
     </style>
 
+    <style name="customfontstyle" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/almarai_regular</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
+    </style>
 
     <!--    <style name="CustomActionBarTheme" parent="Theme.Store_app_pro_1">-->
 <!--        <item name="android:windowActionBarOverlay">true</item>-->

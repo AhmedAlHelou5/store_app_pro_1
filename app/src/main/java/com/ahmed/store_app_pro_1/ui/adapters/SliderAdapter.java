@@ -14,10 +14,10 @@ import com.ahmed.store_app_pro_1.ui.models.SliderImageHomeModel;
 import java.util.ArrayList;
 
 public class SliderAdapter extends PagerAdapter {
-    ArrayList<SliderImageHomeModel> images;
+    ArrayList<Integer> images;
 
 
-    public SliderAdapter(ArrayList<SliderImageHomeModel> images) {
+    public SliderAdapter(ArrayList<Integer> images) {
         this.images = images;
     }
 
@@ -38,7 +38,7 @@ public class SliderAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         CustomItemImgaeSliderHomeFragmentBinding binding = CustomItemImgaeSliderHomeFragmentBinding.inflate(LayoutInflater.from(container.getContext()));
-        binding.imageView1.setImageResource(images.get(position).getImage());
+        binding.imageView1.setImageResource(images.get(position));
         container.addView(binding.getRoot());
 
         return binding.getRoot();

@@ -1,8 +1,10 @@
 package com.ahmed.store_app_pro_1.ui.models;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProductModel {
+public class ProductModel implements Serializable {
 
 
     private String category;
@@ -11,12 +13,10 @@ public class ProductModel {
     private String description;
     private String numKm;
     private String numTime;
-
     private List<Integer> colors;
     private String price;
-    private List<SliderImageHomeModel> sliderImageHomeModels;
+    private List<Integer> sliderImageHomeModels;
     private  boolean isFavorite;
-
     public String getCategory() {
         return category;
     }
@@ -25,7 +25,7 @@ public class ProductModel {
         this.category = category;
     }
 
-    public ProductModel(String category, int image, String title, String description, String numKm, String numTime, List<Integer> colors, String price, List<SliderImageHomeModel> sliderImageHomeModels, boolean isFavorite) {
+    public ProductModel(String category, int image, String title, String description, String numKm, String numTime, List<Integer> colors, String price, List<Integer> sliderImageHomeModels, boolean isFavorite) {
         this.category = category;
         this.image = image;
         this.title = title;
@@ -38,7 +38,7 @@ public class ProductModel {
         this.isFavorite = isFavorite;
     }
 
-    public ProductModel(String title, String description, List<Integer> colors, String price, List<SliderImageHomeModel> sliderImageHomeModels, boolean isFavorite) {
+    public ProductModel(String title, String description, List<Integer> colors, String price, List<Integer> sliderImageHomeModels, boolean isFavorite) {
         this.title = title;
         this.description = description;
         this.colors = colors;
@@ -54,7 +54,7 @@ public class ProductModel {
         this.numTime = numTime;
     }
 
-    public ProductModel(int image, String title, String description, List<Integer> colors, String price, List<SliderImageHomeModel> sliderImageHomeModels, boolean isFavorite) {
+    public ProductModel(int image, String title, String description, List<Integer> colors, String price, List<Integer> sliderImageHomeModels, boolean isFavorite) {
         this.image = image;
         this.title = title;
         this.description = description;
@@ -66,7 +66,7 @@ public class ProductModel {
 
 
 
-    public ProductModel(int image, String title, String description, String numKm, String numTime, List<Integer> colors, String price, List<SliderImageHomeModel> sliderImageHomeModels, boolean isFavorite) {
+    public ProductModel(int image, String title, String description, String numKm, String numTime, List<Integer> colors, String price, List<Integer> sliderImageHomeModels, boolean isFavorite) {
         this.image = image;
         this.title = title;
         this.description = description;
@@ -134,11 +134,11 @@ public class ProductModel {
         this.price = price;
     }
 
-    public List<SliderImageHomeModel> getSliderImageHomeModels() {
+    public List<Integer> getSliderImageHomeModels() {
         return sliderImageHomeModels;
     }
 
-    public void setSliderImageHomeModels(List<SliderImageHomeModel> sliderImageHomeModels) {
+    public void setSliderImageHomeModels(List<Integer> sliderImageHomeModels) {
         this.sliderImageHomeModels = sliderImageHomeModels;
     }
 
