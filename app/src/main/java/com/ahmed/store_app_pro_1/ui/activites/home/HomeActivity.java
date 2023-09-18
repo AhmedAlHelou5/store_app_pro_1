@@ -27,10 +27,11 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
         Window window = getWindow();
+        window.setStatusBarColor( getResources().getColor(R.color.primary_color) );
+
         binding.toolbar.showOverflowMenu();
         binding.toolbar.setTitle("");
 
-        window.setStatusBarColor( getResources().getColor(R.color.primary_color) );
         setSupportActionBar(binding.toolbar);
 
         binding.bottomNavigation.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);

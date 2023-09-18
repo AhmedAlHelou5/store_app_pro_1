@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_2sdp"
-                android:layoutDirection="locale"
+                android:layoutDirection="rtl"
                 android:orientation="horizontal"
 
 
@@ -243,5 +243,18 @@
     </LinearLayout>
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_product_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layoutDirection="rtl"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout_most_popular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

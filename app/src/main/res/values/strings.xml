@@ -101,4 +101,15 @@
     <string name="offer_special">عرض مميز</string>
     <string name="offers">العروض</string>
     <string name="most_popular">الأكثر شهرة</string>
+    <string name="km">كم</string>
+    <string name="minute">دقيقة</string>
+    <string name="tv_color">اللون</string>
+    <string name="description">الوصف</string>
+    <string name="description_text_dummy">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم
+توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا د النص العربى، حيث يمكنك أن تولد مثل هذا د النص العربى، حيث يمكنك أن تولد مثل هذا
+توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا د النص العربى، حيث يمكنك أن تولد مثل هذا د النص العربى، حيث يمكنك أن تولد مثل هذا
+النص</string>
+    <string name="another_comment">هل لديك اضافات اخرى؟</string>
+    <string name="all_products">كل المنتجات</string>
+    <string name="badllat">بدالات</string>
 </resources>

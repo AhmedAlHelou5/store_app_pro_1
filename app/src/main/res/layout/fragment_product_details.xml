@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layoutDirection="rtl"
+    tools:context=".ui.activites.details.ProductDetailsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/tv_title_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginTop="@dimen/_11sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:fontFamily="@font/almarai_regular"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/text_second_details_screen_color"
+        android:text="@string/all_products" />
+
+    <TextView
+        android:id="@+id/tv_description_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginHorizontal="@dimen/_3sdp"
+        android:fontFamily="@font/almarai_regular"
+        android:textSize="@dimen/_8ssp"
+        android:textColor="@color/text_description_categories_details_screen_color"
+        android:text="@string/description" />
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_all_categories_in_product_details_screen"
+        android:layout_width="match_parent"
+        android:layoutDirection="ltr"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        tools:listitem="@layout/custom_item_rv_all_product_for_details_product"
+        android:layout_height="match_parent"/>
+
+
+
+</LinearLayout>

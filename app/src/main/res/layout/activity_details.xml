@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.activites.details.DetailsActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layoutDirection="rtl"
+            android:layout_height="match_parent"
+            >
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView_back"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="@+id/view_pager"
+                    app:layout_constraintTop_toTopOf="@+id/view_pager">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layoutDirection="ltr"
+                            android:src="@drawable/ic_baseline_navigate_next_24"
+
+
+                            />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView_like"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    app:cardBackgroundColor="@color/secondary_color"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/like"
+
+
+                            />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_210sdp"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="@dimen/_40sdp"
+                    android:background="@color/transparent"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+                    app:layout_constraintEnd_toEndOf="@+id/view_pager"
+                    app:layout_constraintStart_toStartOf="@+id/view_pager"
+                    app:tabBackground="@drawable/tab_selector_details_product"
+                    app:tabGravity="center"
+
+                    app:tabIndicatorHeight="0dp"
+                    app:tabPadding="@dimen/_1sdp"
+                    />
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_liner_for_details_screen_as_card"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical"
+                    app:cardCornerRadius="@dimen/_20sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tab_layout">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:layout_weight="2"
+
+                            android:layoutDirection="rtl">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="@dimen/_10sdp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/almarai_regular"
+                                    android:text="دراجة نارية مميزة"
+                                    android:textColor="@color/text_details_screen_color"
+                                    android:textSize="@dimen/_15ssp"
+
+                                    />
+
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:layout_weight="1"
+                                    android:gravity="left"
+                                    android:layoutDirection="rtl">
+
+                                        <TextView
+                                            android:id="@+id/new_price"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/almarai_bold"
+                                            android:text="90.00"
+                                            android:textColor="@color/primary_color"
+                                            android:textSize="@dimen/_17ssp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginRight="@dimen/_4sdp"
+                                            android:fontFamily="@font/poppins_regular"
+                                            android:text="₪"
+                                            android:textColor="@color/primary_color"
+                                            android:textSize="@dimen/_15ssp" />
+
+
+                                </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_60sdp"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:weightSum="2">
+
+                                <TextView
+                                    android:id="@+id/tv_color"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/almarai_regular"
+                                    android:gravity="center|right"
+                                    android:text="@string/tv_color"
+                                    android:textColor="@color/text_second_details_screen_color"
+                                    android:textSize="@dimen/_11ssp" />
+
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/rec_color_item"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layoutDirection="rtl"
+                                    android:orientation="horizontal"
+                                    tools:listitem="@layout/custom_offers_item_home_fragment" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:weightSum="2">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/almarai_regular"
+                                    android:gravity="center|right"
+                                    android:text="@string/description"
+                                    android:textColor="@color/text_second_details_screen_color"
+                                    android:textSize="@dimen/_11ssp" />
+
+
+                                <TextView
+                                    android:id="@+id/tv_description_product"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:lineHeight="@dimen/_12sdp"
+                                    android:paddingHorizontal="@dimen/_5sdp"
+                                    android:scrollbars="vertical"
+                                    android:text="@string/description_text_dummy"
+
+
+                                    />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_weight="2"
+
+                            android:layoutDirection="rtl">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:layout_weight="1"
+                                    android:gravity="left"
+                                    android:layoutDirection="rtl">
+
+                                        <ImageView
+                                            android:layout_width="@dimen/_15sdp"
+                                            android:layout_height="@dimen/_15sdp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginRight="@dimen/_4sdp"
+                                            android:fontFamily="@font/poppins_regular"
+                                            android:src="@drawable/comment"
+                                            android:textSize="@dimen/_15ssp" />
+
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginRight="@dimen/_10sdp"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/almarai_regular"
+                                            android:text="@string/another_comment"
+                                            android:textColor="@color/text_details_screen_color"
+                                            android:textSize="@dimen/_9ssp"
+
+                                            />
+
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:gravity="left"
+                                    android:layoutDirection="rtl">
+
+                                        <TextView
+                                            android:id="@+id/tv_add_comment"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/almarai_regular"
+                                            android:text="أضف تعليق"
+                                            android:textColor="@color/secondary_color"
+                                            android:textSize="@dimen/_8ssp" />
+
+
+                                </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_pager_all_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+                    android:orientation="vertical">
+
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tabs_categories"
+                            app:tabSelectedTextColor="@color/white"
+                            app:tabTextColor="@color/black"
+                            app:tabMode="scrollable"
+                            app:tabIndicatorHeight="0dp"
+
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:layout_gravity="center"
+                            app:tabBackground="@drawable/tab_products_details_selector"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            app:tabPaddingStart="@dimen/_5sdp"
+                            app:tabPaddingEnd="@dimen/_5sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/pager_products"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_200sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:screenReaderFocusable="true"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tabs_categories">
+
+                        </androidx.viewpager2.widget.ViewPager2>
+
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+

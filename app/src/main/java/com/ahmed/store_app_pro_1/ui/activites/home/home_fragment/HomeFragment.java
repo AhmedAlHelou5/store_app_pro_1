@@ -29,10 +29,12 @@ import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.ProfileFragm
 import com.ahmed.store_app_pro_1.ui.adapters.AllCategoriesAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.OffersHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.PopularHomeAdapter;
+import com.ahmed.store_app_pro_1.ui.adapters.ProductHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.SliderAdapter;
 import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
 import com.ahmed.store_app_pro_1.ui.models.OfferModel;
 import com.ahmed.store_app_pro_1.ui.models.PopularModel;
+import com.ahmed.store_app_pro_1.ui.models.ProductModel;
 import com.ahmed.store_app_pro_1.ui.models.SliderImageHomeModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -107,6 +109,43 @@ public class HomeFragment extends Fragment {
 //        images.add(new SliderImageHomeModel(R.drawable.image2));
         ArrayList<SliderImageHomeModel> images = Utils.FillImages();
         SliderAdapter sliderAdapter = new SliderAdapter(images);
+
+
+
+        binding.viewPager.setAdapter(sliderAdapter);
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
+        binding.viewPager.setOffscreenPageLimit(5);
+        binding.viewPager.setCurrentItem(0);
+        binding.viewPager.setClipChildren(false);
+        binding.viewPager.setClipToPadding(false);
+        binding.viewPager.setCurrentItem( binding.viewPager.getCurrentItem() + 1);
+        binding.viewPager.setPageTransformer(true, new ViewPager.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float r = 1 - Math.abs(position);
+                page.setScaleY(0.85f + r * 0.20f);
+            }
+        });
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                int pos = binding.viewPager.getCurrentItem();
+                pos = pos + 1;
+                if (pos >= images.size()) pos = 0;
+                binding.viewPager.setCurrentItem(pos);
+                handler.postDelayed(runnable, 3000);
+            }
+        };
+        handler.postDelayed(runnable, 3000);
+
+
+
+
+
+
+
+
+
         ArrayList<CategoriesModel> categoriesModels = Utils.FillCategories();
         AllCategoriesAdapter allCategoriesAdapter = new AllCategoriesAdapter(categoriesModels);
 //
@@ -170,6 +209,18 @@ public class HomeFragment extends Fragment {
                 RecyclerView.HORIZONTAL,false));
 
 
+        ArrayList<ProductModel> productModels = Utils.FillProducts();
+        ProductHomeAdapter productHomeAdapter = new ProductHomeAdapter(productModels);
+
+
+        binding.rvProductHome.setAdapter(productHomeAdapter);
+        binding.rvProductHome.setHasFixedSize(true);
+        binding.rvProductHome.setClipToPadding(false);
+        binding.rvProductHome.setClipChildren(false);
+
+        binding.rvProductHome.setLayoutManager(new
+                LinearLayoutManager(getActivity(),
+                RecyclerView.VERTICAL,false));
 
 
 
@@ -178,31 +229,9 @@ public class HomeFragment extends Fragment {
 
 
 
-        binding.viewPager.setAdapter(sliderAdapter);
-       binding.tabLayout.setupWithViewPager(binding.viewPager);
-       binding.viewPager.setOffscreenPageLimit(5);
-        binding.viewPager.setCurrentItem(0);
-        binding.viewPager.setClipChildren(false);
-       binding.viewPager.setClipToPadding(false);
-        binding.viewPager.setCurrentItem( binding.viewPager.getCurrentItem() + 1);
-       binding.viewPager.setPageTransformer(true, new ViewPager.PageTransformer() {
-           @Override
-           public void transformPage(@NonNull View page, float position) {
-               float r = 1 - Math.abs(position);
-               page.setScaleY(0.85f + r * 0.20f);
-           }
-       });
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                int pos = binding.viewPager.getCurrentItem();
-                pos = pos + 1;
-                if (pos >= images.size()) pos = 0;
-                binding.viewPager.setCurrentItem(pos);
-                handler.postDelayed(runnable, 3000);
-            }
-        };
-        handler.postDelayed(runnable, 3000);
+
+
+
 
 
         return binding.getRoot();

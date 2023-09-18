@@ -23,8 +23,16 @@
     <color name="offer_color">#FF0000</color>
     <color name="dash_offer_count_minus_color">#0D0D0D</color>
     <color name="text_offer_description_color">#A0A0A0</color>
+    <color name="text_details_screen_color">#262628</color>
+    <color name="text_second_details_screen_color">#282828</color>
+    <color name="text_description_categories_details_screen_color">#A2A2A2</color>
+    <color name="diver_details_screen_color">#E2E2E2</color>
+    <color name="dot_un_select_color_details_screen">#BAFFFFFF</color>
+    <color name="dot_selected_color_details_screen">#FFFFFF</color>
+    <color name="bg_tab_details_color">#F1F1F1</color>
 
-<!--    <selector xmlns:android="http://schemas.android.com/apk/res/android">-->
+
+    <!--    <selector xmlns:android="http://schemas.android.com/apk/res/android">-->
 <!--        <item android:color="@color/text_color_on_boarding_second"-->
 <!--            android:state_checked="false"/>-->
 <!--        <item android:color="@color/primary_color"-->

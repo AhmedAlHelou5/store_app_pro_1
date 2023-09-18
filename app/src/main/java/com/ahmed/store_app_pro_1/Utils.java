@@ -1,11 +1,14 @@
 package com.ahmed.store_app_pro_1;
 
 import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
+import com.ahmed.store_app_pro_1.ui.models.ColorProductModel;
 import com.ahmed.store_app_pro_1.ui.models.OfferModel;
 import com.ahmed.store_app_pro_1.ui.models.PopularModel;
+import com.ahmed.store_app_pro_1.ui.models.ProductModel;
 import com.ahmed.store_app_pro_1.ui.models.SliderImageHomeModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Utils {
 
@@ -25,6 +28,31 @@ public class Utils {
 
 
 
+    static ArrayList<SliderImageHomeModel> imagesForProduct = new ArrayList<>();
+    public static ArrayList<SliderImageHomeModel> FillImagesForProduct(){
+        imagesForProduct=new ArrayList<>();
+        imagesForProduct.add(new SliderImageHomeModel(R.drawable.image1));
+        imagesForProduct.add(new SliderImageHomeModel(R.drawable.image2));
+        imagesForProduct.add(new SliderImageHomeModel(R.drawable.image3));
+        imagesForProduct.add(new SliderImageHomeModel(R.drawable.image4));
+        imagesForProduct.add(new SliderImageHomeModel(R.drawable.image3));
+        imagesForProduct.add(new SliderImageHomeModel(R.drawable.image1));
+
+
+        return imagesForProduct;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     static ArrayList<CategoriesModel> categories = new ArrayList<>();
 
     public static ArrayList<CategoriesModel> FillCategories(){
@@ -40,6 +68,53 @@ public class Utils {
 
         return categories;
     }
+
+    private static final ArrayList<Integer> colorArray1 = new ArrayList<Integer>();
+    public static ArrayList<Integer> getColorArray() {
+        colorArray1.add(R.color.primary_color);
+        colorArray1.add(R.color.secondary_color);
+        colorArray1.add(R.color.secondary_color);
+        colorArray1.add(R.color.dot_un_select_color);
+        colorArray1.add(R.color.black);
+
+        return colorArray1;
+    }
+
+    private static final ArrayList<Integer> colorArray2 = new ArrayList<Integer>();
+    public static ArrayList<Integer> getColorArray2() {
+        colorArray2.add(R.color.purple_700);
+        colorArray2.add(R.color.secondary_color);
+        colorArray2.add(R.color.border_button_sign_by_google_on_boarding_second);
+        colorArray2.add(R.color.dot_un_select_color);
+        colorArray2.add(R.color.black);
+
+        return colorArray2;
+    }
+
+
+    private static final ArrayList<Integer> colorArray3 = new ArrayList<Integer>();
+    public static ArrayList<Integer> getColorArray3() {
+        colorArray3.add(R.color.teal_200);
+        colorArray3.add(R.color.secondary_color);
+        colorArray3.add(R.color.primary_color);
+        colorArray3.add(R.color.dot_un_select_color);
+        colorArray3.add(R.color.teal_700);
+
+        return colorArray3;
+    }
+
+
+    static ArrayList<ColorProductModel> colors = new ArrayList<>();
+
+//
+//    public static ArrayList<ColorProductModel> FillColors(){
+//        colors=new ArrayList<>();
+//
+//        colors.add(new ColorProductModel(getColorArray()));
+//
+//        return colors;
+//    }
+//
 
 
 
@@ -82,6 +157,65 @@ public class Utils {
 
 
 
+
+
+    static ArrayList<ProductModel> allProducts = new ArrayList<>();
+
+    public static ArrayList<ProductModel> FillProducts(){
+        allProducts=new ArrayList<>();
+
+        allProducts.add(new ProductModel("بدالات",R.drawable.image2,"بدالات فاخرة", "دراجة نارية فاخرة","18","15",getColorArray(),"90.99",FillImages(),false));
+        allProducts.add(new ProductModel("عجلات",R.drawable.image2,"عجلات فاخرة", "دراجة نارية فاخرة","12","09",getColorArray2(),"99.99",FillImages(),true));
+        allProducts.add(new ProductModel("متنوع",R.drawable.image2,"متنوع فاخرة", "دراجة نارية فاخرة","15","13",getColorArray3(),"104.99",FillImages(),false));
+        allProducts.add(new ProductModel("قطع غيار",R.drawable.image2,"قطع غيار فاخرة", "دراجة نارية فاخرة","18","12",getColorArray(),"79.99",FillImages(),true));
+        allProducts.add(new ProductModel("دراجات هوائية",R.drawable.image2,"دراجة هوائية فاخرة", "دراجة نارية فاخرة","20","16",getColorArray2(),"89.99",FillImages(),false));
+        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image2,"دراجة نارية فاخرة", "دراجة نارية فاخرة","38","35",getColorArray(),"119.99",FillImages(),false));
+        allProducts.add(new ProductModel("قطع غيار",R.drawable.image2,"قطع غيار فاخرة", "دراجة نارية فاخرة","28","18",getColorArray3(),"209.99",FillImages(),true));
+        allProducts.add(new ProductModel("متنوع",R.drawable.image2,"متنوع فاخرة", "دراجة نارية فاخرة","68","58",getColorArray(),"60.99",FillImages(),false));
+        allProducts.add(new ProductModel("قطع غيار",R.drawable.image2,"قطع غيار فاخرة", "دراجة نارية فاخرة","58","48",getColorArray2(),"50.99",FillImages(),false));
+        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image2,"دراجة نارية فاخرة", "دراجة نارية فاخرة","14","08",getColorArray3(),"110.99",FillImages(),true));
+        allProducts.add(new ProductModel("بدالات",R.drawable.image2,"بدالات فاخرة", "دراجة نارية فاخرة","24","18",getColorArray(),"130.99",FillImages(),true));
+        allProducts.add(new ProductModel("متنوع",R.drawable.image2,"متنوع فاخرة", "دراجة نارية فاخرة","54","48",getColorArray2(),"129.99",FillImages(),false));
+        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image2,"دراجة نارية فاخرة", "دراجة نارية فاخرة","92","80",getColorArray(),"139.99",FillImages(),true));
+        allProducts.add(new ProductModel("عجلات",R.drawable.image2,"عجلات فاخرة", "دراجة نارية فاخرة","17","27",getColorArray3(),"149.99",FillImages(),false));
+
+
+        return allProducts;
+    }
+
+    public static ArrayList<ProductModel> getProducts(String category){
+        ArrayList<ProductModel> products = new ArrayList<>();
+        for(int i=0;i<allProducts.size();i++){
+            if(allProducts.get(i).getCategory().equals(category)){
+                products.add(allProducts.get(i));
+            }
+           else if(allProducts.get(i).getCategory().equals("الكل")){
+                products.add(allProducts.get(i));
+            }
+
+        }
+        return products;
+    }
+
+
+
+    public static ArrayList<ProductModel> getAllProducts(){
+        ArrayList<ProductModel> allproductsData = new ArrayList<>();
+        for(int i=0;i<allProducts.size();i++){
+            allproductsData.add(allProducts.get(i));
+
+        }
+        return allproductsData;
+    }
+
+// this.title = title;
+//        this.description = description;
+//        this.colors = colors;
+//        this.price = price;
+//        this.sliderImageHomeModels = sliderImageHomeModels;
+//        this.isFavorite = isFavorite;
+//
+//
 
 
     public static ArrayList<SliderImageHomeModel> getImagesProducts(){

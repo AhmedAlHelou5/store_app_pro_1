@@ -13,14 +13,26 @@
         android:theme="@style/Theme.Store_app_pro_1"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activites.home.HomeActivity"
+            android:name=".ui.activites.details.DetailsActivity"
             android:exported="true"
-            android:theme="@style/Theme.Store_app_pro_1.toolBar">
+            android:theme="@style/Theme.Store_app_pro_1.toolBar_DetailsActivity"
+
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activites.home.HomeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Store_app_pro_1.toolBar">
+
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="1" />
