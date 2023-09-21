@@ -20,7 +20,7 @@
             android:id="@+id/image_category"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_96sdp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/image2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

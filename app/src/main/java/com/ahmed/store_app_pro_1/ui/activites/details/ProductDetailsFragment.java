@@ -92,14 +92,14 @@ public class ProductDetailsFragment extends Fragment {
 
 
 
-        ArrayList<ProductModel> products = Utils.getProducts(category);
-        if (category.equals("الكل")) {
-            products = Utils.getAllProducts();
+        ArrayList<ProductModel> products ;
+        if (category.contains("الكل")) {
+            products = Utils.FillProducts();
             binding.tvTitleCategory.setText("كل المنتجات");
 
         }
        else {
-
+            products=Utils.getProducts(category);
             binding.tvTitleCategory.setText(category);
         }
 

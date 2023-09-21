@@ -30,6 +30,11 @@
     <color name="dot_un_select_color_details_screen">#BAFFFFFF</color>
     <color name="dot_selected_color_details_screen">#FFFFFF</color>
     <color name="bg_tab_details_color">#F1F1F1</color>
+    <color name="bg_add_min_item_details_screen_color">#F6F6F6</color>
+    <color name="bg_add_min_item_cart_screen_color">#F3F3F3</color>
+    <color name="text_cart_color">#1B2A3B</color>
+    <color name="bg_un_select_button_payment_color">#F9F9FA</color>
+    <color name="hint_text_payment_color">#C0C0C0</color>
 
 
     <!--    <selector xmlns:android="http://schemas.android.com/apk/res/android">-->

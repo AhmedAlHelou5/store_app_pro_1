@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomHomeItemRvBinding;
 import com.ahmed.store_app_pro_1.databinding.CustomPopularItemHomeFragmentBinding;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
 import com.ahmed.store_app_pro_1.ui.models.PopularModel;
 import com.ahmed.store_app_pro_1.ui.models.ProductModel;
 
@@ -19,9 +20,11 @@ public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeAdapter.
 
 
     ArrayList<ProductModel> productList;
+    OnItemClickListener onItemClickListener;
 
-    public ProductHomeAdapter(ArrayList<ProductModel> productList) {
+    public ProductHomeAdapter(ArrayList<ProductModel> productList, OnItemClickListener onItemClickListener) {
         this.productList = productList;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -51,6 +54,12 @@ public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeAdapter.
         public ProductViewHolder(View itemView) {
             super(itemView);
             binding = CustomHomeItemRvBinding.bind(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(productList);
+                }
+            });
 
         }
 

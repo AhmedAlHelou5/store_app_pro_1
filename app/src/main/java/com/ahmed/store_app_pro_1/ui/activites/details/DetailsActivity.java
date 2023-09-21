@@ -19,6 +19,7 @@ import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.ActivityDetailsBinding;
 
+import com.ahmed.store_app_pro_1.ui.activites.cart.CartActivity;
 import com.ahmed.store_app_pro_1.ui.activites.home.home_fragment.HomeFragment;
 import com.ahmed.store_app_pro_1.ui.adapters.ColorProductRvAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.PagerAdapter;
@@ -29,7 +30,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.Locale;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class DetailsActivity extends AppCompatActivity implements HomeFragment.OnFragmentClickListener {
     ActivityDetailsBinding binding;
@@ -54,6 +56,10 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
 
 
 
+        binding.buttonAddToCart.setOnClickListener(v -> {
+            startActivity(new Intent(DetailsActivity.this, CartActivity.class));
+
+        });
 
 
 
@@ -65,6 +71,7 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
         String price = extras.getString("price");
         String description = extras.getString("description");
         boolean like = extras.getBoolean("isLike");
+        int image = extras.getInt("image");
 
 
 
@@ -73,10 +80,67 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
 
         binding.tvTitle.setText(title);
         binding.tvPrice.setText(price);
+        binding.tvPriceAddToCart.setText(price);
         binding.tvDescriptionProduct.setText(description);
 
 //        ArrayList<SliderImageHomeModel> images = Utils.FillImagesForProduct();
         SliderAdapter sliderAdapter = new SliderAdapter(imageList);
+
+        binding.tvCount.setText("0");
+
+
+        AtomicInteger num = new AtomicInteger();
+        final int get_quantity = Integer.parseInt( binding.tvCount.getText().toString());
+        final double get_price= Double.parseDouble( binding.tvPrice.getText().toString());
+        final double get_total=get_quantity*get_price;
+        if (get_total==0){
+            binding.tvPriceAddToCart.setText(get_price+"");
+        }
+
+
+        binding.btnAdd.setOnClickListener(v -> {
+            num.getAndIncrement();
+            binding.tvCount.setText(String.valueOf(num.get()));
+            double total=num.get()*get_price;
+
+            binding.tvPriceAddToCart.setText(String.format(Locale.ENGLISH, "%.2f", total));
+
+
+
+        });
+
+        binding.btnMin.setOnClickListener(v -> {
+           if (num.get() > 0){
+            num.getAndDecrement();
+            binding.tvCount.setText(String.valueOf(num.get()));
+               double total=num.get()*get_price;
+               binding.tvPriceAddToCart.setText(total+"");
+               binding.tvPriceAddToCart.setText(String.format(Locale.ENGLISH, "%.2f", total));
+
+
+           }
+       if (num.get()==0){
+           binding.tvPriceAddToCart.setText(get_price+"");
+       }
+
+
+        });
+
+
+
+        binding.buttonAddToCart.setOnClickListener(v -> {
+            Intent intent1 = new Intent(DetailsActivity.this, CartActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("title",title);
+            bundle.putString("price", price);
+            bundle.putString("description", description);
+            bundle.putBoolean("isLike", like);
+            bundle.putInt("count",Integer.parseInt( binding.tvCount.getText().toString()));
+            intent.putExtras(bundle);
+            startActivity(intent1);
+        });
+
+
 
 
 
@@ -189,18 +253,18 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
 //        binding.tvPrice.setText(product.getPrice());
 
 //        ProductModel offerModels = product.getColors();
-        ColorProductRvAdapter allOffersAdapter = new ColorProductRvAdapter(product.getColors());
-
-
-        binding.recColorItem.setAdapter(allOffersAdapter);
-        binding.recColorItem.setHasFixedSize(true);
-        binding.recColorItem.setClipToPadding(false);
-        binding.recColorItem.setClipChildren(false);
-
-        binding.recColorItem.setLayoutManager(new
-                LinearLayoutManager(this,
-                RecyclerView.HORIZONTAL,false));
-
+//        ColorProductRvAdapter allOffersAdapter = new ColorProductRvAdapter(product.getColors());
+//
+//
+//        binding.recColorItem.setAdapter(allOffersAdapter);
+//        binding.recColorItem.setHasFixedSize(true);
+//        binding.recColorItem.setClipToPadding(false);
+//        binding.recColorItem.setClipChildren(false);
+//
+//        binding.recColorItem.setLayoutManager(new
+//                LinearLayoutManager(this,
+//                RecyclerView.HORIZONTAL,false));
+//
 
 
 

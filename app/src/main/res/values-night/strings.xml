@@ -45,4 +45,14 @@
     <string name="another_comment">هل لديك اضافات اخرى؟</string>
     <string name="all_products">كل المنتجات</string>
     <string name="badllat">بدالات</string>
+    <string name="confirm_payment">تأكيد الطلب</string>
+    <string name="tv_sum_label">المجموع</string>
+    <string name="tv_cupon_label">الكوبون</string>
+    <string name="tv_next">التالي</string>
+    <string name="payment">الدفع</string>
+    <string name="cash">نقدي</string>
+    <string name="full_name">Full Name</string>
+    <string name="ahmed_email_com">Ahmed@email.com</string>
+    <string name="confirm_order">تأكيد الطلب</string>
+    <string name="back">رجوع</string>
 </resources>

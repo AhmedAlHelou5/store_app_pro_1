@@ -1,5 +1,6 @@
 package com.ahmed.store_app_pro_1;
 
+import com.ahmed.store_app_pro_1.ui.models.CartModel;
 import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
 import com.ahmed.store_app_pro_1.ui.models.ColorProductModel;
 import com.ahmed.store_app_pro_1.ui.models.OfferModel;
@@ -164,6 +165,41 @@ public class Utils {
         return offers;
     }
 
+
+
+
+
+    static ArrayList<CartModel> cartModels = new ArrayList<>();
+
+    public static ArrayList<CartModel> FillCart(){
+        cartModels=new ArrayList<>();
+        cartModels.add(new CartModel(R.drawable.image3,"دراجة نارية فاخرة ","99.00",1));
+        cartModels.add(new CartModel(R.drawable.image4,"بدالة مميزة","80.00",2));
+        cartModels.add(new CartModel(R.drawable.image2,"عجلات مميزة","199.00",3));
+        cartModels.add(new CartModel(R.drawable.image3,"دراجة نارية","79.00",1));
+        cartModels.add(new CartModel(R.drawable.image4,"قطع غيار","69.00",7));
+        cartModels.add(new CartModel(R.drawable.image1,"عجلات مميزة","59.00",3));
+        cartModels.add(new CartModel(R.drawable.image2,"دراجة نارية","90.00",2));
+        cartModels.add(new CartModel(R.drawable.image1,"قطع غيار","130.00",9));
+
+
+
+        return cartModels;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    static ArrayList<PopularModel> populars = new ArrayList<>();
 //
 //    public static ArrayList<PopularModel> FillPopulars(){
@@ -193,18 +229,18 @@ public class Utils {
         allProducts=new ArrayList<>();
 
         allProducts.add(new ProductModel("بدالات",R.drawable.image2,"بدالات فاخرة", "دراجة نارية فاخرة","18","15",getColorArray(),"90.99",FillImagesForProduct2(),false));
-        allProducts.add(new ProductModel("عجلات",R.drawable.image1,"عجلات فاخرة", "دراجة نارية فاخرة","12","09",getColorArray2(),"99.99",FillImagesForProduct3(),true));
+        allProducts.add(new ProductModel("عجلات",R.drawable.image1,"عجلات فاخرة", "دراجة نارية فاخرة","12","09",getColorArray2(),"99.99",FillImagesForProduct3(),false));
         allProducts.add(new ProductModel("متنوع",R.drawable.image3,"متنوع فاخرة", "دراجة نارية فاخرة","15","13",getColorArray3(),"104.99",FillImages(),false));
-        allProducts.add(new ProductModel("قطع غيار",R.drawable.image4,"قطع غيار فاخرة", "دراجة نارية فاخرة","18","12",getColorArray(),"79.99",FillImagesForProduct2(),true));
+        allProducts.add(new ProductModel("قطع غيار",R.drawable.image4,"قطع غيار فاخرة", "دراجة نارية فاخرة","18","12",getColorArray(),"79.99",FillImagesForProduct2(),false));
         allProducts.add(new ProductModel("دراجات هوائية",R.drawable.image2,"دراجة هوائية فاخرة", "دراجة نارية فاخرة","20","16",getColorArray2(),"89.99",FillImages(),false));
         allProducts.add(new ProductModel("دراجات نارية",R.drawable.image3,"دراجة نارية فاخرة", "دراجة نارية فاخرة","38","35",getColorArray(),"119.99",FillImagesForProduct(),false));
-        allProducts.add(new ProductModel("قطع غيار",R.drawable.image1,"قطع غيار فاخرة", "دراجة نارية فاخرة","28","18",getColorArray3(),"209.99",FillImagesForProduct2(),true));
+        allProducts.add(new ProductModel("قطع غيار",R.drawable.image1,"قطع غيار فاخرة", "دراجة نارية فاخرة","28","18",getColorArray3(),"209.99",FillImagesForProduct2(),false));
         allProducts.add(new ProductModel("متنوع",R.drawable.image4,"متنوع فاخرة", "دراجة نارية فاخرة","68","58",getColorArray(),"60.99",FillImagesForProduct(),false));
         allProducts.add(new ProductModel("قطع غيار",R.drawable.image2,"قطع غيار فاخرة", "دراجة نارية فاخرة","58","48",getColorArray2(),"50.99",FillImages(),false));
-        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image3,"دراجة نارية فاخرة", "دراجة نارية فاخرة","14","08",getColorArray3(),"110.99",FillImagesForProduct3(),true));
-        allProducts.add(new ProductModel("بدالات",R.drawable.image2,"بدالات فاخرة", "دراجة نارية فاخرة","24","18",getColorArray(),"130.99",FillImages(),true));
+        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image3,"دراجة نارية فاخرة", "دراجة نارية فاخرة","14","08",getColorArray3(),"110.99",FillImagesForProduct3(),false));
+        allProducts.add(new ProductModel("بدالات",R.drawable.image2,"بدالات فاخرة", "دراجة نارية فاخرة","24","18",getColorArray(),"130.99",FillImages(),false));
         allProducts.add(new ProductModel("متنوع",R.drawable.image1,"متنوع فاخرة", "دراجة نارية فاخرة","54","48",getColorArray2(),"129.99",FillImagesForProduct(),false));
-        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image4,"دراجة نارية فاخرة", "دراجة نارية فاخرة","92","80",getColorArray(),"139.99",FillImages(),true));
+        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image4,"دراجة نارية فاخرة", "دراجة نارية فاخرة","92","80",getColorArray(),"139.99",FillImages(),false));
         allProducts.add(new ProductModel("عجلات",R.drawable.image3,"عجلات فاخرة", "دراجة نارية فاخرة","17","27",getColorArray3(),"149.99",FillImagesForProduct2(),false));
 
 
@@ -217,9 +253,9 @@ public class Utils {
             if(allProducts.get(i).getCategory().equals(category)){
                 products.add(allProducts.get(i));
             }
-           else if(allProducts.get(i).getCategory().equals("الكل")){
-                products.add(allProducts.get(i));
-            }
+//           else if(allProducts.get(i).getCategory().equals("الكل")){
+//                products.add(allProducts.get(i));
+//            }
 
         }
         return products;
@@ -227,14 +263,15 @@ public class Utils {
 
 
 
-    public static ArrayList<ProductModel> getAllProducts(){
-        ArrayList<ProductModel> allproductsData = new ArrayList<>();
-        for(int i=0;i<allProducts.size();i++){
-            allproductsData.add(allProducts.get(i));
-
-        }
-        return allproductsData;
-    }
+//    public static ArrayList<ProductModel> getAllProducts1(){
+//
+//        ArrayList<ProductModel> allproductsData = new ArrayList<>();
+//        for(int i=0;i<allProducts.size();i++){
+//            allproductsData.add(allProducts.get(i));
+//
+//        }
+//        return allProducts;
+//    }
 
 // this.title = title;
 //        this.description = description;

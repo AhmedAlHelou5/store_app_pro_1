@@ -38,6 +38,7 @@
         android:id="@+id/rv_all_categories_in_product_details_screen"
         android:layout_width="match_parent"
         android:layoutDirection="ltr"
+        android:scrollbars="vertical"
         android:layout_marginTop="@dimen/_7sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
         tools:listitem="@layout/custom_item_rv_all_product_for_details_product"

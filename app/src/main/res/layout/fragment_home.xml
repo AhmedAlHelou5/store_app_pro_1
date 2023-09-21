@@ -229,7 +229,7 @@
                 android:id="@+id/rv_most_popular"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
 
@@ -246,10 +246,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_product_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layoutDirection="rtl"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:orientation="vertical"
+        android:overScrollMode="never"
         app:layout_constraintTop_toBottomOf="@id/linearLayout_most_popular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

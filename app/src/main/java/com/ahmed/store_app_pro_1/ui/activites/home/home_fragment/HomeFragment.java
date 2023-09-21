@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
@@ -208,7 +209,6 @@ public class HomeFragment extends Fragment {
         PopularHomeAdapter allPopularAdapter = new PopularHomeAdapter(popularModels, new OnItemClickListener() {
             @Override
             public void onItemClick(ProductModel popularModel) {
-//                listener.OnFragmentInteraction(popularModel);
 
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);
                 Bundle bundle = new Bundle();
@@ -217,6 +217,7 @@ public class HomeFragment extends Fragment {
                 bundle.putString("title", popularModel.getTitle());
                 bundle.putString("price", popularModel.getPrice());
                 bundle.putString("description", popularModel.getDescription());
+                bundle.putInt("image", popularModel.getImage());
                 bundle.putBoolean("isLike", popularModel.isFavorite());
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -238,13 +239,33 @@ public class HomeFragment extends Fragment {
 
 
         ArrayList<ProductModel> productModels = Utils.FillProducts();
-        ProductHomeAdapter productHomeAdapter = new ProductHomeAdapter(productModels);
+        ProductHomeAdapter productHomeAdapter = new ProductHomeAdapter(productModels, new OnItemClickListener() {
+            @Override
+            public void onItemClick(ProductModel productModel) {
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putIntegerArrayList("images", (ArrayList<Integer>) productModel.getSliderImageHomeModels());
+                bundle.putIntegerArrayList("colors", (ArrayList<Integer>) productModel.getColors());
+                bundle.putString("title", productModel.getTitle());
+                bundle.putString("price", productModel.getPrice());
+                bundle.putString("description", productModel.getDescription());
+                bundle.putBoolean("isLike", productModel.isFavorite());
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+
+
+
+            }
+        });
 
 
         binding.rvProductHome.setAdapter(productHomeAdapter);
         binding.rvProductHome.setHasFixedSize(true);
         binding.rvProductHome.setClipToPadding(false);
         binding.rvProductHome.setClipChildren(false);
+        binding.rvProductHome.setLayoutFrozen(true);
+
 
         binding.rvProductHome.setLayoutManager(new
                 LinearLayoutManager(getActivity(),
