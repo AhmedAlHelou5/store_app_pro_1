@@ -2,6 +2,7 @@ package com.ahmed.store_app_pro_1.ui.activites.payment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ScrollView;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.ActivityPaymentBinding;
+import com.ahmed.store_app_pro_1.ui.activites.success_payment.SuccessPaymentActivity;
 
 public class PaymentActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityPaymentBinding binding;
@@ -39,8 +41,18 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         setSupportActionBar(binding.toolbar);
 
 
+        binding.btnConfirm.setOnClickListener(
+                v -> {
+                    startActivity(new Intent(PaymentActivity.this, SuccessPaymentActivity.class));
+                }
+        );
+
+
+
         binding.linearCash.setOnClickListener(this); // calling onClick() method
         binding.linearVisa.setOnClickListener(this);
+
+
 
         binding.btnBackBottom.setBackground(getResources().getDrawable(R.drawable.on_boarding_btn_login));
 

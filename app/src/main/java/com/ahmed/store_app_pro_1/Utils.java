@@ -3,6 +3,7 @@ package com.ahmed.store_app_pro_1;
 import com.ahmed.store_app_pro_1.ui.models.CartModel;
 import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
 import com.ahmed.store_app_pro_1.ui.models.ColorProductModel;
+import com.ahmed.store_app_pro_1.ui.models.LastSearchModel;
 import com.ahmed.store_app_pro_1.ui.models.OfferModel;
 import com.ahmed.store_app_pro_1.ui.models.PopularModel;
 import com.ahmed.store_app_pro_1.ui.models.ProductModel;
@@ -10,6 +11,7 @@ import com.ahmed.store_app_pro_1.ui.models.SliderImageHomeModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Utils {
 
@@ -27,7 +29,24 @@ public class Utils {
 
         return images;
     }
+//    String [] tabs = {"الكل","بدالات","عجلات","متنوع","قطع غيار","دراجات هوائية","دراجات نارية",};
 
+    static ArrayList<String> tabs = new ArrayList<>();
+    public static ArrayList<String> FillTabs(){
+        tabs=new ArrayList<>();
+        tabs.add("الكل");
+        tabs.add("بدالات");
+        tabs.add("عجلات");
+        tabs.add("متنوع");
+        tabs.add("قطع غيار");
+        tabs.add("دراجات هوائية");
+        tabs.add("دراجات نارية");
+
+
+
+
+        return tabs;
+    }
 
 
     static ArrayList<Integer> imagesForProduct = new ArrayList<>();
@@ -42,6 +61,8 @@ public class Utils {
 
         return imagesForProduct;
     }
+
+
 
 
     static ArrayList<Integer> imagesForProduct3 = new ArrayList<>();
@@ -70,6 +91,17 @@ public class Utils {
 
 
 
+    static ArrayList<LastSearchModel> lastSearchModels = new ArrayList<>();
+    public static ArrayList<LastSearchModel> FillLastSearch(){
+        lastSearchModels=new ArrayList<>();
+        lastSearchModels.add(new LastSearchModel("عجلات"));
+        lastSearchModels.add(new LastSearchModel("بدالات"));
+        lastSearchModels.add(new LastSearchModel("قطع غيار"));
+        lastSearchModels.add(new LastSearchModel("دراجة"));
+
+        return lastSearchModels;
+    }
+
 
 
 
@@ -82,10 +114,10 @@ public class Utils {
     public static ArrayList<CategoriesModel> FillCategories(){
         categories=new ArrayList<>();
         categories.add(new CategoriesModel(R.drawable.category1,"عجلات"));
-        categories.add(new CategoriesModel(R.drawable.category2,"درجات نارية"));
+        categories.add(new CategoriesModel(R.drawable.category2,"دراجات نارية"));
         categories.add(new CategoriesModel(R.drawable.category3,"بدالات"));
         categories.add(new CategoriesModel(R.drawable.category4,"قطع غيار"));
-        categories.add(new CategoriesModel(R.drawable.category1,"درجات هوائية"));
+        categories.add(new CategoriesModel(R.drawable.category1,"دراجات هوائية"));
         categories.add(new CategoriesModel(R.drawable.category2,"متنوع"));
         categories.add(new CategoriesModel(R.drawable.category4,"أخرى"));
 
@@ -177,10 +209,6 @@ public class Utils {
         cartModels.add(new CartModel(R.drawable.image4,"بدالة مميزة","80.00",2));
         cartModels.add(new CartModel(R.drawable.image2,"عجلات مميزة","199.00",3));
         cartModels.add(new CartModel(R.drawable.image3,"دراجة نارية","79.00",1));
-        cartModels.add(new CartModel(R.drawable.image4,"قطع غيار","69.00",7));
-        cartModels.add(new CartModel(R.drawable.image1,"عجلات مميزة","59.00",3));
-        cartModels.add(new CartModel(R.drawable.image2,"دراجة نارية","90.00",2));
-        cartModels.add(new CartModel(R.drawable.image1,"قطع غيار","130.00",9));
 
 
 
@@ -260,6 +288,30 @@ public class Utils {
         }
         return products;
     }
+
+
+    public static ArrayList<LastSearchModel> getLastSearchModels(String text){
+        ArrayList<LastSearchModel> searches = new ArrayList<>();
+        for(int i=0;i<lastSearchModels.size();i++){
+            if(lastSearchModels.get(i).getText().toLowerCase().contains(text.toLowerCase())){
+                searches.add(lastSearchModels.get(i));
+            }
+//           else if(allProducts.get(i).getCategory().equals("الكل")){
+//                products.add(allProducts.get(i));
+//            }
+
+        }
+        return searches;
+    }
+
+
+
+
+
+
+
+
+
 
 
 

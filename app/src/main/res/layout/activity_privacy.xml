@@ -17,6 +17,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/app_bar_privacy_background"
             app:layout_constraintEnd_toEndOf="parent"
+            android:outlineSpotShadowColor="@color/transparent"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 

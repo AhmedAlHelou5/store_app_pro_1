@@ -122,4 +122,11 @@
     <string name="ahmed_email_com">Ahmed@email.com</string>
     <string name="confirm_order">تأكيد الطلب</string>
     <string name="back">رجوع</string>
+    <string name="success_payment_two">تمت العملية بنجاح</string>
+    <string name="success_payment_one">تم تنفيذ الطلب بنجاح</string>
+    <string name="congratulation">تهانينا</string>
+    <string name="back_to_home">عودة الى الرئيسية</string>
+    <string name="empty_card">السلة فارغة</string>
+    <string name="no_item_in_cart">لا يوجد أي منتجات في سلة المشتريات</string>
+    <string name="search">البحث</string>
 </resources>

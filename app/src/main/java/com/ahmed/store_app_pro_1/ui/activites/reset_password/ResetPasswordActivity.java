@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.ActivityResetPasswordBinding;
 import com.ahmed.store_app_pro_1.ui.activites.forget_password.ForgetPasswordActivity;
+import com.ahmed.store_app_pro_1.ui.activites.home.HomeActivity;
 
 public class ResetPasswordActivity extends AppCompatActivity {
     ActivityResetPasswordBinding binding;
@@ -26,6 +27,11 @@ public class ResetPasswordActivity extends AppCompatActivity {
             Intent intent=new Intent(ResetPasswordActivity.this, ForgetPasswordActivity.class);
             startActivity(intent);
             finish();
+        });
+
+
+        binding.btnSendForgetPassword.setOnClickListener(view -> {
+           startActivity(new Intent(ResetPasswordActivity.this, HomeActivity.class));
         });
 
 

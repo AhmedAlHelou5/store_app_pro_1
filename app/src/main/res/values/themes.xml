@@ -125,31 +125,14 @@
     </style>
 
 
+    <style name="ButtonStlye" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge" >
+        <item name="android:background">@drawable/on_boarding_btn_login</item>
+    </style>
 
-<!--    <style name="ThemeActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid">-->
-<!--        <item name="android:background"> @null </item>-->
-<!--        &lt;!&ndash; Support library compatibility &ndash;&gt;-->
-<!--        <item name="background">@null</item>-->
-<!--        <item name="android:displayOptions"> showHome | useLogo</item>-->
-<!--        <item name="displayOptions">showHome|useLogo</item>-->
+    <style name="EditTextStlye" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge" >
+        <item name="android:background">@drawable/bg_liner_search_bar</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_primary</item>
 
-<!--    </style>-->
-
-
-
-
-
-    <!--    <style name="CustomActionBarTheme" parent="Theme.Store_app_pro_1">-->
-<!--        <item name="android:windowActionBarOverlay">true</item>-->
-<!--        <item name="windowActionBarOverlay">true</item>-->
-<!--        <item name="android:actionBarStyle">@style/TransparentActionBar</item>-->
-<!--    </style>-->
-
-<!--    <style name="TransparentActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">-->
-<!--        <item name="android:background">@android:color/transparent</item>-->
-<!--    </style>-->
-
-
-
+    </style>
 
 </resources>

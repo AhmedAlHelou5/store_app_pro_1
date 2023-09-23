@@ -35,6 +35,12 @@
     <color name="text_cart_color">#1B2A3B</color>
     <color name="bg_un_select_button_payment_color">#F9F9FA</color>
     <color name="hint_text_payment_color">#C0C0C0</color>
+    <color name="text_success_payment_color">#4AD295</color>
+    <color name="diver_search_bar_color">#DEDEDE</color>
+    <color name="text_last_search_color">#303030</color>
+    <color name="swipe_delete_cart_color">#FF4074</color>
+    <color name="swipe_delete_cart_color_two">#FFE6ED</color>
+    <color name="swipe_delete_cart_color_three">#FF95B2</color>
 
 
     <!--    <selector xmlns:android="http://schemas.android.com/apk/res/android">-->

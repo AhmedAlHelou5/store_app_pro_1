@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 
@@ -13,6 +14,7 @@ import com.ahmed.store_app_pro_1.ui.activites.home.cart_fragment.CartFragment;
 import com.ahmed.store_app_pro_1.ui.activites.home.category_fragment.CategoryFragment;
 import com.ahmed.store_app_pro_1.ui.activites.home.home_fragment.HomeFragment;
 import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.ProfileFragment;
+import com.ahmed.store_app_pro_1.ui.activites.search.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.google.android.material.navigation.NavigationBarView;
@@ -33,6 +35,9 @@ public class HomeActivity extends AppCompatActivity {
         binding.toolbar.setTitle("");
 
         setSupportActionBar(binding.toolbar);
+        binding.toolbarSearchIcon.setOnClickListener(v -> {
+           startActivity(new Intent(HomeActivity.this, SearchActivity.class));
+        });
 
         binding.bottomNavigation.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
 

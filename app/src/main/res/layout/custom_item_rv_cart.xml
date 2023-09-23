@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:padding="@dimen/_3sdp"
     android:elevation="2dp"
-    android:layout_marginVertical="@dimen/_3sdp"
+    android:background="@drawable/bg_swipe_delete_cart_item"
+    android:layout_marginTop="@dimen/_9sdp"
     android:layout_marginHorizontal="@dimen/_2sdp"
     app:cardCornerRadius="@dimen/_8sdp"
     android:layout_height="@dimen/_70sdp">
@@ -14,6 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         >
 
 

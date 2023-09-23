@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/swipe_delete_cart_color"
+        android:state_active="true"
+        android:state_selected="true"
+        android:state_hovered="true"
+
+        />
+
+
+    <item android:color="@color/swipe_delete_cart_color_three"
+        android:state_active="true"
+        android:state_selected="true"
+        android:state_hovered="true"
+
+        />
+    <item android:color="@color/swipe_delete_cart_color_two"
+        android:state_active="true"
+        android:state_selected="true"
+        android:state_hovered="true"
+
+        />
+</selector>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/transparent"
     tools:context=".ui.activites.home.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -12,6 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
         android:background="@drawable/app_bar_privacy_background"
+        android:outlineSpotShadowColor="@color/transparent"
+        android:clipChildren="true"
+        android:clipToPadding="true"
+        android:clipToOutline="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,6 +25,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
            >
             <ImageView
                 android:layout_width="@dimen/_60sdp"
@@ -39,6 +45,7 @@
                 android:textSize="@dimen/_14ssp" />
 
             <ImageView
+                android:id="@+id/toolbar_search_icon"
                 android:layout_width="@dimen/_18sdp"
                 android:layout_height="@dimen/_18sdp"
                 android:src="@drawable/search_icon"
@@ -56,6 +63,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/transparent"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
@@ -71,7 +80,8 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
-        android:background="@color/white"
+        android:background="@drawable/bg_bottom_nav"
+        android:backgroundTint="@color/transparent"
         app:menu="@menu/bottom_nav_menu"
         android:layoutDirection="rtl"
         app:labelVisibilityMode="labeled"

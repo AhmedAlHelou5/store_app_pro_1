@@ -1,5 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomAllCategoriesItemFragmentBinding;
 import com.ahmed.store_app_pro_1.databinding.CustomAllCategoriesItemRvBinding;
+import com.ahmed.store_app_pro_1.ui.activites.home.category_fragment.CategoryActivity;
+import com.ahmed.store_app_pro_1.ui.listeners.OnCategoryClickListener;
 import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
 
 import java.util.ArrayList;
@@ -18,6 +21,8 @@ public class AllCategoriesFragmentAdapter extends RecyclerView.Adapter<AllCatego
 
 
     ArrayList<CategoriesModel> categoriesModels;
+    OnCategoryClickListener onCategoryClickListener;
+
 
     public AllCategoriesFragmentAdapter(ArrayList<CategoriesModel> categoriesModels) {
         this.categoriesModels = categoriesModels;
@@ -50,6 +55,14 @@ public class AllCategoriesFragmentAdapter extends RecyclerView.Adapter<AllCatego
         public AllCategoriesViewHolder(View itemView) {
             super(itemView);
             binding = CustomAllCategoriesItemFragmentBinding.bind(itemView);
+            itemView.setOnClickListener(view -> {
+//                onCategoryClickListener.OnCategoryClick(product.getName());
+                Intent intent = new Intent(binding.getRoot().getContext(), CategoryActivity.class);
+                intent.putExtra("category", product.getName());
+                binding.getRoot().getContext().startActivity(intent);
+
+
+            });
 
         }
 
