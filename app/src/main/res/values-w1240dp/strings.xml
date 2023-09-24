@@ -61,4 +61,16 @@
     <string name="back_to_home">عودة الى الرئيسية</string>
     <string name="empty_card">السلة فارغة</string>
     <string name="no_item_in_cart">لا يوجد أي منتجات في سلة المشتريات</string>
+    <string name="location_country">غزة</string>
+    <string name="my_orders">طلباتي</string>
+    <string name="order_details">تفاصيل الطلب</string>
+    <string name="order_num">رقم الطلب :</string>
+    <string name="sgin_out">تسجيل خروج</string>
+    <string name="about_app">حول التطبيق</string>
+    <string name="favorites">المفضلة</string>
+    <string name="notification">الإشعارات</string>
+    <string name="settings">الإعدادات</string>
+    <string name="orders">طلباتي</string>
+    <string name="my_account">حسابي</string>
+    <string name="change_photo">تغيير الصورة</string>
 </resources>

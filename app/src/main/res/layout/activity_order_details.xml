@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activites.home.profile_fragment.orders.OrderDetailsActivity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@drawable/app_bar_privacy_background"
+        android:outlineSpotShadowColor="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="ltr"
+
+            >
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_arrow_forward_24"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/toolbar_tv_title_home_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/almarai_regular"
+                android:text="@string/order_details"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp" />
+
+
+
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layoutDirection="rtl"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_13sdp"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_11sdp"
+                    android:fontFamily="@font/almarai_bold"
+                    android:text="@string/order_num"
+                    android:textColor="@color/text_cart_color"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/tv_num_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_11sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:fontFamily="@font/almarai_bold"
+                    android:text="123"
+                    android:textColor="@color/secondary_color"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/diver1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/bg_add_min_item_details_screen_color"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"
+                tools:layout_editor_absoluteX="6dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_11sdp"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_13sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/almarai_regular"
+                    android:text="@string/tv_sum_label"
+                    android:textColor="@color/text_cart_color"
+                    android:textSize="@dimen/_12ssp" />
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_weight="1"
+                    android:layoutDirection="ltr"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_description_product"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description_product">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:fontFamily="@font/almarai_regular"
+                        android:gravity="center"
+                        android:text="₪"
+                        android:textColor="@color/secondary_color"
+                        android:textSize="@dimen/_9ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
+                    <TextView
+                        android:id="@+id/tv_price_total_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/almarai_regular"
+                        android:gravity="center"
+                        android:text="95.99"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/diver2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/bg_add_min_item_details_screen_color"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"
+                tools:layout_editor_absoluteX="6dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_11sdp"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_13sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/almarai_regular"
+                    android:text="@string/tv_sum_label"
+                    android:textColor="@color/text_cart_color"
+                    android:textSize="@dimen/_12ssp" />
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_weight="1"
+                    android:layoutDirection="ltr"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_description_product"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description_product">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:fontFamily="@font/almarai_regular"
+                        android:gravity="center"
+                        android:text="₪"
+                        android:textColor="@color/secondary_color"
+                        android:textSize="@dimen/_9ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/almarai_regular"
+                        android:gravity="center"
+                        android:text="95.99"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:weightSum="2">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_13sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/almarai_regular"
+                    android:text="@string/tv_cupon_label"
+                    android:textColor="@color/secondary_color"
+                    android:textSize="@dimen/_12ssp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_weight="1"
+                    android:layoutDirection="ltr"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_description_product"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description_product">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:fontFamily="@font/almarai_regular"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:text="₪"
+                        android:textColor="@color/secondary_color"
+                        android:textSize="@dimen/_9ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
+                    <TextView
+                        android:id="@+id/tv_discount_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/almarai_regular"
+                        android:gravity="center"
+                        android:text="5.00"
+                        android:textColor="@color/secondary_color"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:fontFamily="@font/almarai_regular"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textColor="@color/secondary_color"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/image_dash_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/dash_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_11sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_13sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/almarai_bold"
+                    android:text="@string/tv_sum_label"
+                    android:textColor="@color/text_cart_color"
+                    android:textSize="@dimen/_12ssp" />
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_weight="1"
+                    android:layoutDirection="ltr"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_description_product"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description_product">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:fontFamily="@font/almarai_regular"
+                        android:gravity="center"
+                        android:text="₪"
+                        android:textColor="@color/secondary_color"
+                        android:textSize="@dimen/_9ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
+                    <TextView
+                        android:id="@+id/tv_total_price_after_discount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/almarai_bold"
+                        android:gravity="center"
+                        android:text="95.99"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

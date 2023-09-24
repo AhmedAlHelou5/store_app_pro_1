@@ -41,7 +41,11 @@
     <color name="swipe_delete_cart_color">#FF4074</color>
     <color name="swipe_delete_cart_color_two">#FFE6ED</color>
     <color name="swipe_delete_cart_color_three">#FF95B2</color>
-
+    <color name="text_color_orders_second">#969FA2</color>
+    <color name="done_orders_color">#20CE8C</color>
+    <color name="text_color_profile_one">#111827</color>
+    <color name="bg_icon_color">#F0F5FF</color>
+    <color name="bg_icon_color_sign_out">#33FF4074</color>
 
     <!--    <selector xmlns:android="http://schemas.android.com/apk/res/android">-->
 <!--        <item android:color="@color/text_color_on_boarding_second"-->

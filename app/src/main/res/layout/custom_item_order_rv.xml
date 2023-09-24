@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardView2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_8sdp"
+    android:layoutDirection="rtl"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/rv_items_cart"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_13sdp"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:fontFamily="@font/almarai_regular"
+                        android:text="طلب #"
+                        android:textColor="@color/text_cart_color"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <TextView
+                        android:id="@+id/tv_num_order"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:fontFamily="@font/almarai_regular"
+                        android:text="123vxcv"
+                        android:textColor="@color/text_cart_color"
+                        android:textSize="@dimen/_11ssp" />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:fontFamily="@font/almarai_regular"
+                    android:text="@string/location_country"
+                    android:textColor="@color/text_color_orders_second"
+                    android:textSize="@dimen/_9ssp" />
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/bg_text"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_gravity="center"
+                android:gravity="left"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_weight="1"
+                 >
+                <TextView
+                    android:id="@+id/tv_done"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="match_parent"
+                    android:text="مكتمل"
+                    android:gravity="center"
+                    android:background="@drawable/bg_liner_text_order_done"
+
+                    android:fontFamily="@font/almarai_regular"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_9ssp"
+
+                    />
+
+
+
+
+
+            </LinearLayout>
+            
+
+        </LinearLayout>
+
+
+
+
+
+
+
+        <View
+            android:id="@+id/diver1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:background="@color/bg_add_min_item_details_screen_color"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            tools:layout_editor_absoluteX="6dp" />
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_11sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/_13sdp"
+                android:layout_weight="1"
+                android:fontFamily="@font/almarai_bold"
+                android:text="@string/tv_sum_label"
+                android:textColor="@color/text_cart_color"
+                android:textSize="@dimen/_12ssp" />
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout11"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:layoutDirection="ltr"
+                app:layout_constraintEnd_toEndOf="@+id/tv_description_product"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description_product">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:fontFamily="@font/almarai_regular"
+                    android:gravity="center"
+                    android:text="₪"
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
+                <TextView
+                    android:id="@+id/tv_total_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/almarai_bold"
+                    android:gravity="center"
+                    android:text="95.99"
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

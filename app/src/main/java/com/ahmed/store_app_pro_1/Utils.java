@@ -5,6 +5,7 @@ import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
 import com.ahmed.store_app_pro_1.ui.models.ColorProductModel;
 import com.ahmed.store_app_pro_1.ui.models.LastSearchModel;
 import com.ahmed.store_app_pro_1.ui.models.OfferModel;
+import com.ahmed.store_app_pro_1.ui.models.OrderModel;
 import com.ahmed.store_app_pro_1.ui.models.PopularModel;
 import com.ahmed.store_app_pro_1.ui.models.ProductModel;
 import com.ahmed.store_app_pro_1.ui.models.SliderImageHomeModel;
@@ -219,32 +220,23 @@ public class Utils {
 
 
 
+    static ArrayList<OrderModel> orderModels = new ArrayList<>();
+
+    public static ArrayList<OrderModel> FillOrder(){
+        orderModels=new ArrayList<>();
+        orderModels.add(new OrderModel(123,"مكتمل",99.00,"غزة",5,94));
+        orderModels.add(new OrderModel(124,"مستلم",79.00,"غزة",7,72));
+        orderModels.add(new OrderModel(135,"مكتمل",59.00,"غزة",4,55));
+        orderModels.add(new OrderModel(167,"مستلم",299.00,"غزة",30,269));
+
+
+
+        return orderModels;
+    }
 
 
 
 
-
-
-
-
-
-//    static ArrayList<PopularModel> populars = new ArrayList<>();
-//
-//    public static ArrayList<PopularModel> FillPopulars(){
-//        populars=new ArrayList<>();
-//        populars.add(new PopularModel(R.drawable.category1,"دراجة نارية","دراجة نارية مميزةمميزFAFSAKSPKGDPSDKGPSPKGKPSKPSGPKة","1800"));
-//        populars.add(new PopularModel(R.drawable.category2,"دراجة نارية","دراجة نارية مميزة","1200"));
-//        populars.add(new PopularModel(R.drawable.category3,"دراجة نارية","دراجة نارية مميزمميزFAFSAKSPKGDPSDKGPSPKGKPSKPSGPKةة","1400"));
-//        populars.add(new PopularModel(R.drawable.category4,"دراجة نارية","دراجة نارية مميزة","1400"));
-//        populars.add(new PopularModel(R.drawable.category2,"دراجة نارية","دراجة نارية مميزة","1080"));
-//        populars.add(new PopularModel(R.drawable.category1,"دراجة نارية","دراجة نارية مميزة","1090"));
-//        populars.add(new PopularModel(R.drawable.category3,"دراجة نارية","دراجة نارية مميزة","1100"));
-//        populars.add(new PopularModel(R.drawable.category4,"دراجة نارية","دراجة نارية مميزة","1040"));
-//
-//
-//
-//        return populars;
-//    }
 
 
 
@@ -309,30 +301,6 @@ public class Utils {
 
 
 
-
-
-
-
-
-
-//    public static ArrayList<ProductModel> getAllProducts1(){
-//
-//        ArrayList<ProductModel> allproductsData = new ArrayList<>();
-//        for(int i=0;i<allProducts.size();i++){
-//            allproductsData.add(allProducts.get(i));
-//
-//        }
-//        return allProducts;
-//    }
-
-// this.title = title;
-//        this.description = description;
-//        this.colors = colors;
-//        this.price = price;
-//        this.sliderImageHomeModels = sliderImageHomeModels;
-//        this.isFavorite = isFavorite;
-//
-//
 
 
     public static ArrayList<Integer> getImagesProducts(){
