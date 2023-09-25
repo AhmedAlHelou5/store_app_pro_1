@@ -46,7 +46,9 @@
     <color name="text_color_profile_one">#111827</color>
     <color name="bg_icon_color">#F0F5FF</color>
     <color name="bg_icon_color_sign_out">#33FF4074</color>
-
+    <color name="text_color_settings_first">#9EA3AE</color>
+    <color name="bg_color_favorite_one">#EC597B</color>
+    <color name="text_color_notification_time">#9DA4BB</color>
     <!--    <selector xmlns:android="http://schemas.android.com/apk/res/android">-->
 <!--        <item android:color="@color/text_color_on_boarding_second"-->
 <!--            android:state_checked="false"/>-->

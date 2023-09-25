@@ -73,4 +73,18 @@
     <string name="orders">طلباتي</string>
     <string name="my_account">حسابي</string>
     <string name="change_photo">تغيير الصورة</string>
+    <string name="please_turn_on_notification">من فضلك قمت بتفعيل الاشعارات</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="contact_us">تواصل معنا</string>
+    <string name="help_center">مركز المساعدة</string>
+    <string name="change_lang">تغيير اللغة</string>
+    <string name="arabic">  العربية</string>
+    <string name="hebrew">  العبرية</string>
+    <string name="name">الاسم</string>
+    <string name="telephone_number">رقم الهاتف</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="feedback">ملاحظات</string>
+    <string name="now">الان</string>
+    <string name="what_is_our_application">ما هو تطبيقنا</string>
+    <string name="what_does_our_app_do">ماذا يفعل تطبيقنا؟</string>
 </resources>

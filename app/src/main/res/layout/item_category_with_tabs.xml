@@ -29,6 +29,22 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
+<!--        <ImageView-->
+<!--            android:id="@+id/image_favorite"-->
+<!--            android:layout_width="@dimen/_25sdp"-->
+<!--            android:layout_height="@dimen/_25sdp"-->
+<!--            android:layout_marginTop="@dimen/_6sdp"-->
+<!--            android:layout_marginLeft="@dimen/_8sdp"-->
+<!--            android:background="@drawable/bg_icon_favorite"-->
+<!--            android:src="@drawable/like"-->
+<!--            android:padding="@dimen/_7sdp"-->
+
+
+<!--            app:layout_constraintStart_toStartOf="@+id/image_category"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/image_category" />-->
+<!--        -->
+
+
 
         <LinearLayout
             android:id="@+id/linearLayout4"

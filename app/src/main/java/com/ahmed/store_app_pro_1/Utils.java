@@ -4,6 +4,7 @@ import com.ahmed.store_app_pro_1.ui.models.CartModel;
 import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
 import com.ahmed.store_app_pro_1.ui.models.ColorProductModel;
 import com.ahmed.store_app_pro_1.ui.models.LastSearchModel;
+import com.ahmed.store_app_pro_1.ui.models.NotificationModel;
 import com.ahmed.store_app_pro_1.ui.models.OfferModel;
 import com.ahmed.store_app_pro_1.ui.models.OrderModel;
 import com.ahmed.store_app_pro_1.ui.models.PopularModel;
@@ -248,19 +249,19 @@ public class Utils {
     public static ArrayList<ProductModel> FillProducts(){
         allProducts=new ArrayList<>();
 
-        allProducts.add(new ProductModel("بدالات",R.drawable.image2,"بدالات فاخرة", "دراجة نارية فاخرة","18","15",getColorArray(),"90.99",FillImagesForProduct2(),false));
+        allProducts.add(new ProductModel("بدالات",R.drawable.image2,"بدالات فاخرة", "دراجة نارية فاخرة","18","15",getColorArray(),"90.99",FillImagesForProduct2(),true));
         allProducts.add(new ProductModel("عجلات",R.drawable.image1,"عجلات فاخرة", "دراجة نارية فاخرة","12","09",getColorArray2(),"99.99",FillImagesForProduct3(),false));
-        allProducts.add(new ProductModel("متنوع",R.drawable.image3,"متنوع فاخرة", "دراجة نارية فاخرة","15","13",getColorArray3(),"104.99",FillImages(),false));
+        allProducts.add(new ProductModel("متنوع",R.drawable.image3,"متنوع فاخرة", "دراجة نارية فاخرة","15","13",getColorArray3(),"104.99",FillImages(),true));
         allProducts.add(new ProductModel("قطع غيار",R.drawable.image4,"قطع غيار فاخرة", "دراجة نارية فاخرة","18","12",getColorArray(),"79.99",FillImagesForProduct2(),false));
         allProducts.add(new ProductModel("دراجات هوائية",R.drawable.image2,"دراجة هوائية فاخرة", "دراجة نارية فاخرة","20","16",getColorArray2(),"89.99",FillImages(),false));
-        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image3,"دراجة نارية فاخرة", "دراجة نارية فاخرة","38","35",getColorArray(),"119.99",FillImagesForProduct(),false));
+        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image3,"دراجة نارية فاخرة", "دراجة نارية فاخرة","38","35",getColorArray(),"119.99",FillImagesForProduct(),true));
         allProducts.add(new ProductModel("قطع غيار",R.drawable.image1,"قطع غيار فاخرة", "دراجة نارية فاخرة","28","18",getColorArray3(),"209.99",FillImagesForProduct2(),false));
-        allProducts.add(new ProductModel("متنوع",R.drawable.image4,"متنوع فاخرة", "دراجة نارية فاخرة","68","58",getColorArray(),"60.99",FillImagesForProduct(),false));
+        allProducts.add(new ProductModel("متنوع",R.drawable.image4,"متنوع فاخرة", "دراجة نارية فاخرة","68","58",getColorArray(),"60.99",FillImagesForProduct(),true));
         allProducts.add(new ProductModel("قطع غيار",R.drawable.image2,"قطع غيار فاخرة", "دراجة نارية فاخرة","58","48",getColorArray2(),"50.99",FillImages(),false));
-        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image3,"دراجة نارية فاخرة", "دراجة نارية فاخرة","14","08",getColorArray3(),"110.99",FillImagesForProduct3(),false));
+        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image3,"دراجة نارية فاخرة", "دراجة نارية فاخرة","14","08",getColorArray3(),"110.99",FillImagesForProduct3(),true));
         allProducts.add(new ProductModel("بدالات",R.drawable.image2,"بدالات فاخرة", "دراجة نارية فاخرة","24","18",getColorArray(),"130.99",FillImages(),false));
-        allProducts.add(new ProductModel("متنوع",R.drawable.image1,"متنوع فاخرة", "دراجة نارية فاخرة","54","48",getColorArray2(),"129.99",FillImagesForProduct(),false));
-        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image4,"دراجة نارية فاخرة", "دراجة نارية فاخرة","92","80",getColorArray(),"139.99",FillImages(),false));
+        allProducts.add(new ProductModel("متنوع",R.drawable.image1,"متنوع فاخرة", "دراجة نارية فاخرة","54","48",getColorArray2(),"129.99",FillImagesForProduct(),true));
+        allProducts.add(new ProductModel("دراجات نارية",R.drawable.image4,"دراجة نارية فاخرة", "دراجة نارية فاخرة","92","80",getColorArray(),"139.99",FillImages(),true));
         allProducts.add(new ProductModel("عجلات",R.drawable.image3,"عجلات فاخرة", "دراجة نارية فاخرة","17","27",getColorArray3(),"149.99",FillImagesForProduct2(),false));
 
 
@@ -295,6 +296,47 @@ public class Utils {
         }
         return searches;
     }
+
+
+
+    public static ArrayList<ProductModel> getFavoritesModel(){
+        ArrayList<ProductModel> favorites = new ArrayList<>();
+        for(int i=0;i<allProducts.size();i++) {
+            if (allProducts.get(i).getFavorite()) {
+                favorites.add(allProducts.get(i));
+            }
+        }
+
+        return favorites;
+    }
+
+
+
+
+    static ArrayList<NotificationModel> notificationModels ;
+    public static ArrayList<NotificationModel> FillNotification(){
+        notificationModels=new ArrayList<>();
+        notificationModels.add(new NotificationModel("الان","نص عربي افتراضي نص عربي افتراضي نص عربي افتراضي"));
+        notificationModels.add(new NotificationModel("أمس","نص عربي افتراضي نص عربي افتراضي نص عربي افتراضي"));
+        notificationModels.add(new NotificationModel("08:35","نص عربي افتراضي نص عربي افتراضي نص عربي افتراضي"));
+        notificationModels.add(new NotificationModel("01:15"," نفس " +
+                "المساحة، لقد تم توليد هذا النص من مولد النص العربى،\n" +
+                "حيث يمكنك أن تولد مثل هذا النص أو العديد من\n" +
+                "النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها\n" +
+                "التطبيق.هذا النص هو مثال لنص يمكن أن يستبدل في نفس\n" +
+                "المساحة، لقد تم توليد هذا النص من مولد النص العربى،\n" +
+                "حيث يمكنك أن تولد مثل هذا النص أو العديد من\n"));
+
+
+
+        return notificationModels;
+    }
+
+
+
+
+
+
 
 
 

@@ -82,7 +82,6 @@ public class CategoryTabsFragment extends Fragment {
 
 
 
-
         ArrayList<ProductModel> products ;
         if (category.contains("الكل")||category.contains("أخرى")) {
             products = Utils.FillProducts();

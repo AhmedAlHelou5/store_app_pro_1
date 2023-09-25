@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.ActivityLoginBinding;
+import com.ahmed.store_app_pro_1.ui.activites.forget_password.ForgetPasswordActivity;
 import com.ahmed.store_app_pro_1.ui.activites.register.RegisterActivity;
 import com.ahmed.store_app_pro_1.ui.activites.splash.two.OnBoardingTwoActivity;
 import com.ahmed.store_app_pro_1.ui.activites.verfiy.VerfiyActivity;
@@ -44,6 +45,13 @@ public class LoginActivity extends AppCompatActivity {
                  finish();
              }
         );
+
+
+        binding.tvForgetPassword.setOnClickListener(view -> {
+            Intent intent=new Intent(LoginActivity.this, ForgetPasswordActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
 
 

@@ -123,6 +123,7 @@
         android:layout_height="@dimen/_40sdp"
         android:fontFamily="@font/almarai_regular"
         android:inputType="phone"
+        android:textCursorDrawable="@drawable/cursor_primary"
         android:hint="@string/hint_phone"
         android:textSize="@dimen/_11ssp"
         android:gravity="right|center"
@@ -187,6 +188,7 @@
             android:layout_marginRight="@dimen/_24sdp"
             android:background="@null"
             android:ellipsize="start"
+            android:textCursorDrawable="@drawable/cursor_primary"
             android:fontFamily="@font/almarai_regular"
             android:textSize="@dimen/_11ssp"
             android:cursorVisible="true"
@@ -226,7 +228,7 @@
             android:fontFamily="@font/almarai_regular"
             android:text="@string/remember_me"
             android:textColor="@color/text_color_on_boarding_second"
-            android:textSize="@dimen/_9ssp"
+            android:textSize="@dimen/_11ssp"
 
             />
 
@@ -236,7 +238,6 @@
             android:layout_height="wrap_content"
             android:buttonTint="@color/checkbox_filter_tint"
             android:checked="false"
-            android:clickable="false"
             android:theme="@style/checkBoxStyle"
 
             />
@@ -295,7 +296,7 @@
         android:fontFamily="@font/almarai_regular"
         android:text="@string/forget_password"
         android:textColor="@color/primary_color"
-        android:textSize="@dimen/_10ssp"
+        android:textSize="@dimen/_11ssp"
         app:layout_constraintBottom_toBottomOf="@+id/liner_check_box_accept"
         app:layout_constraintStart_toStartOf="parent" />
 

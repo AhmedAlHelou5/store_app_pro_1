@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="oval" xmlns:android="http://schemas.android.com/apk/res/android">
+<gradient android:startColor="@color/bg_color_favorite_one"
+android:endColor="@color/swipe_delete_cart_color"
+    android:angle="360"></gradient>
+
+
+
+</shape>

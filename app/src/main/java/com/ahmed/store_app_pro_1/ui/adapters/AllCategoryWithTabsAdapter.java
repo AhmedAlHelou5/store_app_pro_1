@@ -35,6 +35,10 @@ public class AllCategoryWithTabsAdapter extends RecyclerView.Adapter<AllCategory
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         ProductModel popularModel = productList.get(position);
         holder.bind(popularModel);
+
+
+
+
     }
 
     @Override
@@ -60,6 +64,8 @@ public class AllCategoryWithTabsAdapter extends RecyclerView.Adapter<AllCategory
             binding.title.setText(productList.getTitle());
             binding.newPrice.setText(productList.getPrice());
             binding.description.setText(productList.getDescription());
+
+
 
 
 //        binding.recColorItem.setAdapter();

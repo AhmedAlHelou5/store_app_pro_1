@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:layoutDirection="ltr"
+    tools:context=".ui.activites.home.profile_fragment.settings.contact_us.ContactUsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@drawable/app_bar_privacy_background"
+        android:outlineSpotShadowColor="@color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="ltr"
+
+            >
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_arrow_forward_24"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/_12sdp"/>
+
+            <TextView
+                android:id="@+id/toolbar_tv_title_home_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/almarai_regular"
+                android:text="@string/contact_us"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp" />
+
+
+
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <TextView
+        android:id="@+id/tv_full_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_18sdp"
+        android:fontFamily="@font/almarai_regular"
+        android:text="@string/name"
+        android:textColor="@color/secondary_text_color"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <EditText
+        android:id="@+id/ed_text_full_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:inputType="textPersonName"
+        android:fontFamily="@font/almarai_regular"
+        android:hint="@string/name"
+        android:textSize="@dimen/_11ssp"
+        android:imeOptions="actionNext"
+        android:textCursorDrawable="@drawable/cursor_primary"
+        android:textDirection="anyRtl"
+        android:layoutDirection="rtl"
+        android:gravity="right|center"
+        android:background="@drawable/bg_btn_sign_google"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginRight="@dimen/_16sdp"
+        android:layout_marginLeft="@dimen/_16sdp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_full_name" />
+
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/almarai_regular"
+        android:text="@string/telephone_number"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/secondary_text_color"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="@+id/ed_text_full_name"
+        app:layout_constraintTop_toBottomOf="@+id/ed_text_full_name" />
+
+    <EditText
+        android:id="@+id/ed_text_phone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:inputType="phone"
+        android:hint="@string/telephone_number"
+        android:gravity="right|center"
+        android:maxEms="10"
+        android:imeOptions="actionNext"
+
+        android:textDirection="anyRtl"
+        android:fontFamily="@font/almarai_regular"
+        android:textSize="@dimen/_11ssp"
+        android:textCursorDrawable="@drawable/cursor_primary"
+        android:background="@drawable/bg_btn_sign_google"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginRight="@dimen/_16sdp"
+        android:layout_marginLeft="@dimen/_16sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
+
+
+    <TextView
+        android:id="@+id/tv_email_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/almarai_regular"
+        android:text="@string/email"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/secondary_text_color"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="@+id/ed_text_phone"
+        app:layout_constraintTop_toBottomOf="@+id/ed_text_phone" />
+
+    <EditText
+        android:id="@+id/ed_text_email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
+        android:gravity="right|center"
+        android:textCursorDrawable="@drawable/cursor_primary"
+
+        android:textDirection="anyRtl"
+        android:fontFamily="@font/almarai_regular"
+        android:textSize="@dimen/_11ssp"
+        android:background="@drawable/bg_btn_sign_google"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginRight="@dimen/_16sdp"
+        android:layout_marginLeft="@dimen/_16sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email_label" />
+
+
+    <TextView
+        android:id="@+id/tv_feedback_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/almarai_regular"
+        android:text="@string/feedback"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/secondary_text_color"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="@+id/ed_text_email"
+        app:layout_constraintTop_toBottomOf="@+id/ed_text_email" />
+
+    <EditText
+        android:id="@+id/ed_text_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:gravity="right|top"
+        android:textCursorDrawable="@drawable/cursor_primary"
+        android:lines="9"
+        android:minLines="8"
+        android:maxLines="15"
+
+        android:textDirection="anyRtl"
+        android:fontFamily="@font/almarai_regular"
+        android:textSize="@dimen/_11ssp"
+        android:background="@drawable/bg_btn_sign_google"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_marginRight="@dimen/_16sdp"
+        android:layout_marginLeft="@dimen/_16sdp"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_feedback_label" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

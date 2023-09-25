@@ -7,7 +7,7 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="android:windowLightStatusBar">true</item>
-
+        <item name="background">@color/bg_color</item>
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondary_color</item>
@@ -26,6 +26,30 @@
         <item name="colorAccent">@color/text_color_on_boarding_second</item>
         <item name="android:textColorSecondary">@color/primary_color</item>
     </style>
+
+
+    <style name="animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+
+    <style name="switchStyle" parent="Theme.AppCompat.Light">
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">@color/icons_color</item>
+
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/secondary_color</item>
+
+        <!-- colorAccent is used as the default value for colorControlActivated,
+             which is used to tint widgets -->
+
+        <!-- You can also set colorControlNormal, colorControlActivated
+             colorControlHighlight, and colorSwitchThumbNormal. -->
+
+    </style>
+
+
 
 
 

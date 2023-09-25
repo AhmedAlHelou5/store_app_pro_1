@@ -13,10 +13,67 @@
         android:theme="@style/Theme.Store_app_pro_1"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activites.home.profile_fragment.myProfile.PersonalDataActivity"
+            android:name=".ui.activites.home.profile_fragment.settings.help_center.HelpCenterActivity"
             android:exported="true"
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
 
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activites.home.profile_fragment.notifications.NotificationsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Store_app_pro_1.toolBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activites.home.profile_fragment.settings.contact_us.ContactUsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Store_app_pro_1.toolBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activites.home.profile_fragment.settings.privacy_policy.PrivacyPolicyActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Store_app_pro_1.toolBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activites.home.profile_fragment.about_app.AboutAppActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Store_app_pro_1.toolBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activites.home.profile_fragment.favorite.FavoriteActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Store_app_pro_1.toolBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activites.home.profile_fragment.settings.SettingsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Store_app_pro_1.toolBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activites.home.profile_fragment.myProfile.PersonalDataActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -88,12 +145,11 @@
             android:name=".ui.activites.home.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="1" />
@@ -115,6 +171,7 @@
         <activity
             android:name=".ui.activites.verfiy.VerfiyActivity"
             android:exported="true">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -155,7 +212,11 @@
         <activity
             android:name=".ui.activites.splash.SplashActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <!-- android:theme="@style/Theme.MySplash" -->
             <!-- > -->
 

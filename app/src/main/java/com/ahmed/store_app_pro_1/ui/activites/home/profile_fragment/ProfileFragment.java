@@ -16,8 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ahmed.store_app_pro_1.databinding.FragmentProfileBinding;
+import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.about_app.AboutAppActivity;
+import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.favorite.FavoriteActivity;
 import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.myProfile.PersonalDataActivity;
+import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.notifications.NotificationsActivity;
 import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.orders.OrdersActivity;
+import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.settings.SettingsActivity;
 import com.ahmed.store_app_pro_1.ui.activites.login.LoginActivity;
 
 import java.util.Locale;
@@ -69,7 +73,6 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,6 +93,46 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+
+        binding.myOrdersItemSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), OrdersActivity.class));
+
+            } });
+
+
+        binding.settignItemSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+            }
+        });
+
+
+        binding.notificationItemSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), NotificationsActivity.class));
+            }
+        });
+
+        binding.likesItemSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), FavoriteActivity.class));
+            }
+        });
+
+
+        binding.aboutItemSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), AboutAppActivity.class));
+            }
+        });
+
+
 
 
 

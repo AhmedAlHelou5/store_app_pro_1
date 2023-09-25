@@ -142,7 +142,7 @@ public class ProductModel implements Serializable {
         this.sliderImageHomeModels = sliderImageHomeModels;
     }
 
-    public boolean isFavorite() {
+    public boolean getFavorite() {
         return isFavorite;
     }
 

@@ -67,6 +67,7 @@
         android:layout_marginTop="@dimen/_53sdp"
         android:layout_marginEnd="@dimen/_40sdp"
         android:gravity="center"
+        android:layoutDirection="rtl"
         android:orientation="horizontal"
         android:weightSum="4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -151,10 +152,9 @@
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_weight="1"
             android:background="@drawable/bg_btn_sign_google"
-            android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:textCursorDrawable="@drawable/cursor_white"
-
+            android:nextFocusDown="@id/btn_send_verify_code"
             tools:ignore="LableFor"
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
@@ -183,7 +183,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_resend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_5sdp"
@@ -200,12 +200,13 @@
         android:id="@+id/tv_num_count_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1:59"
-        android:textColor="@color/black"
         android:layout_marginTop="@dimen/_5sdp"
+        android:text="1:59"
+        android:textLocale="en"
+        android:textColor="@color/black"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/tv_resend"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 

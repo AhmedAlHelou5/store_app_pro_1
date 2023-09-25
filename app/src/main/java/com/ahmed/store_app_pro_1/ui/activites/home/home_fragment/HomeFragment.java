@@ -218,7 +218,7 @@ public class HomeFragment extends Fragment {
                 bundle.putString("price", popularModel.getPrice());
                 bundle.putString("description", popularModel.getDescription());
                 bundle.putInt("image", popularModel.getImage());
-                bundle.putBoolean("isLike", popularModel.isFavorite());
+                bundle.putBoolean("isLike", popularModel.getFavorite());
                 intent.putExtras(bundle);
                 startActivity(intent);
 
@@ -249,7 +249,7 @@ public class HomeFragment extends Fragment {
                 bundle.putString("title", productModel.getTitle());
                 bundle.putString("price", productModel.getPrice());
                 bundle.putString("description", productModel.getDescription());
-                bundle.putBoolean("isLike", productModel.isFavorite());
+                bundle.putBoolean("isLike", productModel.getFavorite());
                 intent.putExtras(bundle);
                 startActivity(intent);
 

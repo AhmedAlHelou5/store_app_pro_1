@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ahmed.store_app_pro_1.databinding.ActivityOnBoardingOneBinding;
+import com.ahmed.store_app_pro_1.ui.activites.login.LoginActivity;
 import com.ahmed.store_app_pro_1.ui.activites.splash.two.OnBoardingTwoActivity;
 
 public class OnBoardingOneActivity extends AppCompatActivity {
@@ -22,5 +23,12 @@ public class OnBoardingOneActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        binding.btnLogin.setOnClickListener(view -> {
+            Intent intent = new Intent(OnBoardingOneActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
     }
 }
