@@ -155,4 +155,10 @@
     <string name="now">الان</string>
     <string name="what_is_our_application">ما هو تطبيقنا</string>
     <string name="what_does_our_app_do">ماذا يفعل تطبيقنا؟</string>
+    <string name="enter_your_full_name">أدخل الاسم </string>
+    <string name="required">هذا الحقل مطلوب</string>
+    <string name="msg_phone_number_start_with">يجب ان يبدأ الرقم ب  972</string>
+    <string name="msg_week_passwrod"> كلمة المرور ضعيفة \n كلمة يجب ان تكون بين 8 الى 20 \n يجب ان تحتوي على احرف كبيرة واحرف صغيرة  \n  يجب ان تحتوي على رموز   !@#$%*()-+=^
+    </string>    <string name="msg_write_cnf_correctly">تأكد من كلمة المرور بشكل صحيح</string>
+
 </resources>

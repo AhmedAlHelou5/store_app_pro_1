@@ -161,12 +161,12 @@
         android:inputType="phone"
         android:hint="@string/hint_phone"
         android:gravity="right|center"
-        android:maxEms="10"
+        android:maxEms="12"
+        android:maxLength="12"
         android:textDirection="anyRtl"
         android:fontFamily="@font/almarai_regular"
         android:textSize="@dimen/_11ssp"
         android:textCursorDrawable="@drawable/cursor_primary"
-
         android:background="@drawable/bg_btn_sign_google"
         android:layout_marginTop="@dimen/_7sdp"
         android:layout_marginRight="@dimen/_16sdp"
@@ -225,16 +225,13 @@
             android:layout_marginLeft="@dimen/_25sdp"
             android:layout_marginRight="@dimen/_24sdp"
             android:background="@null"
-            android:ellipsize="start"
-            android:cursorVisible="true"
+            android:imeOptions="actionNext"
             android:gravity="right|center"
             android:fontFamily="@font/almarai_regular"
             android:textSize="@dimen/_11ssp"
             android:textCursorDrawable="@drawable/cursor_primary"
-
             android:hint="@string/hint_password"
             android:inputType="textPassword"
-            android:selectAllOnFocus="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

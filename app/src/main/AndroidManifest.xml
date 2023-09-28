@@ -2,12 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
+
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Store_app_pro_1"
@@ -20,7 +26,7 @@
 
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="help center" />
         </activity>
         <activity
             android:name=".ui.activites.home.profile_fragment.notifications.NotificationsActivity"
@@ -28,7 +34,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="notifications" />
         </activity>
         <activity
             android:name=".ui.activites.home.profile_fragment.settings.contact_us.ContactUsActivity"
@@ -36,7 +42,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="contact us" />
         </activity>
         <activity
             android:name=".ui.activites.home.profile_fragment.settings.privacy_policy.PrivacyPolicyActivity"
@@ -44,7 +50,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="privacyPolicy" />
         </activity>
         <activity
             android:name=".ui.activites.home.profile_fragment.about_app.AboutAppActivity"
@@ -52,7 +58,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="about" />
         </activity>
         <activity
             android:name=".ui.activites.home.profile_fragment.favorite.FavoriteActivity"
@@ -60,7 +66,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="favorite" />
         </activity>
         <activity
             android:name=".ui.activites.home.profile_fragment.settings.SettingsActivity"
@@ -68,7 +74,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="settings" />
         </activity>
         <activity
             android:name=".ui.activites.home.profile_fragment.myProfile.PersonalDataActivity"
@@ -76,7 +82,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="personalData" />
         </activity>
         <activity
             android:name=".ui.activites.home.profile_fragment.orders.OrderDetailsActivity"
@@ -84,7 +90,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="orders details" />
         </activity>
         <activity
             android:name=".ui.activites.home.profile_fragment.orders.OrdersActivity"
@@ -92,7 +98,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="orders" />
         </activity>
         <activity
             android:name=".ui.activites.home.category_fragment.CategoryActivity"
@@ -100,7 +106,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="category" />
         </activity>
         <activity
             android:name=".ui.activites.search.SearchActivity"
@@ -108,14 +114,14 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="serch" />
         </activity>
         <activity
             android:name=".ui.activites.success_payment.SuccessPaymentActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="successPayment" />
         </activity>
         <activity
             android:name=".ui.activites.payment.PaymentActivity"
@@ -123,7 +129,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="payment" />
         </activity>
         <activity
             android:name=".ui.activites.cart.CartActivity"
@@ -131,7 +137,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="cart" />
         </activity>
         <activity
             android:name=".ui.activites.details.DetailsActivity"
@@ -139,7 +145,7 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar_DetailsActivity">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="details" />
         </activity>
         <activity
             android:name=".ui.activites.home.HomeActivity"
@@ -159,14 +165,14 @@
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="reset" />
         </activity>
         <activity
             android:name=".ui.activites.forget_password.ForgetPasswordActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="forget" />
         </activity>
         <activity
             android:name=".ui.activites.verfiy.VerfiyActivity"
@@ -174,7 +180,7 @@
 
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="verfiy" />
         </activity>
         <activity
             android:name=".ui.activites.privacy.PrivacyActivity"
@@ -182,54 +188,59 @@
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="privacy" />
         </activity>
         <activity
             android:name=".ui.activites.register.RegisterActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.activites.login.LoginActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.activites.splash.two.OnBoardingTwoActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.activites.splash.one.OnBoardingOneActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> <!-- android:theme="@style/Theme.Store_app_pro_1" -->
-        <!-- android:theme="@style/Theme.MySplash" -->
-        <activity
-            android:name=".ui.activites.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="register" />
+        </activity>
+        <activity
+            android:name=".ui.activites.login.LoginActivity"
+            android:exported="true" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="login" />
+        </activity>
+        <activity
+            android:name=".ui.activites.splash.two.OnBoardingTwoActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="onBoardingTwo" />
+        </activity>
+        <activity
+            android:name=".ui.activites.splash.one.OnBoardingOneActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="onBoardingOne" />
+        </activity> <!-- android:theme="@style/Theme.Store_app_pro_1" -->
+        <!-- android:theme="@style/Theme.MySplash" -->
+        <activity
+            android:name=".ui.activites.splash.SplashActivity"
+            android:exported="true">
+
             <!-- android:theme="@style/Theme.MySplash" -->
             <!-- > -->
 
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="splash" />
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="main" />
         </activity>
     </application>
 
