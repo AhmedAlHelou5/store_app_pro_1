@@ -1,50 +1,49 @@
 package com.ahmed.store_app_pro_1.ui.activites.home.home_fragment;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.ahmed.store_app_pro_1.R;
-import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.CustomItemImgaeSliderHomeFragmentBinding;
 import com.ahmed.store_app_pro_1.databinding.FragmentHomeBinding;
+import com.ahmed.store_app_pro_1.network.api.ApiInterface;
+import com.ahmed.store_app_pro_1.network.api.RetrofitClientInstance;
 import com.ahmed.store_app_pro_1.ui.activites.details.DetailsActivity;
-import com.ahmed.store_app_pro_1.ui.activites.home.HomeActivity;
-import com.ahmed.store_app_pro_1.ui.activites.home.cart_fragment.CartFragment;
 import com.ahmed.store_app_pro_1.ui.activites.home.category_fragment.CategoryFragment;
-import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.ProfileFragment;
 import com.ahmed.store_app_pro_1.ui.adapters.AllCategoriesAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.OffersHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.PopularHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.ProductHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.SliderAdapter;
 import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
-import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
-import com.ahmed.store_app_pro_1.ui.models.OfferModel;
-import com.ahmed.store_app_pro_1.ui.models.PopularModel;
-import com.ahmed.store_app_pro_1.ui.models.ProductModel;
-import com.ahmed.store_app_pro_1.ui.models.SliderImageHomeModel;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemOfferClickListener;
+import com.ahmed.store_app_pro_1.ui.listeners.OnMostSolidClickListener;
+import com.ahmed.store_app_pro_1.ui.models.home.SliderHomeModel;
+import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
+import com.ahmed.store_app_pro_1.ui.models.category.MostSoldProductModel;
+import com.ahmed.store_app_pro_1.ui.models.home.HomeModel;
+import com.ahmed.store_app_pro_1.ui.models.home.OfferModel;
+import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -110,43 +109,95 @@ public class HomeFragment extends Fragment {
                 container,false);
         CustomItemImgaeSliderHomeFragmentBinding customItemBinding = CustomItemImgaeSliderHomeFragmentBinding.inflate(getLayoutInflater(),
                 container,false);
-//                ArrayList<SliderImageHomeModel> images = new ArrayList<>();
-//        images.add(new SliderImageHomeModel( R.drawable.image_slider1));
-//        images.add(new SliderImageHomeModel(R.drawable.image2));
-//        images.add(new SliderImageHomeModel(R.drawable.image_slider1));
-//        images.add(new SliderImageHomeModel(R.drawable.image2));
-//        images.add(new SliderImageHomeModel(R.drawable.image_slider1));
-//        images.add(new SliderImageHomeModel(R.drawable.image2));
-        ArrayList<Integer> images = Utils.FillImages();
-        SliderAdapter sliderAdapter = new SliderAdapter(images);
+
+//        ArrayList<String> images = new ArrayList<>();
+
+        ApiInterface apiInterface = RetrofitClientInstance.getRetrofitInstance().create(ApiInterface.class);
 
 
+        Call<HomeModel> call = apiInterface.GetHomeData();
 
-        binding.viewPager.setAdapter(sliderAdapter);
-        binding.tabLayout.setupWithViewPager(binding.viewPager);
-        binding.viewPager.setOffscreenPageLimit(5);
-        binding.viewPager.setCurrentItem(0);
-        binding.viewPager.setClipChildren(false);
-        binding.viewPager.setClipToPadding(false);
-        binding.viewPager.setCurrentItem( binding.viewPager.getCurrentItem() + 1);
-        binding.viewPager.setPageTransformer(true, new ViewPager.PageTransformer() {
+
+        call.enqueue((new Callback<HomeModel>() {
             @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1 - Math.abs(position);
-                page.setScaleY(0.85f + r * 0.20f);
-            }
-        });
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                int pos = binding.viewPager.getCurrentItem();
-                pos = pos + 1;
-                if (pos >= images.size()) pos = 0;
-                binding.viewPager.setCurrentItem(pos);
-                handler.postDelayed(runnable, 3000);
-            }
-        };
-        handler.postDelayed(runnable, 3000);
+            public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {
+
+                if (response.isSuccessful() ){
+                    assert response.body() != null;
+
+                    ArrayList<SliderHomeModel> images = (ArrayList<SliderHomeModel>) response.body().getData().getSliders();
+                    ArrayList<CategoryModel> categories = (ArrayList<CategoryModel>) response.body().getData().getCategories();
+                    ArrayList<ProductModel> offers = (ArrayList<ProductModel>) response.body().getData().getOffers();
+                    ArrayList<ProductModel> mostSoldProductModels =new ArrayList<>();
+                    mostSoldProductModels.add(response.body().getData().getMostSoldProduct());
+//                    offers.add((ProductModel) response.body().getData().getOffers());
+                    ArrayList<ProductModel> productModels = (ArrayList<ProductModel>) response.body().getData().getProducts();
+//                    productModels.add((ProductModel) response.body().getData().getProducts());
+
+//                    Toast.makeText(getActivity(), "Success body" + response.body(), Toast.LENGTH_LONG).show();
+
+
+                    Log.e("TAG", "onResponse:getFcm "+response.body().getData());
+
+// images slider
+                    SliderAdapter sliderAdapter = new SliderAdapter(images,getActivity());
+                    Log.e("TAG", "onCreateView:  images.size()"+images.size() );
+                    Log.e("TAG", "onCreateView:  images.size()"+images);
+
+                    binding.viewPager.setAdapter(sliderAdapter);
+                    binding.viewPager.setClipChildren(false);
+                    binding.viewPager.setClipToPadding(false);
+                    binding.viewPager.setOffscreenPageLimit(5);
+                    binding.viewPager.setCurrentItem(0);
+                    binding.tabLayout.setupWithViewPager(binding.viewPager);
+                    binding.viewPager.setCurrentItem( binding.viewPager.getCurrentItem() + 1);
+                    binding.viewPager.setPageTransformer(true, new ViewPager.PageTransformer() {
+                        @Override
+                        public void transformPage(@NonNull View page, float position) {
+                            float r = 1 - Math.abs(position);
+                            page.setScaleY(0.85f + r * 0.20f);
+                        }
+                    });
+                    runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            int pos = binding.viewPager.getCurrentItem();
+                            pos = pos + 1;
+                            if (pos >= images.size()) pos = 0;
+                            binding.viewPager.setCurrentItem(pos);
+                            handler.postDelayed(runnable, 3000);
+                        }
+                    };
+                    handler.postDelayed(runnable, 3000);
+
+//  categories rv
+                    AllCategoriesAdapter allCategoriesAdapter = new AllCategoriesAdapter(categories,getActivity());
+
+                    binding.rvAllCategories.setAdapter(allCategoriesAdapter);
+                    binding.rvAllCategories.setHasFixedSize(true);
+                    binding.rvAllCategories.setClipToPadding(false);
+                    binding.rvAllCategories.setClipChildren(false);
+                    binding.rvAllCategories.setLayoutManager(new
+                            LinearLayoutManager(getActivity(),
+                            RecyclerView.HORIZONTAL,false));
+
+
+                    binding.tvShowAllCategoriesHomeFragment.setOnClickListener(
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    CategoryFragment categoryFragment = new CategoryFragment();
+                                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, categoryFragment).commit();
+
+                                    BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+                                    bottomNavigationView.setSelectedItemId(R.id.category_menu);
+
+
+
+                                }
+                            }
+                    );
 
 
 
@@ -156,120 +207,168 @@ public class HomeFragment extends Fragment {
 
 
 
-        ArrayList<CategoriesModel> categoriesModels = Utils.FillCategories();
-        AllCategoriesAdapter allCategoriesAdapter = new AllCategoriesAdapter(categoriesModels);
-//
-        binding.rvAllCategories.setAdapter(allCategoriesAdapter);
-        binding.rvAllCategories.setHasFixedSize(true);
-        binding.rvAllCategories.setClipToPadding(false);
-        binding.rvAllCategories.setClipChildren(false);
-
-        binding.tvShowAllCategoriesHomeFragment.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        CategoryFragment categoryFragment = new CategoryFragment();
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, categoryFragment).commit();
-
-                        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
-                        bottomNavigationView.setSelectedItemId(R.id.category_menu);
 
 
 
-                    }
+
+
+
+
+////  offers RV
+                    OffersHomeAdapter allOffersAdapter = new OffersHomeAdapter(offers,getActivity(), new OnItemOfferClickListener() {
+                        @Override
+                        public void onItemClick(ProductModel offerModel) {
+                            Intent intent1 = new Intent(getActivity().getBaseContext(), DetailsActivity.class);
+                            intent1.putExtra("productOffer",offerModel);
+                            getContext().startActivity(intent1);
+
+                        }
+                    });
+
+
+                    binding.rvAllOffers.setAdapter(allOffersAdapter);
+                    binding.rvAllOffers.setHasFixedSize(true);
+                    binding.rvAllOffers.setClipToPadding(false);
+                    binding.rvAllOffers.setClipChildren(false);
+
+                    binding.rvAllOffers.setLayoutManager(new
+                            LinearLayoutManager(getActivity(),
+                            RecyclerView.HORIZONTAL,false));
+
+
+
+//    most popular rv
+                    PopularHomeAdapter allPopularAdapter = new PopularHomeAdapter(mostSoldProductModels, new OnItemClickListener() {
+                        @Override
+                        public void onItemClick(ProductModel popularModel) {
+                            Intent intent1 = new Intent(getActivity().getBaseContext(), DetailsActivity.class);
+                            intent1.putExtra("productOffer",popularModel);
+                            getContext().startActivity(intent1);
+
+                        }
+
+                    },getActivity());
+
+
+                    binding.rvMostPopular.setAdapter(allPopularAdapter);
+                    binding.rvMostPopular.setHasFixedSize(true);
+                    binding.rvMostPopular.setClipToPadding(false);
+                    binding.rvMostPopular.setClipChildren(false);
+
+                    binding.rvMostPopular.setLayoutManager(new
+                            LinearLayoutManager(getActivity(),
+                            RecyclerView.HORIZONTAL,false));
+
+
+
+
+
+// products rv
+
+
+
+//                    ArrayList<ProductModel> productModels = Utils.FillProducts();
+                    ProductHomeAdapter productHomeAdapter = new ProductHomeAdapter(productModels, new OnItemClickListener() {
+                        @Override
+                        public void onItemClick(ProductModel productModel) {
+                       Intent intent1 = new Intent(getActivity().getBaseContext(), DetailsActivity.class);
+                            intent1.putExtra("productOffer",productModel);
+                            getContext().startActivity(intent1);
+
+                        }
+                    },getActivity());
+
+
+                    binding.rvProductHome.setAdapter(productHomeAdapter);
+                    binding.rvProductHome.setHasFixedSize(true);
+                    binding.rvProductHome.setClipToPadding(false);
+                    binding.rvProductHome.setClipChildren(false);
+
+
+                    binding.rvProductHome.setLayoutManager(new
+                            LinearLayoutManager(getActivity(),
+                            RecyclerView.VERTICAL,false));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 }
-        );
+                else {
+                    Log.e("TAG", "onResponse: null " + response.body());
+//                            Log.e("TAG", "onResponse: null " + response.body().getMessage());
 
 
-
-        binding.rvAllCategories.setLayoutManager(new
-                LinearLayoutManager(getActivity(),
-                RecyclerView.HORIZONTAL,false));
-
-
-
-        ArrayList<OfferModel> offerModels = Utils.FillOffers();
-        OffersHomeAdapter allOffersAdapter = new OffersHomeAdapter(offerModels);
-
-
-        binding.rvAllOffers.setAdapter(allOffersAdapter);
-        binding.rvAllOffers.setHasFixedSize(true);
-        binding.rvAllOffers.setClipToPadding(false);
-        binding.rvAllOffers.setClipChildren(false);
-
-        binding.rvAllOffers.setLayoutManager(new
-                LinearLayoutManager(getActivity(),
-                RecyclerView.HORIZONTAL,false));
-
-
-
-
-        ArrayList<ProductModel> popularModels = Utils.FillProducts();
-        PopularHomeAdapter allPopularAdapter = new PopularHomeAdapter(popularModels, new OnItemClickListener() {
-            @Override
-            public void onItemClick(ProductModel popularModel) {
-
-                Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putIntegerArrayList("images", (ArrayList<Integer>) popularModel.getSliderImageHomeModels());
-                bundle.putIntegerArrayList("colors", (ArrayList<Integer>) popularModel.getColors());
-                bundle.putString("title", popularModel.getTitle());
-                bundle.putString("price", popularModel.getPrice());
-                bundle.putString("description", popularModel.getDescription());
-                bundle.putInt("image", popularModel.getImage());
-                bundle.putBoolean("isLike", popularModel.getFavorite());
-                intent.putExtras(bundle);
-                startActivity(intent);
+                }
 
 
 
             }
-        });
 
-
-        binding.rvMostPopular.setAdapter(allPopularAdapter);
-        binding.rvMostPopular.setHasFixedSize(true);
-        binding.rvMostPopular.setClipToPadding(false);
-        binding.rvMostPopular.setClipChildren(false);
-
-        binding.rvMostPopular.setLayoutManager(new
-                LinearLayoutManager(getActivity(),
-                RecyclerView.HORIZONTAL,false));
-
-
-        ArrayList<ProductModel> productModels = Utils.FillProducts();
-        ProductHomeAdapter productHomeAdapter = new ProductHomeAdapter(productModels, new OnItemClickListener() {
             @Override
-            public void onItemClick(ProductModel productModel) {
-                Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putIntegerArrayList("images", (ArrayList<Integer>) productModel.getSliderImageHomeModels());
-                bundle.putIntegerArrayList("colors", (ArrayList<Integer>) productModel.getColors());
-                bundle.putString("title", productModel.getTitle());
-                bundle.putString("price", productModel.getPrice());
-                bundle.putString("description", productModel.getDescription());
-                bundle.putBoolean("isLike", productModel.getFavorite());
-                intent.putExtras(bundle);
-                startActivity(intent);
-
-
+            public void onFailure(Call<HomeModel> call, Throwable t) {
+                Toast.makeText(getActivity(), "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
+                Log.e("TAG", "onFailure: " + t.getMessage());
 
 
             }
-        });
+        }));
+
+//                sendDataToServer(user);
+//                Toast.makeText(RegisterActivity.this, "sendDataToServer", Toast.LENGTH_SHORT).show();
 
 
-        binding.rvProductHome.setAdapter(productHomeAdapter);
-        binding.rvProductHome.setHasFixedSize(true);
-        binding.rvProductHome.setClipToPadding(false);
-        binding.rvProductHome.setClipChildren(false);
-        binding.rvProductHome.setLayoutFrozen(true);
 
 
-        binding.rvProductHome.setLayoutManager(new
-                LinearLayoutManager(getActivity(),
-                RecyclerView.VERTICAL,false));
+
+
+
+
+
+
+//        ArrayList<String> images = Utils.FillImages();
+
+
+
+
+
+
+
+
+
+//        ArrayList<CategoriesModel> categoriesModels = Utils.FillCategories();
+//        AllCategoriesAdapter allCategoriesAdapter = new AllCategoriesAdapter(categoriesModels);
+//
+//        binding.rvAllCategories.setAdapter(allCategoriesAdapter);
+//        binding.rvAllCategories.setHasFixedSize(true);
+//        binding.rvAllCategories.setClipToPadding(false);
+//        binding.rvAllCategories.setClipChildren(false);
+//
+//        binding.tvShowAllCategoriesHomeFragment.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        CategoryFragment categoryFragment = new CategoryFragment();
+//                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, categoryFragment).commit();
+//
+//                        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_navigation);
+//                        bottomNavigationView.setSelectedItemId(R.id.category_menu);
+//
+//
+//
+//                    }
+//                }
+//        );
 
 
 

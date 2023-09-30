@@ -14,11 +14,9 @@ import android.view.Window;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.ActivitySearchBinding;
-import com.ahmed.store_app_pro_1.ui.adapters.OffersHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.SearchRvAdapter;
 import com.ahmed.store_app_pro_1.ui.listeners.OnSearchRvClickListener;
 import com.ahmed.store_app_pro_1.ui.models.LastSearchModel;
-import com.ahmed.store_app_pro_1.ui.models.OfferModel;
 
 import java.util.ArrayList;
 

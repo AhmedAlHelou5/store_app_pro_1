@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-    android:layout_marginHorizontal="@dimen/_3sdp"
     android:layout_marginVertical="@dimen/_4sdp"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_85sdp"
-    android:layout_height="@dimen/_70sdp"
+    android:layout_width="@dimen/_130sdp"
+    android:layout_height="@dimen/_100sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/_9sdp"
     app:cardBackgroundColor="@color/dot_un_select_color" >

@@ -4,21 +4,17 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.CustomItemRvAllProductForDetailsProductBinding;
 import com.ahmed.store_app_pro_1.databinding.FragmentCategoryTabsBinding;
-import com.ahmed.store_app_pro_1.databinding.FragmentProductDetailsBinding;
 import com.ahmed.store_app_pro_1.ui.adapters.AllCategoryWithTabsAdapter;
-import com.ahmed.store_app_pro_1.ui.adapters.AllProductDetailsAdapter;
-import com.ahmed.store_app_pro_1.ui.models.ProductModel;
+import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 
 import java.util.ArrayList;
 
@@ -76,32 +72,32 @@ public class CategoryTabsFragment extends Fragment {
         CustomItemRvAllProductForDetailsProductBinding itemBinding =
                 CustomItemRvAllProductForDetailsProductBinding.inflate(getLayoutInflater(), container, false);
 
-        ArrayList<ProductModel> product = Utils.FillProducts();
-
-
-
-
-
-        ArrayList<ProductModel> products ;
-        if (category.contains("الكل")||category.contains("أخرى")) {
-            products = Utils.FillProducts();
-
-        }
-        else {
-            products=Utils.getProducts(category);
-        }
-
-        AllCategoryWithTabsAdapter adapter = new AllCategoryWithTabsAdapter(products);
-//        AllProductDetailsAdapter AllProductDetailsAdapter = new AllProductDetailsAdapter(allproduct);
-
-        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(adapter);
+//        ArrayList<ProductModel> product = Utils.FillProducts();
+//
+//
+//
+//
+//
+//        ArrayList<ProductModel> products ;
+//        if (category.contains("الكل")||category.contains("أخرى")) {
+//            products = Utils.FillProducts();
+//
+//        }
+//        else {
+//            products=Utils.getProducts(category);
+//        }
+//
+//        AllCategoryWithTabsAdapter adapter = new AllCategoryWithTabsAdapter(products);
+////        AllProductDetailsAdapter AllProductDetailsAdapter = new AllProductDetailsAdapter(allproduct);
+//
+//        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(adapter);
 //        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(AllProductDetailsAdapter);
-        binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
-        binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
-                GridLayoutManager(this.getContext(),
-                2,
-                RecyclerView.VERTICAL,false));
-
+//        binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
+//        binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
+//                GridLayoutManager(this.getContext(),
+//                2,
+//                RecyclerView.VERTICAL,false));
+//
 
 
 

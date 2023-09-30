@@ -10,19 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.ahmed.store_app_pro_1.databinding.CustomItemImgaeSliderHomeFragmentBinding;
-import com.ahmed.store_app_pro_1.ui.models.home.SliderHomeModel;
 import com.ahmed.store_app_pro_1.ui.models.images.ImageModel;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SliderAdapter extends PagerAdapter {
-    ArrayList<SliderHomeModel> images;
+public class SliderImagesProductAdapter extends PagerAdapter {
+    List<ImageModel> images;
     private Context context;
 
-    public SliderAdapter(ArrayList<SliderHomeModel> images, Context context) {
-        this.images = images;
+    public SliderImagesProductAdapter(List<ImageModel> images, Context context) {
+        this.images =  images;
         this.context = context;
     }
 
@@ -44,7 +43,7 @@ public class SliderAdapter extends PagerAdapter {
 //        binding.imageView1.set(Integer.parseInt(images.get(position).getImageUrl()));
 //        Glide.with(container).load(images.get(position).getImageUrl().toString()).into(binding.imageView1);
         String url = images.get(position).getImageUrl();
-        Toast.makeText(container.getContext(), "url"+url, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(container.getContext(), "url"+url, Toast.LENGTH_SHORT).show();
 
         Glide.with(context)
                 .load(url)

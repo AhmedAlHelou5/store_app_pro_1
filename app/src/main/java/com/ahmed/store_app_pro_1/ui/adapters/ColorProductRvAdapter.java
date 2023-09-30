@@ -1,30 +1,34 @@
 package com.ahmed.store_app_pro_1.ui.adapters;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomColorItemProductDetailScreenBinding;
-import com.ahmed.store_app_pro_1.databinding.CustomHomeItemRvBinding;
-import com.ahmed.store_app_pro_1.ui.models.ColorProductModel;
-import com.ahmed.store_app_pro_1.ui.models.ProductModel;
+import com.ahmed.store_app_pro_1.ui.models.colors.ColorModel;
+import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class ColorProductRvAdapter extends RecyclerView.Adapter<ColorProductRvAdapter.ProductViewHolder> {
 
 
-    List<Integer> colorProductList;
+    List<ColorModel> colorProductList;
+    Context context;
 
-    public ColorProductRvAdapter(List<Integer> colorProductList) {
+    public ColorProductRvAdapter(List<ColorModel> colorProductList, Context context) {
         this.colorProductList = colorProductList;
+        this.context = context;
     }
 
 
@@ -38,7 +42,7 @@ public class ColorProductRvAdapter extends RecyclerView.Adapter<ColorProductRvAd
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        List<Integer> colorProductModel = Collections.singletonList(colorProductList.get(position));
+        List<ColorModel> colorProductModel = Collections.singletonList(colorProductList.get(position));
         holder.bind(colorProductModel);
     }
 
@@ -49,7 +53,7 @@ public class ColorProductRvAdapter extends RecyclerView.Adapter<ColorProductRvAd
 
     class  ProductViewHolder extends RecyclerView.ViewHolder {
         CustomColorItemProductDetailScreenBinding binding;
-        List<Integer> colorProductModel;
+        List<ColorModel> colorProductModel;
 
 
         public ProductViewHolder(View itemView) {
@@ -59,15 +63,15 @@ public class ColorProductRvAdapter extends RecyclerView.Adapter<ColorProductRvAd
         }
 
 
-        public void bind(List<Integer> colorProductModel){
+        @SuppressLint("ResourceType")
+        public void bind(List<ColorModel> colorProductModel){
             this.colorProductModel = colorProductModel;
 
-            binding.imageColor.setImageResource(colorProductModel.get(0));
+            if (colorProductModel.get(0).getCode() != null){
+               binding.imageColor.setColorFilter(Color.parseColor(colorProductModel.get(0).getCode()));
+            }
 
-//            binding.colorItem.;
 
-
-//        binding.recColorItem.setAdapter();
 
         }
 

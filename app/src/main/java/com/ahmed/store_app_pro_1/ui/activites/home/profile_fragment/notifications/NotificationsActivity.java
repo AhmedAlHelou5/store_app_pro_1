@@ -1,7 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.notifications;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,10 +10,8 @@ import android.view.Window;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.ActivityNotificationsBinding;
-import com.ahmed.store_app_pro_1.ui.adapters.FavoriteAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.NotificationAdapter;
 import com.ahmed.store_app_pro_1.ui.models.NotificationModel;
-import com.ahmed.store_app_pro_1.ui.models.ProductModel;
 
 import java.util.ArrayList;
 

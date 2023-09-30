@@ -4,17 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.ActivityFavoriteBinding;
-import com.ahmed.store_app_pro_1.ui.activites.search.SearchActivity;
-import com.ahmed.store_app_pro_1.ui.adapters.AllCategoryWithTabsAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.FavoriteAdapter;
-import com.ahmed.store_app_pro_1.ui.models.ProductModel;
 
 import java.util.ArrayList;
 
@@ -39,11 +35,11 @@ public class FavoriteActivity extends AppCompatActivity {
 
 
 
-        ArrayList<ProductModel> product = Utils.FillProducts();
-
-        FavoriteAdapter adapter = new FavoriteAdapter(Utils.getFavoritesModel());
-
-        binding.rvFavoriteScreen.setAdapter(adapter);
+//        ArrayList<ProductModel> product = Utils.FillProducts();
+//
+//        FavoriteAdapter adapter = new FavoriteAdapter(Utils.getFavoritesModel());
+//
+//        binding.rvFavoriteScreen.setAdapter(adapter);
         binding.rvFavoriteScreen.setHasFixedSize(true);
         binding.rvFavoriteScreen.setLayoutManager(new
                 GridLayoutManager(getBaseContext(),

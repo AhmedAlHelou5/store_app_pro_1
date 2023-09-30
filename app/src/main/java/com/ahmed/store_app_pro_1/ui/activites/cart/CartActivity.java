@@ -18,15 +18,10 @@ import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.ActivityCartBinding;
 import com.ahmed.store_app_pro_1.ui.activites.home.HomeActivity;
 import com.ahmed.store_app_pro_1.ui.activites.payment.PaymentActivity;
-import com.ahmed.store_app_pro_1.ui.adapters.OffersHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.ProductCartAdapter;
 import com.ahmed.store_app_pro_1.ui.models.CartModel;
-import com.ahmed.store_app_pro_1.ui.models.OfferModel;
 
-import java.security.Key;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 

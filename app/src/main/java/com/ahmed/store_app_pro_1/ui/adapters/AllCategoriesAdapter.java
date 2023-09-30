@@ -1,5 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomAllCategoriesItemRvBinding;
-import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
+import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 public class AllCategoriesAdapter extends RecyclerView.Adapter<AllCategoriesAdapter.AllCategoriesViewHolder> {
 
 
-    ArrayList<CategoriesModel> categoriesModels;
+    ArrayList<CategoryModel> CategoryModels;
+    Context context;
 
-    public AllCategoriesAdapter(ArrayList<CategoriesModel> categoriesModels) {
-        this.categoriesModels = categoriesModels;
+    public AllCategoriesAdapter(ArrayList<CategoryModel> CategoryModels, Context context) {
+        this.CategoryModels = CategoryModels;
+        this.context = context;
     }
 
     @NonNull
@@ -32,18 +36,18 @@ public class AllCategoriesAdapter extends RecyclerView.Adapter<AllCategoriesAdap
 
     @Override
     public void onBindViewHolder(@NonNull AllCategoriesViewHolder holder, int position) {
-        CategoriesModel categories = categoriesModels.get(position);
+        CategoryModel categories = CategoryModels.get(position);
         holder.bind(categories);
     }
 
     @Override
     public int getItemCount() {
-        return categoriesModels.size();
+        return CategoryModels.size();
     }
 
     class  AllCategoriesViewHolder extends RecyclerView.ViewHolder {
         CustomAllCategoriesItemRvBinding  binding;
-        CategoriesModel product;
+        CategoryModel product;
 
 
         public AllCategoriesViewHolder(View itemView) {
@@ -53,9 +57,12 @@ public class AllCategoriesAdapter extends RecyclerView.Adapter<AllCategoriesAdap
         }
 
 
-        public void bind(CategoriesModel product){
+        public void bind(CategoryModel product){
             this.product = product;
-            binding.imageCategory.setImageResource(product.getImage());
+            Glide.with(context)
+                    .load(product.getIconUrl())
+                    .into(binding.imageCategory);
+//            binding.imageCategory.setImageResource(product.getImage());
             binding.tvTitleCategory.setText(product.getName());
 //        binding.recColorItem.setAdapter();
 

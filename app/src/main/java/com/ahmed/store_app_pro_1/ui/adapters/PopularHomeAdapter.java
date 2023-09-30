@@ -1,5 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.adapters;
 
+import android.content.Context;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
-import com.ahmed.store_app_pro_1.databinding.CustomOffersItemHomeFragmentBinding;
 import com.ahmed.store_app_pro_1.databinding.CustomPopularItemHomeFragmentBinding;
 import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
-import com.ahmed.store_app_pro_1.ui.models.PopularModel;
-import com.ahmed.store_app_pro_1.ui.models.ProductModel;
+import com.ahmed.store_app_pro_1.ui.listeners.OnMostSolidClickListener;
 
+import com.ahmed.store_app_pro_1.ui.models.category.MostSoldProductModel;
+import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
+import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class PopularHomeAdapter extends RecyclerView.Adapter<PopularHomeAdapter.PopularViewHolder> {
@@ -22,10 +24,12 @@ public class PopularHomeAdapter extends RecyclerView.Adapter<PopularHomeAdapter.
 
     ArrayList<ProductModel> popularList;
     OnItemClickListener onItemClickListener;
+    Context context;
 
-    public PopularHomeAdapter(ArrayList<ProductModel> popularList, OnItemClickListener onItemClickListener) {
+    public PopularHomeAdapter(ArrayList<ProductModel> popularList, OnItemClickListener onItemClickListener, Context context) {
         this.popularList = popularList;
         this.onItemClickListener = onItemClickListener;
+        this.context = context;
     }
 
     @NonNull
@@ -67,10 +71,12 @@ public class PopularHomeAdapter extends RecyclerView.Adapter<PopularHomeAdapter.
 
         public void bind(ProductModel popularModel){
             this.popularModel = popularModel;
-            binding.imageCategory.setImageResource(popularModel.getImage());
-            binding.title.setText(popularModel.getTitle());
+            Glide.with(context)
+                    .load(popularModel.getImages().get(0).getImageUrl())
+                    .into(binding.imageCategory);
+            binding.title.setText(popularModel.getName());
             binding.description.setText(popularModel.getDescription());
-            binding.newPrice.setText(popularModel.getPrice());
+            binding.newPrice.setText(String.valueOf(popularModel.getOfferPrice()));
 
 
 //        binding.recColorItem.setAdapter();

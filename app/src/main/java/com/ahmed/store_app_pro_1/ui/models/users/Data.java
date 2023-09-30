@@ -1,4 +1,4 @@
-package com.ahmed.store_app_pro_1.ui.models;
+package com.ahmed.store_app_pro_1.ui.models.users;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

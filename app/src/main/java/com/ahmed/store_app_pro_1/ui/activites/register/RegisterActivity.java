@@ -1,21 +1,15 @@
 package com.ahmed.store_app_pro_1.ui.activites.register;
 
-import static com.ahmed.store_app_pro_1.Constans.BASE_URL;
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.res.Resources;
 
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.service.autofill.UserData;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -24,7 +18,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.ahmed.store_app_pro_1.Constans;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.ActivityRegisterBinding;
 import com.ahmed.store_app_pro_1.network.api.ApiInterface;
@@ -32,25 +25,17 @@ import com.ahmed.store_app_pro_1.network.api.RetrofitClientInstance;
 import com.ahmed.store_app_pro_1.ui.activites.login.LoginActivity;
 import com.ahmed.store_app_pro_1.ui.activites.privacy.PrivacyActivity;
 import com.ahmed.store_app_pro_1.ui.activites.splash.two.OnBoardingTwoActivity;
-import com.ahmed.store_app_pro_1.ui.models.Data;
-import com.ahmed.store_app_pro_1.ui.models.User;
+import com.ahmed.store_app_pro_1.ui.models.users.User;
 
-import java.io.File;
-import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity {
     ActivityRegisterBinding binding;
@@ -100,9 +85,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                 }
 
+
               ApiInterface  apiInterface = RetrofitClientInstance.getRetrofitInstance().create(ApiInterface.class);
 
-                Map<String, String> map = new HashMap<>();
+                Map<String, Object> map = new HashMap<>();
                 map.put("name", binding.edTextFullName.getText().toString());
                 map.put("phone", binding.edTextPhone.getText().toString());
                 map.put("password", binding.edTextPassword1.getText().toString());
@@ -115,13 +101,23 @@ public class RegisterActivity extends AppCompatActivity {
                 call.enqueue((new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-
                         Toast.makeText(RegisterActivity.this, "Success body" + response.body(), Toast.LENGTH_LONG).show();
-                        Log.e("TAG", "onResponse:getFcm "+response.body().getData());
-                        Log.e("TAG", "onResponse:getFcm "+response.body().getData().getPhone());
+
+                        if (response.isSuccessful() && response.body()!=null){
+                            Log.e("TAG", "onResponse:getFcm "+response.body().getData());
+                            Log.e("TAG", "onResponse:getFcm "+response.body().getData().getPhone());
 
 
-                        Log.e("TAG", "onResponse: " + response.body());
+                            Log.e("TAG", "onResponse: " + response.body());
+
+                        }
+                        else {
+                            Log.e("TAG", "onResponse: null " + response.body());
+//                            Log.e("TAG", "onResponse: null " + response.body().getMessage());
+
+
+                        }
+
 
 
                     }
@@ -136,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }));
 
 //                sendDataToServer(user);
-                Toast.makeText(RegisterActivity.this, "sendDataToServer", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(RegisterActivity.this, "sendDataToServer", Toast.LENGTH_SHORT).show();
 
             }
 

@@ -13,14 +13,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_8sdp">
 
 
         <ImageView
             android:id="@+id/image_category"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_96sdp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/image2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +44,7 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_90sdp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/title"
@@ -60,62 +61,48 @@
             <LinearLayout
                 android:id="@+id/linear_time"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/_6sdp"
-                android:gravity="left"
                 android:layout_weight="1"
+                android:gravity="left"
+                android:layout_gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
-
-                <ImageView
-                    android:layout_width="@dimen/_18sdp"
-                    android:layout_height="@dimen/_18sdp"
-                    android:src="@drawable/time" />
-
-
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:weightSum="2">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left">
 
 
                     <TextView
-                        android:id="@+id/num_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
                         android:fontFamily="@font/almarai_regular"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="5"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_9ssp"
+                        android:text="5.99"
+                        android:id="@+id/price"
+                        android:textColor="@color/primary_color"
+                        android:textSize="@dimen/_10ssp"
+
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/image_category" />
 
                     <TextView
-                        android:id="@+id/tv_time"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_10sdp"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
+                        android:layout_marginRight="@dimen/_1sdp"
                         android:fontFamily="@font/almarai_regular"
-                        android:gravity="center"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:maxLines="1"
-                        android:text="@string/minute"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_9ssp"
+                        android:text="₪"
+                        android:textColor="@color/primary_color"
+                        android:textSize="@dimen/_8ssp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/image_category" />
+
 
                 </LinearLayout>
+
 
             </LinearLayout>
         </LinearLayout>
@@ -128,53 +115,25 @@
             android:layout_marginHorizontal="@dimen/_6sdp"
             android:layout_marginVertical="@dimen/_5sdp"
             android:layoutDirection="rtl"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-            <ImageView
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="@dimen/_18sdp"
-                android:src="@drawable/location" />
 
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/_5sdp"
-
-                android:layoutDirection="rtl"
-                android:weightSum="2">
 
 
                 <TextView
-                    android:id="@+id/num_km"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/almarai_regular"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="0"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_9ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_category" />
-
-                <TextView
-                    android:id="@+id/tv_km"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_description_product"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_weight="1"
                     android:ellipsize="end"
                     android:fontFamily="@font/almarai_regular"
-                    android:gravity="center"
+                    android:gravity="center|right"
                     android:maxLines="1"
                     android:text="@string/km"
                     android:textColor="@color/black"
@@ -182,7 +141,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image_category" />
 
-            </LinearLayout>
+
 
         </LinearLayout>
 

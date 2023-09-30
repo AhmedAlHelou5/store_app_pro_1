@@ -1,5 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
-import com.ahmed.store_app_pro_1.databinding.CustomHomeItemRvBinding;
 import com.ahmed.store_app_pro_1.databinding.CustomItemRvAllProductForDetailsProductBinding;
-import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
-import com.ahmed.store_app_pro_1.ui.models.ProductModel;
+import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -19,9 +19,11 @@ public class AllProductDetailsAdapter extends RecyclerView.Adapter<AllProductDet
 
 
     ArrayList<ProductModel> productList;
+    Context context;
 
-    public AllProductDetailsAdapter(ArrayList<ProductModel> productList) {
+    public AllProductDetailsAdapter(ArrayList<ProductModel> productList, Context context) {
         this.productList = productList;
+        this.context = context;
     }
 
     @NonNull
@@ -57,10 +59,12 @@ public class AllProductDetailsAdapter extends RecyclerView.Adapter<AllProductDet
 
         public void bind(ProductModel productList){
             this.productList = productList;
-            binding.imageCategory.setImageResource(productList.getImage());
-            binding.tvTitle.setText(productList.getTitle());
-            binding.tvPrice.setText(productList.getPrice());
+            Glide.with(context)
+                    .load(productList.getImages().get(0).getImageUrl())
+                    .into(binding.imageCategory);
+            binding.tvTitle.setText(productList.getName());
             binding.tvDescriptionProduct.setText(productList.getDescription());
+            binding.tvPrice.setText(String.valueOf(productList.getPrice()));
 
 
 //        binding.recColorItem.setAdapter();

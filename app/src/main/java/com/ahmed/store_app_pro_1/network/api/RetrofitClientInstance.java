@@ -8,8 +8,11 @@ import com.ahmed.store_app_pro_1.Constans;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.Socket;
+import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

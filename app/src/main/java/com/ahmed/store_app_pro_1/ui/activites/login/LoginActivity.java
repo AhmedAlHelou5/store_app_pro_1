@@ -19,13 +19,14 @@ import com.ahmed.store_app_pro_1.databinding.ActivityLoginBinding;
 import com.ahmed.store_app_pro_1.network.api.ApiInterface;
 import com.ahmed.store_app_pro_1.network.api.RetrofitClientInstance;
 import com.ahmed.store_app_pro_1.ui.activites.forget_password.ForgetPasswordActivity;
+import com.ahmed.store_app_pro_1.ui.activites.home.HomeActivity;
 import com.ahmed.store_app_pro_1.ui.activites.register.RegisterActivity;
 import com.ahmed.store_app_pro_1.ui.activites.splash.two.OnBoardingTwoActivity;
-import com.ahmed.store_app_pro_1.ui.activites.verfiy.VerfiyActivity;
-import com.ahmed.store_app_pro_1.ui.models.Data;
-import com.ahmed.store_app_pro_1.ui.models.User;
+import com.ahmed.store_app_pro_1.ui.models.users.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,15 +52,22 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(view -> {
 //            Intent intent=new Intent(LoginActivity.this, VerfiyActivity.class);
 //            startActivity(intent);
-            if (isValidFeilds()) {
-
-            }
+//            if (isValidFeilds()) {
+//
+//            }
+//
+//
+//
+//
+            Map<String, Object> map = new HashMap<>();
+            map.put("phone", binding.edTextPhone.getText().toString());
+            map.put("password", binding.edTextPassword1.getText().toString());
 
 
             ApiInterface apiInterface = RetrofitClientInstance.getRetrofitInstance().create(ApiInterface.class);
 
 
-            Call<User> call = apiInterface.loginUser(binding.edTextPhone.getText().toString(), binding.edTextPassword1.getText().toString());
+            Call<User> call = apiInterface.loginUser(map);
 
 
 //            Log.e("TAG", "call " + user);
@@ -68,16 +76,23 @@ public class LoginActivity extends AppCompatActivity {
             call.enqueue((new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful()&&response.body()!=null) {
 
-                    Toast.makeText(LoginActivity.this, "Success body" + response.body(), Toast.LENGTH_LONG).show();
-                    Log.e("TAG", "onResponse:getFcm "+response.body().getData());
-                    Log.e("TAG", "onResponse:getFcm "+response.body().getData().getPhone());
+                        Toast.makeText(LoginActivity.this, "Success body" + response.body(), Toast.LENGTH_LONG).show();
+                        Log.e("TAG", "onResponse:getFcm " + response.body().getData());
+                        Log.e("TAG", "onResponse:getFcm " + response.body().getData().getPhone());
 
+                        Log.e("TAG", "onResponse: " + response.body());
+                        Log.e("TAG", "onResponse: " + response.body().getMessage());
+                        Log.e("TAG", "onResponse: " + response.body().getStatus());
 
+                    }
+                    else {
+                        Log.e("TAG", "onResponse: null " + response.body().getStatus());
 
-                    Log.e("TAG", "onResponse: " + response.body());
-                    Log.e("TAG", "onResponse: " + response.body().getMessage());
-                    Log.e("TAG", "onResponse: " + response.body().getStatus());
+                    }
+
+//                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 
 
                 }
@@ -92,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             }));
 
 //                sendDataToServer(user);
-            Toast.makeText(LoginActivity.this, "sendDataToServer", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(LoginActivity.this, "sendDataToServer", Toast.LENGTH_SHORT).show();
 
 
 

@@ -8,36 +8,60 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Toast;
 
+import com.ahmed.store_app_pro_1.Constans;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.ActivityDetailsBinding;
 
+import com.ahmed.store_app_pro_1.network.api.ApiInterface;
+import com.ahmed.store_app_pro_1.network.api.RetrofitClientInstance;
 import com.ahmed.store_app_pro_1.ui.activites.cart.CartActivity;
+import com.ahmed.store_app_pro_1.ui.activites.home.category_fragment.CategoryFragment;
 import com.ahmed.store_app_pro_1.ui.activites.home.home_fragment.HomeFragment;
+import com.ahmed.store_app_pro_1.ui.adapters.AllCategoriesAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.ColorProductRvAdapter;
+import com.ahmed.store_app_pro_1.ui.adapters.OffersHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.PagerAdapter;
-import com.ahmed.store_app_pro_1.ui.adapters.SliderAdapter;
 
-import com.ahmed.store_app_pro_1.ui.models.ProductModel;
+import com.ahmed.store_app_pro_1.ui.adapters.PopularHomeAdapter;
+import com.ahmed.store_app_pro_1.ui.adapters.ProductHomeAdapter;
+import com.ahmed.store_app_pro_1.ui.adapters.SliderAdapter;
+import com.ahmed.store_app_pro_1.ui.adapters.SliderImagesProductAdapter;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemOfferClickListener;
+import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
+import com.ahmed.store_app_pro_1.ui.models.home.HomeModel;
+import com.ahmed.store_app_pro_1.ui.models.home.SliderHomeModel;
+import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class DetailsActivity extends AppCompatActivity implements HomeFragment.OnFragmentClickListener {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class DetailsActivity extends AppCompatActivity  {
     ActivityDetailsBinding binding;
     Handler handler = new Handler();
     Runnable runnable;
-    String [] tabs = {"الكل","بدالات","عجلات","متنوع","قطع غيار","دراجات هوائية","دراجات نارية",};
+//    String [] tabs = {"الكل","بدالات","عجلات","متنوع","قطع غيار","دراجات هوائية","دراجات نارية",};
 
 
 
@@ -61,32 +85,26 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
 
         });
 
-
-
         Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        ArrayList<Integer> imageList = extras.getIntegerArrayList("images");
-        ArrayList<Integer> colors = extras.getIntegerArrayList("colors");
-        String title = extras.getString("title");
-        String price = extras.getString("price");
-        String description = extras.getString("description");
-        boolean like = extras.getBoolean("isLike");
-        int image = extras.getInt("image");
+        ProductModel productModel = ( ProductModel) intent.getSerializableExtra("productOffer");
+        System.out.println(productModel.toString());
 
 
 
 
 
+        binding.tvTitle.setText(productModel.getName());
+        binding.tvPrice.setText(String.valueOf(productModel.getOfferPrice()));
+        binding.tvDescriptionProduct.setText(productModel.getDescription());
 
-        binding.tvTitle.setText(title);
-        binding.tvPrice.setText(price);
-        binding.tvPriceAddToCart.setText(price);
-        binding.tvDescriptionProduct.setText(description);
 
-//        ArrayList<SliderImageHomeModel> images = Utils.FillImagesForProduct();
-        SliderAdapter sliderAdapter = new SliderAdapter(imageList);
 
         binding.tvCount.setText("0");
+
+
+        binding.buttonAddToCart.setEnabled(false);
+        binding.buttonAddToCart.setBackground(getResources().getDrawable(R.drawable.on_boarding_btn_sign_up_un_check));
+
 
 
         AtomicInteger num = new AtomicInteger();
@@ -94,8 +112,16 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
         final double get_price= Double.parseDouble( binding.tvPrice.getText().toString());
         final double get_total=get_quantity*get_price;
         if (get_total==0){
-            binding.tvPriceAddToCart.setText(get_price+"");
+            binding.tvPriceAddToCart.setText("0.00");
+            binding.buttonAddToCart.setEnabled(false);
+            binding.buttonAddToCart.setBackground(getResources().getDrawable(R.drawable.on_boarding_btn_sign_up_un_check));
         }
+
+
+
+
+
+
 
 
         binding.btnAdd.setOnClickListener(v -> {
@@ -104,10 +130,12 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
             double total=num.get()*get_price;
 
             binding.tvPriceAddToCart.setText(String.format(Locale.ENGLISH, "%.2f", total));
-
+            binding.buttonAddToCart.setEnabled(true);
+            binding.buttonAddToCart.setBackground(getResources().getDrawable(R.drawable.on_boarding_btn_next));
 
 
         });
+
 
         binding.btnMin.setOnClickListener(v -> {
            if (num.get() > 0){
@@ -120,10 +148,17 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
 
            }
        if (num.get()==0){
-           binding.tvPriceAddToCart.setText(get_price+"");
+               binding.tvPriceAddToCart.setText("0.00");
+
+               binding.buttonAddToCart.setEnabled(false);
+               binding.buttonAddToCart.setBackground(getResources().getDrawable(R.drawable.on_boarding_btn_sign_up_un_check));
+
+                  }
+       else {
+           binding.buttonAddToCart.setEnabled(true);
+           binding.buttonAddToCart.setBackground(getResources().getDrawable(R.drawable.on_boarding_btn_next));
+
        }
-
-
         });
 
 
@@ -131,10 +166,7 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
         binding.buttonAddToCart.setOnClickListener(v -> {
             Intent intent1 = new Intent(DetailsActivity.this, CartActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putString("title",title);
-            bundle.putString("price", price);
-            bundle.putString("description", description);
-            bundle.putBoolean("isLike", like);
+            intent.putExtra("itemToCart", productModel);
             bundle.putInt("count",Integer.parseInt( binding.tvCount.getText().toString()));
             intent.putExtras(bundle);
             startActivity(intent1);
@@ -144,6 +176,7 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
 
 
 
+        SliderImagesProductAdapter sliderAdapter = new SliderImagesProductAdapter(productModel.getImages(),getBaseContext());
 
         binding.viewPager.setAdapter(sliderAdapter);
         binding.tabLayout.setupWithViewPager(binding.viewPager);
@@ -164,76 +197,131 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
             public void run() {
                 int pos = binding.viewPager.getCurrentItem();
                 pos = pos + 1;
-                if (pos >= imageList.size()) pos = 0;
+                if (pos >= productModel.getImages().size()) pos = 0;
                 binding.viewPager.setCurrentItem(pos);
                 handler.postDelayed(runnable, 3000);
             }
         };
         handler.postDelayed(runnable, 3000);
-        Utils.FillProducts();
+//        Utils.FillProducts();
 
 
-
-        ColorProductRvAdapter allOffersAdapter = new ColorProductRvAdapter(colors);
-
-
-        binding.recColorItem.setAdapter(allOffersAdapter);
-        binding.recColorItem.setHasFixedSize(true);
-        binding.recColorItem.setClipToPadding(false);
-        binding.recColorItem.setClipChildren(false);
-
-        binding.recColorItem.setLayoutManager(new
-                LinearLayoutManager(this,
-                RecyclerView.HORIZONTAL,false));
+        if (productModel.getColors().size()==0){
+            binding.recColorItem.setVisibility(View.GONE);
+            binding.tvColorNothing.setVisibility(View.VISIBLE);
+            binding.tvColorNothing.setText("لا يوجد لون");
+        }
+        else {
+            binding.tvColorNothing.setVisibility(View.GONE);
+            binding.recColorItem.setVisibility(View.VISIBLE);
 
 
+            ColorProductRvAdapter allOffersAdapter = new ColorProductRvAdapter(productModel.getColors(),getBaseContext());
 
 
+            binding.recColorItem.setAdapter(allOffersAdapter);
+            binding.recColorItem.setHasFixedSize(true);
+            binding.recColorItem.setClipToPadding(false);
+            binding.recColorItem.setClipChildren(false);
+
+            binding.recColorItem.setLayoutManager(new
+                    LinearLayoutManager(this,
+                    RecyclerView.HORIZONTAL,false));
 
 
+        }
 
 
+        ApiInterface apiInterface = RetrofitClientInstance.getRetrofitInstance().create(ApiInterface.class);
 
+
+        Call<HomeModel> call = apiInterface.GetHomeData();
+
+
+//        call.enqueue((new Callback<HomeModel>() {
+//            @Override
+//            public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {
+//
+//                if (response.isSuccessful() ){
+//                    assert response.body() != null;
+//
+//                    ArrayList<CategoryModel> categories = (ArrayList<CategoryModel>) response.body().getData().getCategories();
+//
+//                    ArrayList<String> tags = new ArrayList<>();
+//
+//                    tags.add(0,"الكل");
+//                    tags.add(1,categories.get(0).getName());
+//                    tags.add(2,categories.get(1).getName());
+//                    tags.add(3,categories.get(2).getName());
+//                    tags.add(4,categories.get(3).getName());
+//
+//
+//
+//
+//                    ArrayList<Fragment> fragments = new ArrayList<>();
+//
+//
+//                    if (tags.get(0).equals("الكل")){
+//                        fragments.add(ProductDetailsFragment.newInstance(tags.get(0),categories.get(0).getId()+""));
+//
+//                    }
+//
+//                    fragments.add(ProductDetailsFragment.newInstance(tags.get(1),categories.get(1).getId()+""));
+//                    fragments.add(ProductDetailsFragment.newInstance(tags.get(2),categories.get(2).getId()+""));
+//                    fragments.add( ProductDetailsFragment.newInstance(tags.get(3),categories.get(3).getId()+""));
+//                    fragments.add( ProductDetailsFragment.newInstance(tags.get(4),categories.get(4).getId()+""));
+//
+//                    PagerAdapter adapter = new  PagerAdapter(DetailsActivity.this,
+//                            fragments);
+//                    binding.pagerProducts.setAdapter(adapter);
+//                    new TabLayoutMediator(binding.tabsCategories,
+//                            binding.pagerProducts, new TabLayoutMediator.TabConfigurationStrategy() {
+//                        @Override
+//                        public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+//                            tab.setText(tags.get(position));
+//                        }
+//                    }).attach();
+//            //
+//
+//
+//
+//
+//                    for(int i=0; i < binding.tabsCategories.getTabCount(); i++) {
+//                        View tab = ((ViewGroup) binding.tabsCategories.getChildAt(0)).getChildAt(i);
+//                        ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
+//                        p.setMargins(10, 0, 10, 0);
+//                        tab.requestLayout();
+//
+//
+//                    }
+//                }
+//                else {
+//                    Log.e("TAG", "onResponse: null " + response.body());
+////                            Log.e("TAG", "onResponse: null " + response.body().getMessage());
+//
+//
+//                }
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<HomeModel> call, Throwable t) {
+//                Toast.makeText(DetailsActivity.this, "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
+//                Log.e("TAG", "onFailure: " + t.getMessage());
+//
+//
+//            }
+//        }));
+
+
+//        binding.tvColorNothing.setVisibility(View.GONE);
 
 
         //
-        ArrayList<Fragment> fragments = new ArrayList<>();
 
-
-        if (tabs[0].equals("الكل") ){
-            fragments.add(ProductDetailsFragment .newInstance(tabs[0]));
-
-        }
-
-        fragments.add(ProductDetailsFragment.newInstance(tabs[1]));
-        fragments.add(ProductDetailsFragment.newInstance(tabs[2]));
-        fragments.add( ProductDetailsFragment.newInstance(tabs[3]));
-        fragments.add( ProductDetailsFragment.newInstance(tabs[4]));
-        fragments.add( ProductDetailsFragment.newInstance(tabs[5]));
-        fragments.add( ProductDetailsFragment.newInstance(tabs[6]));
-        PagerAdapter adapter = new  PagerAdapter(this,
-                fragments);
-        binding.pagerProducts.setAdapter(adapter);
-        new TabLayoutMediator(binding.tabsCategories,
-                binding.pagerProducts, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText(tabs[position]);
-            }
-        }).attach();
-//
-
-
-
-
-        for(int i=0; i < binding.tabsCategories.getTabCount(); i++) {
-            View tab = ((ViewGroup) binding.tabsCategories.getChildAt(0)).getChildAt(i);
-            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
-            p.setMargins(10, 0, 10, 0);
-            tab.requestLayout();
-
-
-        }
+//        }
 
 
 
@@ -244,32 +332,5 @@ public class DetailsActivity extends AppCompatActivity implements HomeFragment.O
 
     }
 
-    @Override
-    public void OnFragmentInteraction(ProductModel product) {
 
-
-//        binding.tvDescriptionProduct.setText(product.getDescription());
-//        binding.tvTitle.setText(product.getTitle());
-//        binding.tvPrice.setText(product.getPrice());
-
-//        ProductModel offerModels = product.getColors();
-//        ColorProductRvAdapter allOffersAdapter = new ColorProductRvAdapter(product.getColors());
-//
-//
-//        binding.recColorItem.setAdapter(allOffersAdapter);
-//        binding.recColorItem.setHasFixedSize(true);
-//        binding.recColorItem.setClipToPadding(false);
-//        binding.recColorItem.setClipChildren(false);
-//
-//        binding.recColorItem.setLayoutManager(new
-//                LinearLayoutManager(this,
-//                RecyclerView.HORIZONTAL,false));
-//
-
-
-
-
-
-
-    }
 }

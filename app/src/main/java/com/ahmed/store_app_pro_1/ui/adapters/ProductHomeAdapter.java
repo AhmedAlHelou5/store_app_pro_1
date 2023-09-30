@@ -1,5 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,22 +10,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomHomeItemRvBinding;
-import com.ahmed.store_app_pro_1.databinding.CustomPopularItemHomeFragmentBinding;
 import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
-import com.ahmed.store_app_pro_1.ui.models.PopularModel;
-import com.ahmed.store_app_pro_1.ui.models.ProductModel;
+import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
 
 public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeAdapter.ProductViewHolder> {
 
 
     ArrayList<ProductModel> productList;
     OnItemClickListener onItemClickListener;
+    Context context;
 
-    public ProductHomeAdapter(ArrayList<ProductModel> productList, OnItemClickListener onItemClickListener) {
+    public ProductHomeAdapter(ArrayList<ProductModel> productList, OnItemClickListener onItemClickListener, Context context) {
         this.productList = productList;
         this.onItemClickListener = onItemClickListener;
+        this.context = context;
     }
 
     @NonNull
@@ -66,10 +70,12 @@ public class ProductHomeAdapter extends RecyclerView.Adapter<ProductHomeAdapter.
 
         public void bind(ProductModel productList){
             this.productList = productList;
-            binding.imageCategory.setImageResource(productList.getImage());
-            binding.title.setText(productList.getTitle());
-            binding.numKm.setText(productList.getNumKm());
-            binding.numTime.setText(productList.getNumTime());
+            Glide.with(context)
+                    .load(productList.getImages().get(productList.getImages().size()-1).getImageUrl())
+                    .into(binding.imageCategory);
+            binding.title.setText(productList.getName());
+            binding.tvDescriptionProduct.setText(productList.getDescription());
+            binding.price.setText(String.valueOf(productList.getPrice()));
 
 
 //        binding.recColorItem.setAdapter();

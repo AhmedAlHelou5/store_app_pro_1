@@ -1,5 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomItemFavoriteBinding;
-import com.ahmed.store_app_pro_1.ui.models.CartModel;
-import com.ahmed.store_app_pro_1.ui.models.ProductModel;
+import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ProductViewHolder> {
 
     ArrayList<ProductModel> productList;
+    Context context;
 
 
-    public FavoriteAdapter(ArrayList<ProductModel> productList) {
+    public FavoriteAdapter(ArrayList<ProductModel> productList, Context context) {
         this.productList = productList;
+        this.context = context;
     }
 
     @NonNull
@@ -66,11 +69,12 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Produc
 
         public void bind(ProductModel productList){
             this.productList = productList;
-            binding.imageCategory.setImageResource(productList.getImage());
-            binding.title.setText(productList.getTitle());
-            binding.newPrice.setText(productList.getPrice());
+            Glide.with(context)
+                    .load(productList.getImages().get(0).getImageUrl())
+                    .into(binding.imageCategory);
+            binding.title.setText(productList.getName());
             binding.description.setText(productList.getDescription());
-
+            binding.newPrice.setText(String.valueOf(productList.getPrice()));
 
         }
 

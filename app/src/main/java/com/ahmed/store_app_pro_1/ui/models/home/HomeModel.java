@@ -1,24 +1,23 @@
-package com.ahmed.store_app_pro_1.ui.models;
-
-import android.service.autofill.UserData;
+package com.ahmed.store_app_pro_1.ui.models.home;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+import java.io.Serializable;
 
+public class HomeModel implements Serializable {
     @SerializedName("success")
     @Expose
     private boolean success;
     @SerializedName("data")
     @Expose
-    private Data data;
+    private DataHomeModel data;
     @SerializedName("status")
     @Expose
     private int status;
     @SerializedName("message")
     @Expose
-    private String message;
+    private Object message;
 
     public boolean isSuccess() {
         return success;
@@ -28,11 +27,11 @@ public class User {
         this.success = success;
     }
 
-    public Data getData() {
+    public DataHomeModel getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(DataHomeModel data) {
         this.data = data;
     }
 
@@ -44,24 +43,12 @@ public class User {
         this.status = status;
     }
 
-    public String getMessage() {
+    public Object getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(Object message) {
         this.message = message;
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

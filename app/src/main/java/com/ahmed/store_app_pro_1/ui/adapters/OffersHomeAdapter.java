@@ -1,5 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.adapters;
 
+import android.content.Context;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,20 +10,26 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
-import com.ahmed.store_app_pro_1.databinding.CustomAllCategoriesItemRvBinding;
 import com.ahmed.store_app_pro_1.databinding.CustomOffersItemHomeFragmentBinding;
-import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
-import com.ahmed.store_app_pro_1.ui.models.OfferModel;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemOfferClickListener;
+import com.ahmed.store_app_pro_1.ui.models.home.OfferModel;
+import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 public class OffersHomeAdapter extends RecyclerView.Adapter<OffersHomeAdapter.OffersViewHolder> {
 
 
-    ArrayList<OfferModel> offersList;
+    ArrayList<ProductModel> offersList;
+    OnItemOfferClickListener onItemClickListener;
+    Context context;
 
-    public OffersHomeAdapter(ArrayList<OfferModel> offers) {
+    public OffersHomeAdapter(ArrayList<ProductModel> offers, Context context , OnItemOfferClickListener onItemClickListener) {
         this.offersList = offers;
+        this.context = context;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -35,7 +42,7 @@ public class OffersHomeAdapter extends RecyclerView.Adapter<OffersHomeAdapter.Of
 
     @Override
     public void onBindViewHolder(@NonNull OffersViewHolder holder, int position) {
-        OfferModel offers = offersList.get(position);
+        ProductModel offers = offersList.get(position);
         holder.bind(offers);
     }
 
@@ -46,24 +53,34 @@ public class OffersHomeAdapter extends RecyclerView.Adapter<OffersHomeAdapter.Of
 
     class  OffersViewHolder extends RecyclerView.ViewHolder {
         CustomOffersItemHomeFragmentBinding binding;
-        OfferModel offers;
+        ProductModel offers;
 
 
         public OffersViewHolder(View itemView) {
             super(itemView);
             binding = CustomOffersItemHomeFragmentBinding.bind(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(offers);
+
+                }
+            }
+            );
 
         }
 
 
-        public void bind(OfferModel offers){
+        public void bind(ProductModel offers){
             this.offers = offers;
-            binding.imageCategory.setImageResource(offers.getImage());
+            Glide.with(context)
+                    .load(offers.getImages().get(0).getImageUrl())
+                    .into(binding.imageCategory);
             binding.title.setText(offers.getName());
             binding.description.setText(offers.getDescription());
-            binding.oldPrice.setText(offers.getOldPrice());
-            binding.newPrice.setText(offers.getNewPrice());
-            binding.oldPrice.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
+            binding.oldPrice.setText(String.valueOf(offers.getPrice()));
+            binding.newPrice.setText(String.valueOf(offers.getOfferPrice()));
+            binding.oldPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
 
 
 //        binding.recColorItem.setAdapter();
