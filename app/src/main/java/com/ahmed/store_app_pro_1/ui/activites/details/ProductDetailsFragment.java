@@ -35,6 +35,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -55,7 +56,7 @@ public class ProductDetailsFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String category;
-    private String categoryId;
+    private int categoryId;
 
 //    private String mParam2;
 
@@ -71,11 +72,11 @@ public class ProductDetailsFragment extends Fragment {
      * @return A new instance of fragment ProductDetailsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProductDetailsFragment newInstance(String param1, String param2) {
+    public static ProductDetailsFragment newInstance(String param1, int param2) {
         ProductDetailsFragment fragment = new ProductDetailsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_CATEGORY, param1);
-        args.putString(ARG_CATEGORY_ID, param2);
+        args.putInt(ARG_CATEGORY_ID, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -85,7 +86,7 @@ public class ProductDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             category = getArguments().getString(ARG_CATEGORY);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
+            categoryId = getArguments().getInt(ARG_CATEGORY_ID);
         }
     }
 
@@ -107,10 +108,74 @@ public class ProductDetailsFragment extends Fragment {
 
         ApiInterface apiInterface = RetrofitClientInstance.getRetrofitInstance().create(ApiInterface.class);
 
-        Map<String, Object> search = new HashMap<>();
-        search.put("", "application/json");
+        Map<String, Object> searchName = new HashMap<>();
+//        search.put("category_id", categoryId);
+        searchName.put("search_name", category);
+        Map<String, Object> searchId = new HashMap<>();
+        searchId.put("category_id", categoryId);
+//        searchName.put("search_name", category);
+//            if (category==null || category==""){
+//                Call<List<ProductModel>> callId = apiInterface.GetProductByCategoryId(searchId);
+//                callId.enqueue(new Callback<List<ProductModel>>() {
+//                    @Override
+//                    public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
+//                        if (response.isSuccessful()){
+//                            assert response.body() != null;
+//                            Log.e("TAG", "onResponse: " + response.body());
+//                            ArrayList<ProductModel> products = (ArrayList<ProductModel>) response.body();
+//                            AllProductDetailsAdapter AllProductDetailsAdapter = new AllProductDetailsAdapter(products,getActivity());
+//
+////        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(adapter);
+//                            binding.rvAllCategoriesInProductDetailsScreen.setAdapter(AllProductDetailsAdapter);
+//                            binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
+//                            binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
+//                                    LinearLayoutManager(getActivity(),
+//                                    RecyclerView.VERTICAL,false));
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<ProductModel>> call, Throwable t) {
+//                        Toast.makeText(getActivity(), "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
+//                        Log.e("TAG", "onFailure: " + t.getMessage());
+//                    }
+//                });
+//
+//
+//            }
 
-//        Call<ProductModel> call = apiInterface.GetProductByCategory();
+//            else {
+//                Call<List<ProductModel>> call = apiInterface.GetProductByCategoryName(searchName);
+//
+//                call.enqueue(new Callback<List<ProductModel>>() {
+//                    @Override
+//                    public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
+//                        if (response.isSuccessful()){
+//                            assert response.body() != null;
+//                            Log.e("TAG", "onResponse: " + response.body());
+//                            ArrayList<ProductModel> products = (ArrayList<ProductModel>) response.body();
+//                            AllProductDetailsAdapter AllProductDetailsAdapter = new AllProductDetailsAdapter(products,getActivity());
+//
+////        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(adapter);
+//                            binding.rvAllCategoriesInProductDetailsScreen.setAdapter(AllProductDetailsAdapter);
+//                            binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
+//                            binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
+//                                    LinearLayoutManager(getActivity(),
+//                                    RecyclerView.VERTICAL,false));
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<ProductModel>> call, Throwable t) {
+//                        Toast.makeText(getActivity(), "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
+//                        Log.e("TAG", "onFailure: " + t.getMessage());
+//                    }
+//                });
+//            }
+
+
+
+
 //
 //
 //        call.enqueue((new Callback<HomeModel>() {
@@ -174,24 +239,22 @@ public class ProductDetailsFragment extends Fragment {
 
 
 
-        ArrayList<ProductModel> products = new ArrayList<>();
-        if (category.contains("الكل")){
-
-
+//        ArrayList<ProductModel> products = new ArrayList<>();
+//        if (category.contains("الكل")){
+//
+//
 
 
 
 //            products = Utils.FillProducts();
-            binding.tvTitleCategory.setText("كل المنتجات");
-
-        }
-       else {
-//            products=Utils.getProducts(category);
-            binding.tvTitleCategory.setText(category);
-        }
-
-
-
+//            binding.tvTitleCategory.setText("كل المنتجات");
+//
+//        }
+//       else {
+////            products=Utils.getProducts(category);
+//            binding.tvTitleCategory.setText(category);
+//
+//        }
 
 
 
@@ -206,17 +269,20 @@ public class ProductDetailsFragment extends Fragment {
 
 
 
-//        AllProductDetailsAdapter adapter = new AllProductDetailsAdapter(products);
-        AllProductDetailsAdapter AllProductDetailsAdapter = new AllProductDetailsAdapter(products,getActivity());
-
-//        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(adapter);
-        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(AllProductDetailsAdapter);
-        binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
-        binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
-                LinearLayoutManager(getActivity(),
-                RecyclerView.VERTICAL,false));
 
 
+
+//        AllProductDetailsAdapter adapter = new AllProductDetailsAdapter(products,getActivity());
+//        AllProductDetailsAdapter AllProductDetailsAdapter = new AllProductDetailsAdapter(products,getActivity());
+//
+////        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(adapter);
+//        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(AllProductDetailsAdapter);
+//        binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
+//        binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
+//                LinearLayoutManager(getActivity(),
+//                RecyclerView.VERTICAL,false));
+//
+//
 
 
 

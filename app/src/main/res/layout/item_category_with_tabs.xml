@@ -61,7 +61,7 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_70sdp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/title"
@@ -75,8 +75,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/image_category" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_40sdp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_weight="1"
                 android:gravity="left">
 

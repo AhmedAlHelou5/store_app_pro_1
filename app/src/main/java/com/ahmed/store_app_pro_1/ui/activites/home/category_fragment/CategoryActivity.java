@@ -3,7 +3,9 @@ package com.ahmed.store_app_pro_1.ui.activites.home.category_fragment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,12 +13,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.ahmed.store_app_pro_1.Constans;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.ActivityCategoryBinding;
+import com.ahmed.store_app_pro_1.databinding.FragmentCategoryTabsBinding;
 import com.ahmed.store_app_pro_1.network.api.ApiInterface;
 import com.ahmed.store_app_pro_1.network.api.RetrofitClientInstance;
 import com.ahmed.store_app_pro_1.ui.activites.details.DetailsActivity;
@@ -26,6 +30,7 @@ import com.ahmed.store_app_pro_1.ui.activites.search.SearchActivity;
 import com.ahmed.store_app_pro_1.ui.adapters.AllCategoryWithTabsAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.PagerAdapter;
 import com.ahmed.store_app_pro_1.ui.listeners.OnCategoryClickListener;
+import com.ahmed.store_app_pro_1.ui.models.category.CategoryMainModel;
 import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
 import com.ahmed.store_app_pro_1.ui.models.home.HomeModel;
 import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
@@ -33,8 +38,10 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -44,6 +51,7 @@ import retrofit2.Response;
 
 public class CategoryActivity extends AppCompatActivity  {
     ActivityCategoryBinding binding;
+    boolean isProgressVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,127 +69,160 @@ public class CategoryActivity extends AppCompatActivity  {
         binding.toolbarSearchIcon.setOnClickListener(v -> {
             startActivity(new Intent(this, SearchActivity.class));
         });
+        isProgressVisible = true;
 
-
+        binding.idPBLoading.setVisibility(View.VISIBLE);
 
         Intent intent = getIntent();
-        String category = intent.getStringExtra("category");
-        String categoryId = intent.getStringExtra("categoryId");
-        binding.toolbarTvTitleCategory.setText(category);
+        String categoryName = intent.getStringExtra("category");
+        int categoryId = intent.getIntExtra("categoryId", 0  );
+
+//        binding.toolbarTvTitleCategory.setText(categoryName);
+
+        binding.toolbarTvTitleCategory.setText(categoryName);
 
 
 
+        Log.e("TAG categoryId", "onCreate: "+categoryId );
+        Log.e("TAG categoryName", "onCreate: "+categoryName );
 
-//        ArrayList<Fragment> fragments = new ArrayList<>();
-//        ArrayList<String> tabs = new ArrayList<>();
 
         ApiInterface apiInterface = RetrofitClientInstance.getRetrofitInstance().create(ApiInterface.class);
+//        ArrayList<CategoryModel> categories=new ArrayList<>();
 
-
-
-        Call<HomeModel> call = apiInterface.GetHomeData();
-        Call<CategoryModel> call2 = apiInterface.GetCategory();
-
-
-
-//        call.enqueue((new Callback<HomeModel>() {
-//            @Override
-//            public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {
-//
-//                if (response.isSuccessful() ){
-//                    assert response.body() != null;
-//
-//                    ArrayList<CategoryModel> categories = (ArrayList<CategoryModel>) response.body().getData().getCategories();
-//                    ArrayList<ProductModel> products = new ArrayList<>();
-//                    products.addAll(response.body().getData().getProducts());
-//
-//                    ArrayList<String> tags = new ArrayList<>();
-//                    ArrayList<Integer> tagsId = new ArrayList<>();
-//
-//                    tags.add(0,"الكل");
-//                    tags.add(1,categories.get(0).getName());
-//                    tags.add(2,categories.get(1).getName());
-//                    tags.add(3,categories.get(2).getName());
-//                    tags.add(4,categories.get(3).getName());
-//
-//                    tagsId.add(0,0);
-//                    tagsId.add(1,categories.get(0).getId());
-//                    tagsId.add(2,categories.get(1).getId());
-//                    tagsId.add(3,categories.get(2).getId());
-//                    tagsId.add(4,categories.get(3).getId());
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//                    ArrayList<Fragment> fragments = new ArrayList<>();
-//
-//
-//                    if (tags.get(0).equals("الكل")){
-//                        fragments.add(ProductDetailsFragment.newInstance(tags.get(0),tagsId.get(0)+""));
-//
-//                    }
-//
-//                    fragments.add(ProductDetailsFragment.newInstance(tags.get(1),tagsId.get(1)+""));
-//                    fragments.add(ProductDetailsFragment.newInstance(tags.get(2),   tagsId.get(2)+""));
-//                    fragments.add( ProductDetailsFragment.newInstance(tags.get(3),   tagsId.get(3)+""));
-//                    fragments.add( ProductDetailsFragment.newInstance(tags.get(4),   tagsId.get(4)+""));
-//
-//                    AllCategoryWithTabsAdapter adapter = new  AllCategoryWithTabsAdapter( products ,
-//                            getBaseContext());
-//                    binding.pagerProducts.setAdapter(adapter);
-//                    new TabLayoutMediator(binding.tabsCategories,
-//                            binding.pagerProducts, new TabLayoutMediator.TabConfigurationStrategy() {
-//                        @Override
-//                        public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-//                            tab.setText(tags.get(position));
-//                        }
-//                    }).attach();
-//                    //
-//
-//
-//
-//
-//                    for(int i=0; i < binding.tabsCategories.getTabCount(); i++) {
-//                        View tab = ((ViewGroup) binding.tabsCategories.getChildAt(0)).getChildAt(i);
-//                        ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
-//                        p.setMargins(10, 0, 10, 0);
-//                        tab.requestLayout();
-//
-//
-//                    }
-//                }
-//                else {
-//                    Log.e("TAG", "onResponse: null " + response.body());
-////                            Log.e("TAG", "onResponse: null " + response.body().getMessage());
-//
-//
-//                }
-//
-//
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<HomeModel> call, Throwable t) {
-//                Toast.makeText(CategoryActivity.this, "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
-//                Log.e("TAG", "onFailure: " + t.getMessage());
-//
-//
-//            }
-//        }));
+        Map<String, Object> map = new HashMap<>();
+        map.put("category_main_id",categoryId);
 
 
 
 
-    }
+        ArrayList<Fragment> fragments = new ArrayList<>();
+
+        Call<CategoryMainModel> call = apiInterface.GetSubCategory(map);
+//        ArrayList<String> tags=new ArrayList<>();
+        ArrayList<CategoryModel> categoryModels=new ArrayList<>();
+        call.enqueue((new Callback<CategoryMainModel>() {
+            @Override
+            public void onResponse(Call<CategoryMainModel> call, Response<CategoryMainModel> response) {
+
+                if (response.isSuccessful() ){
+
+                    assert response.body() != null;
+                    isProgressVisible = false;
+
+                    binding.idPBLoading.setVisibility(View.GONE);
+                    categoryModels.addAll( response.body().getData());
+
+                    for (int i=0;i<response.body().getData().size();i++){
+                        fragments.add(CategoryTabsFragment.newInstance(categoryModels.get(i).getName(),categoryModels.get(i).getId()));
+
+                    }
+
+
+
+                    PagerAdapter adapter = new  PagerAdapter(CategoryActivity.this,
+                            fragments);
+                    binding.pagerProducts.setAdapter(adapter);
+
+
+                    new TabLayoutMediator(binding.tabsCategories,
+                            binding.pagerProducts, new TabLayoutMediator.TabConfigurationStrategy() {
+                        @Override
+                        public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                                tab.setText(categoryModels.get(position).getName());
+
+
+//                            tab.setText(categories.get(position).getName());
+                            Log.e("TAG categories", "onConfigureTab: " + tab);
+//                            System.out.println(tab.getText());
+
+
+                        }
+
+                    }).attach();
+
+
+
+
+
+                    for(int i=0; i < binding.tabsCategories.getTabCount(); i++) {
+                        View tab = ((ViewGroup) binding.tabsCategories.getChildAt(0)).getChildAt(i);
+                        ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
+                        p.setMargins(10, 0, 10, 0);
+                        tab.requestLayout();
+
+
+                    }
+
+                }
+                else {
+                    Log.e("TAG", "onResponse: null " + response.body());
+//                            Log.e("TAG", "onResponse: null " + response.body().getMessage());
+
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<CategoryMainModel> call, Throwable t) {
+                Toast.makeText(CategoryActivity.this, "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
+                Log.e("TAG", "onFailure: " + t.getMessage());
+
+
+            }
+        }));
+
+
+
+        binding.tabsCategories.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                Log.e("TAG categoryId", "onTabSelected: " + categoryModels.get(tab.getPosition()).getName());
+                Log.e("TAG categoryId", "onTabSelected: " + categoryModels.get(tab.getPosition()).getId());
+
+
+
+
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                binding.toolbarTvTitleCategory.setText(categoryModels.get(tab.getPosition()).getName());
+
+            }
+        });
+
+
+
+        for(int i=0; i < binding.tabsCategories.getTabCount(); i++) {
+            View tab = ((ViewGroup) binding.tabsCategories.getChildAt(0)).getChildAt(i);
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
+            p.setMargins(10, 0, 10, 0);
+            tab.requestLayout();
+
+
+        }
+
+
+
+
+        }
+
+
+
+
+
+
+
 
 }

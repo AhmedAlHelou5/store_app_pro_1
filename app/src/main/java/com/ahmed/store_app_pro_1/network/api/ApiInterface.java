@@ -1,10 +1,13 @@
 package com.ahmed.store_app_pro_1.network.api;
 
+import com.ahmed.store_app_pro_1.ui.models.category.CategoryMainModel;
 import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
 import com.ahmed.store_app_pro_1.ui.models.home.HomeModel;
+import com.ahmed.store_app_pro_1.ui.models.product.MainProductModel;
 import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 import com.ahmed.store_app_pro_1.ui.models.users.User;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -36,11 +39,24 @@ public interface ApiInterface {
     @FormUrlEncoded
     @Headers({ "Accept: application/json", "Accept-Language: ar"})
     @POST("products/getProductsByCategory")
-    Call<ProductModel> GetProductByCategory(@FieldMap Map<String, Object> map);
+    Call<MainProductModel> GetProductByCategoryId(@FieldMap Map<String, Object> map);
+
+    @FormUrlEncoded
+    @Headers({ "Accept: application/json", "Accept-Language: ar"})
+    @POST("products/getProductsByCategory")
+    Call<List<ProductModel>> GetProductByCategoryName(@FieldMap Map<String, Object> map);
+
+
+    @FormUrlEncoded
+    @Headers({ "Accept: application/json", "Accept-Language: ar"})
+    @POST("getSubCategories")
+    Call<CategoryMainModel> GetSubCategory(@FieldMap Map<String, Object> map);
+
+
 
     @Headers({ "Accept: application/json", "Accept-Language: ar"})
     @GET("getCategories")
-    Call<CategoryModel> GetCategory();
+    Call<CategoryMainModel> GetCategory();
 
 
 

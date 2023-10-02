@@ -16,9 +16,7 @@ public class CategoryModel implements Serializable {
     @Expose
     private String iconUrl;
 
-    public CategoryModel(String name) {
-        this.name = name;
-    }
+
 
     public int getId() {
         return id;

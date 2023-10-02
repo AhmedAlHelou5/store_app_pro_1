@@ -8,6 +8,16 @@
     tools:context=".ui.activites.home.category_fragment.CategoryTabsFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <ProgressBar
+        android:id="@+id/idPBLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:visibility="visible"
+        android:layout_gravity="center"
+       />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_all_categories_in_product_details_screen"
         android:layout_width="match_parent"
@@ -16,7 +26,6 @@
         android:layout_marginTop="@dimen/_7sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
         tools:listitem="@layout/item_category_with_tabs"
-
         android:layout_height="match_parent"/>
 
 

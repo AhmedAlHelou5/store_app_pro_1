@@ -26,9 +26,10 @@ public class AllCategoriesFragmentAdapter extends RecyclerView.Adapter<AllCatego
     Context context;
 
 
-    public AllCategoriesFragmentAdapter(ArrayList<CategoryModel> CategoryModels, Context context) {
+    public AllCategoriesFragmentAdapter(ArrayList<CategoryModel> CategoryModels, Context context, OnCategoryClickListener onCategoryClickListener) {
         this.CategoryModels = CategoryModels;
         this.context = context;
+        this.onCategoryClickListener = onCategoryClickListener;
     }
 
     @NonNull
@@ -52,18 +53,18 @@ public class AllCategoriesFragmentAdapter extends RecyclerView.Adapter<AllCatego
 
     class  AllCategoriesViewHolder extends RecyclerView.ViewHolder {
         CustomAllCategoriesItemFragmentBinding binding;
-        CategoryModel product;
+        CategoryModel categoryModel;
 
 
         public AllCategoriesViewHolder(View itemView) {
             super(itemView);
             binding = CustomAllCategoriesItemFragmentBinding.bind(itemView);
             itemView.setOnClickListener(view -> {
-//                onCategoryClickListener.OnCategoryClick(product.getName());
-                Intent intent = new Intent(binding.getRoot().getContext(), CategoryActivity.class);
-                intent.putExtra("category", product.getName());
-                intent.putExtra("categoryId", product.getId());
-                binding.getRoot().getContext().startActivity(intent);
+                onCategoryClickListener.OnCategoryClick(categoryModel);
+//                Intent intent = new Intent(binding.getRoot().getContext(), CategoryActivity.class);
+//                intent.putExtra("category", product.getName());
+//                intent.putExtra("categoryId", product.getId());
+//                binding.getRoot().getContext().startActivity(intent);
 
 
             });
@@ -71,12 +72,12 @@ public class AllCategoriesFragmentAdapter extends RecyclerView.Adapter<AllCatego
         }
 
 
-        public void bind(CategoryModel product){
-            this.product = product;
+        public void bind(CategoryModel categoryModel){
+            this.categoryModel = categoryModel;
             Glide.with(context)
-                    .load(product.getIconUrl())
+                    .load(categoryModel.getIconUrl())
                     .into(binding.imageCategory);
-            binding.tvTitleCategory.setText(product.getName());
+            binding.tvTitleCategory.setText(categoryModel.getName());
 //        binding.recColorItem.setAdapter();
 
         }

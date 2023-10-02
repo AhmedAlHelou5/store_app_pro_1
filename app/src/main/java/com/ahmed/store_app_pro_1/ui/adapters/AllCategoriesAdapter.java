@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomAllCategoriesItemRvBinding;
+import com.ahmed.store_app_pro_1.ui.listeners.OnCategoryClickListener;
 import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
 import com.bumptech.glide.Glide;
 
@@ -19,11 +20,13 @@ public class AllCategoriesAdapter extends RecyclerView.Adapter<AllCategoriesAdap
 
 
     ArrayList<CategoryModel> CategoryModels;
+    OnCategoryClickListener onCategoryClickListener;
     Context context;
 
-    public AllCategoriesAdapter(ArrayList<CategoryModel> CategoryModels, Context context) {
+    public AllCategoriesAdapter(ArrayList<CategoryModel> CategoryModels, Context context,OnCategoryClickListener onCategoryClickListener) {
         this.CategoryModels = CategoryModels;
         this.context = context;
+        this.onCategoryClickListener = onCategoryClickListener;
     }
 
     @NonNull
@@ -53,6 +56,13 @@ public class AllCategoriesAdapter extends RecyclerView.Adapter<AllCategoriesAdap
         public AllCategoriesViewHolder(View itemView) {
             super(itemView);
             binding = CustomAllCategoriesItemRvBinding.bind(itemView);
+            itemView.setOnClickListener(view -> {
+                onCategoryClickListener.OnCategoryClick(product);
+
+
+
+
+            });
 
         }
 
@@ -62,9 +72,7 @@ public class AllCategoriesAdapter extends RecyclerView.Adapter<AllCategoriesAdap
             Glide.with(context)
                     .load(product.getIconUrl())
                     .into(binding.imageCategory);
-//            binding.imageCategory.setImageResource(product.getImage());
             binding.tvTitleCategory.setText(product.getName());
-//        binding.recColorItem.setAdapter();
 
         }
 

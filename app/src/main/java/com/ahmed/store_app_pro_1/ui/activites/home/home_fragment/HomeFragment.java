@@ -22,12 +22,14 @@ import com.ahmed.store_app_pro_1.databinding.FragmentHomeBinding;
 import com.ahmed.store_app_pro_1.network.api.ApiInterface;
 import com.ahmed.store_app_pro_1.network.api.RetrofitClientInstance;
 import com.ahmed.store_app_pro_1.ui.activites.details.DetailsActivity;
+import com.ahmed.store_app_pro_1.ui.activites.home.category_fragment.CategoryActivity;
 import com.ahmed.store_app_pro_1.ui.activites.home.category_fragment.CategoryFragment;
 import com.ahmed.store_app_pro_1.ui.adapters.AllCategoriesAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.OffersHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.PopularHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.ProductHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.SliderAdapter;
+import com.ahmed.store_app_pro_1.ui.listeners.OnCategoryClickListener;
 import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
 import com.ahmed.store_app_pro_1.ui.listeners.OnItemOfferClickListener;
 import com.ahmed.store_app_pro_1.ui.listeners.OnMostSolidClickListener;
@@ -109,8 +111,9 @@ public class HomeFragment extends Fragment {
                 container,false);
         CustomItemImgaeSliderHomeFragmentBinding customItemBinding = CustomItemImgaeSliderHomeFragmentBinding.inflate(getLayoutInflater(),
                 container,false);
-
-//        ArrayList<String> images = new ArrayList<>();
+        final boolean[] isProgressVisible = {false};
+        isProgressVisible[0] = true;
+        binding.idPBLoading.setVisibility(View.VISIBLE);
 
         ApiInterface apiInterface = RetrofitClientInstance.getRetrofitInstance().create(ApiInterface.class);
 
@@ -124,17 +127,17 @@ public class HomeFragment extends Fragment {
 
                 if (response.isSuccessful() ){
                     assert response.body() != null;
+                    isProgressVisible[0] = false;
+                    binding.idPBLoading.setVisibility(View.GONE);
+
 
                     ArrayList<SliderHomeModel> images = (ArrayList<SliderHomeModel>) response.body().getData().getSliders();
                     ArrayList<CategoryModel> categories = (ArrayList<CategoryModel>) response.body().getData().getCategories();
                     ArrayList<ProductModel> offers = (ArrayList<ProductModel>) response.body().getData().getOffers();
                     ArrayList<ProductModel> mostSoldProductModels =new ArrayList<>();
                     mostSoldProductModels.add(response.body().getData().getMostSoldProduct());
-//                    offers.add((ProductModel) response.body().getData().getOffers());
                     ArrayList<ProductModel> productModels = (ArrayList<ProductModel>) response.body().getData().getProducts();
-//                    productModels.add((ProductModel) response.body().getData().getProducts());
 
-//                    Toast.makeText(getActivity(), "Success body" + response.body(), Toast.LENGTH_LONG).show();
 
 
                     Log.e("TAG", "onResponse:getFcm "+response.body().getData());
@@ -171,7 +174,19 @@ public class HomeFragment extends Fragment {
                     handler.postDelayed(runnable, 3000);
 
 //  categories rv
-                    AllCategoriesAdapter allCategoriesAdapter = new AllCategoriesAdapter(categories,getActivity());
+                    AllCategoriesAdapter allCategoriesAdapter = new AllCategoriesAdapter(categories, getActivity(), new OnCategoryClickListener() {
+                        @Override
+                        public void OnCategoryClick(CategoryModel category) {
+                            Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                            intent.putExtra("category", category.getName());
+                            intent.putExtra("categoryId", category.getId());
+                            getActivity().startActivity(intent);
+
+                            Log.e("TAG categoryId", "OnCategoryClick: " + category.getName());
+                            Log.e("TAG categoryId", "OnCategoryClick: " + category.getId());
+
+                        }
+                    });
 
                     binding.rvAllCategories.setAdapter(allCategoriesAdapter);
                     binding.rvAllCategories.setHasFixedSize(true);
@@ -275,6 +290,9 @@ public class HomeFragment extends Fragment {
                             intent1.putExtra("productOffer",productModel);
                             getContext().startActivity(intent1);
 
+
+
+
                         }
                     },getActivity());
 
@@ -283,6 +301,7 @@ public class HomeFragment extends Fragment {
                     binding.rvProductHome.setHasFixedSize(true);
                     binding.rvProductHome.setClipToPadding(false);
                     binding.rvProductHome.setClipChildren(false);
+//                    binding.rvProductHome.setLayoutFrozen(true);
 
 
                     binding.rvProductHome.setLayoutManager(new

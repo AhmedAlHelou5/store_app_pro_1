@@ -1,11 +1,13 @@
 package com.ahmed.store_app_pro_1.ui.models.product;
 
+import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
 import com.ahmed.store_app_pro_1.ui.models.colors.ColorModel;
 import com.ahmed.store_app_pro_1.ui.models.images.ImageModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductModel implements Serializable {

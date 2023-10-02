@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomItemRvAllProductForDetailsProductBinding;
+import com.ahmed.store_app_pro_1.databinding.ItemCategoryWithTabsBinding;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
 import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 import com.bumptech.glide.Glide;
 
@@ -19,18 +21,20 @@ public class AllProductDetailsAdapter extends RecyclerView.Adapter<AllProductDet
 
 
     ArrayList<ProductModel> productList;
+    OnItemClickListener onItemClickListener;
     Context context;
 
-    public AllProductDetailsAdapter(ArrayList<ProductModel> productList, Context context) {
+    public AllProductDetailsAdapter(ArrayList<ProductModel> productList, Context context, OnItemClickListener onItemClickListener) {
         this.productList = productList;
         this.context = context;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ProductViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.custom_item_rv_all_product_for_details_product,
+                .inflate(R.layout.item_category_with_tabs,
                         parent,false));
     }
 
@@ -46,13 +50,19 @@ public class AllProductDetailsAdapter extends RecyclerView.Adapter<AllProductDet
     }
 
     class  ProductViewHolder extends RecyclerView.ViewHolder {
-        CustomItemRvAllProductForDetailsProductBinding binding;
+        ItemCategoryWithTabsBinding binding;
         ProductModel productList;
 
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            binding = CustomItemRvAllProductForDetailsProductBinding.bind(itemView);
+            binding = ItemCategoryWithTabsBinding.bind(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(productList);
+                }
+            });
 
         }
 
@@ -62,12 +72,10 @@ public class AllProductDetailsAdapter extends RecyclerView.Adapter<AllProductDet
             Glide.with(context)
                     .load(productList.getImages().get(0).getImageUrl())
                     .into(binding.imageCategory);
-            binding.tvTitle.setText(productList.getName());
-            binding.tvDescriptionProduct.setText(productList.getDescription());
-            binding.tvPrice.setText(String.valueOf(productList.getPrice()));
+            binding.title.setText(productList.getName());
+            binding.description.setText(productList.getDescription());
+            binding.newPrice.setText(String.valueOf(productList.getPrice()));
 
-
-//        binding.recColorItem.setAdapter();
 
         }
 

@@ -1,5 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.activites.home.category_fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,9 +27,11 @@ import com.ahmed.store_app_pro_1.ui.adapters.OffersHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.PopularHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.ProductHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.SliderAdapter;
+import com.ahmed.store_app_pro_1.ui.listeners.OnCategoryClickListener;
 import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
 import com.ahmed.store_app_pro_1.ui.listeners.OnMostSolidClickListener;
 import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
+import com.ahmed.store_app_pro_1.ui.models.category.CategoryMainModel;
 import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
 import com.ahmed.store_app_pro_1.ui.models.category.MostSoldProductModel;
 import com.ahmed.store_app_pro_1.ui.models.home.HomeModel;
@@ -37,6 +40,7 @@ import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -94,28 +98,49 @@ public class CategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         FragmentCategoryBinding binding = FragmentCategoryBinding.inflate(getLayoutInflater(), container, false);
+        final boolean[] isProgressVisible = {false};
+        isProgressVisible[0] = true;
+        binding.idPBLoading.setVisibility(View.VISIBLE);
 
 
         ApiInterface apiInterface = RetrofitClientInstance.getRetrofitInstance().create(ApiInterface.class);
 
 
-        Call<HomeModel> call = apiInterface.GetHomeData();
+        Call<CategoryMainModel> call = apiInterface.GetCategory();
 
+        ArrayList<CategoryModel> categories = new ArrayList<>();
 
-        call.enqueue((new Callback<HomeModel>() {
+        call.enqueue((new Callback<CategoryMainModel>() {
             @Override
-            public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {
+            public void onResponse(Call<CategoryMainModel> call, Response<CategoryMainModel> response) {
 
                 if (response.isSuccessful() ){
                     assert response.body() != null;
-//                    Toast.makeText(getActivity(), "Success body" + response.body(), Toast.LENGTH_LONG).show();
+                    isProgressVisible[0] = false;
+                    binding.idPBLoading.setVisibility(View.GONE);
 
-                    ArrayList<CategoryModel> categories = (ArrayList<CategoryModel>) response.body().getData().getCategories();
+                    categories.addAll(response.body().getData());
 
-                    Log.e("TAG", "onResponse:getFcm "+response.body().getData());
+
+                    Log.e("TAG  (ArrayList<CategoryModel>) response.body() ", "onResponse:getFcm "+response.body());
 
 //  categories rv
-                    AllCategoriesFragmentAdapter allCategoriesAdapter = new AllCategoriesFragmentAdapter(categories,getActivity());
+                    AllCategoriesFragmentAdapter allCategoriesAdapter = new AllCategoriesFragmentAdapter(categories,getActivity(), new OnCategoryClickListener() {
+                        @Override
+                        public void OnCategoryClick(CategoryModel category) {
+                            Intent intent = new Intent(getActivity(), CategoryActivity.class);
+                            intent.putExtra("category", category.getName());
+                            intent.putExtra("categoryId", category.getId());
+                           getActivity().startActivity(intent);
+
+                            Log.e("TAG categoryId", "OnCategoryClick: " + category.getName());
+                            Log.e("TAG categoryId", "OnCategoryClick: " + category.getId());
+
+
+
+
+                        }
+                    });
 
 //                    AllCategoriesFragmentAdapter allCategoriesAdapter = new AllCategoriesFragmentAdapter(categoriesModels);
 //
@@ -141,7 +166,7 @@ public class CategoryFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<HomeModel> call, Throwable t) {
+            public void onFailure(Call<CategoryMainModel> call, Throwable t) {
                 Toast.makeText(getActivity(), "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e("TAG", "onFailure: " + t.getMessage());
 
