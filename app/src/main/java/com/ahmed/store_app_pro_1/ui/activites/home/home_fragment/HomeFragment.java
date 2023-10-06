@@ -32,12 +32,9 @@ import com.ahmed.store_app_pro_1.ui.adapters.SliderAdapter;
 import com.ahmed.store_app_pro_1.ui.listeners.OnCategoryClickListener;
 import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
 import com.ahmed.store_app_pro_1.ui.listeners.OnItemOfferClickListener;
-import com.ahmed.store_app_pro_1.ui.listeners.OnMostSolidClickListener;
 import com.ahmed.store_app_pro_1.ui.models.home.SliderHomeModel;
 import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
-import com.ahmed.store_app_pro_1.ui.models.category.MostSoldProductModel;
 import com.ahmed.store_app_pro_1.ui.models.home.HomeModel;
-import com.ahmed.store_app_pro_1.ui.models.home.OfferModel;
 import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -335,8 +332,15 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<HomeModel> call, Throwable t) {
-                Toast.makeText(getActivity(), "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
-                Log.e("TAG", "onFailure: " + t.getMessage());
+                if (t.getMessage() != null){
+                    Toast.makeText(getActivity(), "onFailure body" + t, Toast.LENGTH_LONG).show();
+                    Log.e("TAG", "onFailure: " + t);
+
+                    isProgressVisible[0] = true;
+                    binding.idPBLoading.setVisibility(View.VISIBLE);
+
+                }
+
 
 
             }

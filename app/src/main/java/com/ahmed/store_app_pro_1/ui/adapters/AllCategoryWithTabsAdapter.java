@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.ItemCategoryWithTabsBinding;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
 import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 import com.bumptech.glide.Glide;
 
@@ -20,10 +21,12 @@ public class AllCategoryWithTabsAdapter extends RecyclerView.Adapter<AllCategory
 
     ArrayList<ProductModel> productList;
     Context context;
+    OnItemClickListener onItemClickListener;
 
-    public AllCategoryWithTabsAdapter(ArrayList<ProductModel> productList, Context context) {
+    public AllCategoryWithTabsAdapter(ArrayList<ProductModel> productList, Context context, OnItemClickListener onItemClickListener) {
         this.productList = productList;
         this.context = context;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -57,6 +60,13 @@ public class AllCategoryWithTabsAdapter extends RecyclerView.Adapter<AllCategory
         public ProductViewHolder(View itemView) {
             super(itemView);
             binding = ItemCategoryWithTabsBinding.bind(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(productList);
+                }
+            });
+
 
         }
 

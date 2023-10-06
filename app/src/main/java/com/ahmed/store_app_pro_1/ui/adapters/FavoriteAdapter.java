@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomItemFavoriteBinding;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
 import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 import com.bumptech.glide.Glide;
 
@@ -18,12 +19,14 @@ import java.util.ArrayList;
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ProductViewHolder> {
 
     ArrayList<ProductModel> productList;
+    OnItemClickListener onItemClickListener;
     Context context;
 
 
-    public FavoriteAdapter(ArrayList<ProductModel> productList, Context context) {
+    public FavoriteAdapter(ArrayList<ProductModel> productList, Context context, OnItemClickListener onItemClickListener) {
         this.productList = productList;
         this.context = context;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -52,13 +55,15 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Produc
     class  ProductViewHolder extends RecyclerView.ViewHolder {
         CustomItemFavoriteBinding binding;
         ProductModel productList;
-        ProductModel removeFavorite;
 
 
 
         public ProductViewHolder(View itemView) {
             super(itemView);
             binding = CustomItemFavoriteBinding.bind(itemView);
+            itemView.setOnClickListener(v -> {
+                onItemClickListener.onItemClick(productList);
+            });
 
 
 

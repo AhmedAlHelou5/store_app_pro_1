@@ -20,30 +20,18 @@ import com.ahmed.store_app_pro_1.Constans;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.ActivityCategoryBinding;
-import com.ahmed.store_app_pro_1.databinding.FragmentCategoryTabsBinding;
 import com.ahmed.store_app_pro_1.network.api.ApiInterface;
 import com.ahmed.store_app_pro_1.network.api.RetrofitClientInstance;
-import com.ahmed.store_app_pro_1.ui.activites.details.DetailsActivity;
-import com.ahmed.store_app_pro_1.ui.activites.details.ProductDetailsFragment;
-import com.ahmed.store_app_pro_1.ui.activites.home.HomeActivity;
 import com.ahmed.store_app_pro_1.ui.activites.search.SearchActivity;
-import com.ahmed.store_app_pro_1.ui.adapters.AllCategoryWithTabsAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.PagerAdapter;
-import com.ahmed.store_app_pro_1.ui.listeners.OnCategoryClickListener;
 import com.ahmed.store_app_pro_1.ui.models.category.CategoryMainModel;
 import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
-import com.ahmed.store_app_pro_1.ui.models.home.HomeModel;
-import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -183,9 +171,6 @@ public class CategoryActivity extends AppCompatActivity  {
 
                 Log.e("TAG categoryId", "onTabSelected: " + categoryModels.get(tab.getPosition()).getName());
                 Log.e("TAG categoryId", "onTabSelected: " + categoryModels.get(tab.getPosition()).getId());
-
-
-
 
 
             }

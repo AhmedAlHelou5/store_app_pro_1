@@ -1,55 +1,100 @@
-package com.ahmed.store_app_pro_1.ui.models.orders;
+package com.ahmed.store_app_pro_1.ui.models;
 
+import com.ahmed.store_app_pro_1.ui.models.orders.OrderItemModel;
+import com.ahmed.store_app_pro_1.ui.models.orders.StoreStatus;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class OrderModel implements Serializable {
-
-    @SerializedName("price")
+    @SerializedName("order_id")
     @Expose
-    private String price;
-    @SerializedName("product_id")
+    private  int id;
+    @SerializedName("total")
     @Expose
-    private String productId;
-    @SerializedName("product_name")
+    private  int total;
+    @SerializedName("sub_total")
     @Expose
-    private String productName;
-    @SerializedName("quantity")
+    private String subTotal;
+    @SerializedName("discount")
     @Expose
-    private String quantity;
+    private int discount;
+    @SerializedName("payment_method")
+    @Expose
+    private String payment_method;
 
-    public String getPrice() {
-        return price;
+    @SerializedName("order_item")
+    @Expose
+    private List<OrderItemModel> orderItemModels;
+
+    @SerializedName("store_status")
+    @Expose
+    private StoreStatus status;
+
+    public OrderModel() {
+
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public List<OrderItemModel> getOrderItemModels() {
+        return orderItemModels;
     }
 
-    public String getProductId() {
-        return productId;
+    public void setOrderItemModels(List<OrderItemModel> orderItemModels) {
+        this.orderItemModels = orderItemModels;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public OrderModel(List<OrderItemModel> orderItemModels) {
+        this.orderItemModels = orderItemModels;
     }
 
-    public String getProductName() {
-        return productName;
+    public int getId() {
+        return id;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public int getTotal() {
+        return total;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
+    public String getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(String subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public String getPayment_method() {
+        return payment_method;
+    }
+
+    public void setPayment_method(String payment_method) {
+        this.payment_method = payment_method;
+    }
+
+
+    public StoreStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(StoreStatus status) {
+        this.status = status;
+    }
 }

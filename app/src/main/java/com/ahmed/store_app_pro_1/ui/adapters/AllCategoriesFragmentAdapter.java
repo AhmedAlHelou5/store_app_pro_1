@@ -61,10 +61,7 @@ public class AllCategoriesFragmentAdapter extends RecyclerView.Adapter<AllCatego
             binding = CustomAllCategoriesItemFragmentBinding.bind(itemView);
             itemView.setOnClickListener(view -> {
                 onCategoryClickListener.OnCategoryClick(categoryModel);
-//                Intent intent = new Intent(binding.getRoot().getContext(), CategoryActivity.class);
-//                intent.putExtra("category", product.getName());
-//                intent.putExtra("categoryId", product.getId());
-//                binding.getRoot().getContext().startActivity(intent);
+
 
 
             });

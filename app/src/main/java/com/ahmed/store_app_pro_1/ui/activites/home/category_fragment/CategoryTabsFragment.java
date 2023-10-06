@@ -88,12 +88,13 @@ public class CategoryTabsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         FragmentCategoryTabsBinding binding = FragmentCategoryTabsBinding.inflate(getLayoutInflater(), container, false);
+        ItemCategoryWithTabsBinding itemBinding =
+                ItemCategoryWithTabsBinding.inflate(getLayoutInflater(), container, false);
         final boolean[] isProgressVisible = {false};
         isProgressVisible[0] = true;
 
         binding.idPBLoading.setVisibility(View.VISIBLE);
-        ItemCategoryWithTabsBinding itemBinding =
-                ItemCategoryWithTabsBinding.inflate(getLayoutInflater(), container, false);
+
 
         ApiInterface apiInterface = RetrofitClientInstance.getRetrofitInstance().create(ApiInterface.class);
 
@@ -140,7 +141,7 @@ public class CategoryTabsFragment extends Fragment {
 
 
 
-                        AllProductDetailsAdapter AllProductDetailsAdapter = new AllProductDetailsAdapter(products,getActivity(), new OnItemClickListener() {
+                        AllCategoryWithTabsAdapter allCategoryWithTabsAdapter = new AllCategoryWithTabsAdapter(products,getActivity(), new OnItemClickListener() {
                             @Override
                             public void onItemClick(ProductModel product) {
                                 Intent intent1 = new Intent(getActivity().getBaseContext(), DetailsActivity.class);
@@ -151,7 +152,7 @@ public class CategoryTabsFragment extends Fragment {
                         });
 
 //        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(adapter);
-                        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(AllProductDetailsAdapter);
+                        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(allCategoryWithTabsAdapter);
                         binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
                         binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
                                 GridLayoutManager(getActivity(),

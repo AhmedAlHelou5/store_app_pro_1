@@ -20,6 +20,9 @@ import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.FragmentCartBinding;
 import com.ahmed.store_app_pro_1.ui.adapters.ProductCartAdapter;
 import com.ahmed.store_app_pro_1.ui.models.CartModel;
+import com.ahmed.store_app_pro_1.ui.models.OrderModel;
+import com.ahmed.store_app_pro_1.ui.models.orders.OrderItemModel;
+import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -35,7 +38,7 @@ public class CartFragment extends Fragment {
 
     FragmentCartBinding binding;
     ProductCartAdapter allOffersAdapter;
-    ArrayList<CartModel> cartModels ;
+    ArrayList<OrderItemModel> cartModels ;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 //    private static final String ARG_PARAM1 = "param1";
@@ -84,10 +87,10 @@ public class CartFragment extends Fragment {
 
 
 
-        cartModels = Utils.FillCart();
+//        cartModels = Utils.FillCart();
 
 
-       allOffersAdapter = new ProductCartAdapter(cartModels);
+       allOffersAdapter = new ProductCartAdapter(cartModels,getContext());
 
 
         binding.rvItemsCart.setAdapter(allOffersAdapter);
@@ -104,7 +107,12 @@ public class CartFragment extends Fragment {
 
         return binding.getRoot();
     }
-    CartModel deleteData;
+
+
+    //delete item when swipe
+    ///////////////////////////////////////////////////////////////////
+
+    OrderItemModel deleteData;
 
     final ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override

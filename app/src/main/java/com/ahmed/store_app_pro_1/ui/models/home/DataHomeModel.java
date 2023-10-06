@@ -1,7 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.models.home;
 
 import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
-import com.ahmed.store_app_pro_1.ui.models.category.MostSoldProductModel;
 import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

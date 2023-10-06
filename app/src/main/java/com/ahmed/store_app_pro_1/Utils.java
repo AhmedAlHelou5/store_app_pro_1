@@ -6,6 +6,7 @@ import com.ahmed.store_app_pro_1.ui.models.ColorProductModel;
 import com.ahmed.store_app_pro_1.ui.models.LastSearchModel;
 import com.ahmed.store_app_pro_1.ui.models.NotificationModel;
 import com.ahmed.store_app_pro_1.ui.models.OrderModel;
+import com.ahmed.store_app_pro_1.ui.models.orders.OrderItemModel;
 
 import java.util.ArrayList;
 
@@ -214,20 +215,20 @@ public class Utils {
 
 
 
-
-    static ArrayList<OrderModel> orderModels = new ArrayList<>();
-
-    public static ArrayList<OrderModel> FillOrder(){
-        orderModels=new ArrayList<>();
-        orderModels.add(new OrderModel(123,"مكتمل",99.00,"غزة",5,94));
-        orderModels.add(new OrderModel(124,"مستلم",79.00,"غزة",7,72));
-        orderModels.add(new OrderModel(135,"مكتمل",59.00,"غزة",4,55));
-        orderModels.add(new OrderModel(167,"مستلم",299.00,"غزة",30,269));
-
-
-
-        return orderModels;
-    }
+//
+//    static ArrayList<OrderModel> orderModels = new ArrayList<>();
+//
+//    public static ArrayList<OrderModel> FillOrder(){
+//        orderModels=new ArrayList<>();
+//        orderModels.add(new OrderItemModel(123,"مكتمل",99.00,"غزة",5,94));
+//        orderModels.add(new OrderItemModel(124,"مستلم",79.00,"غزة",7,72));
+//        orderModels.add(new OrderItemModel(135,"مكتمل",59.00,"غزة",4,55));
+//        orderModels.add(new OrderItemModel(167,"مستلم",299.00,"غزة",30,269));
+//
+//
+//
+//        return orderModels;
+//    }
 
 
 

@@ -1,7 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.adapters;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomPopularItemHomeFragmentBinding;
 import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
-import com.ahmed.store_app_pro_1.ui.listeners.OnMostSolidClickListener;
 
-import com.ahmed.store_app_pro_1.ui.models.category.MostSoldProductModel;
 import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
 import com.bumptech.glide.Glide;
 import java.util.ArrayList;

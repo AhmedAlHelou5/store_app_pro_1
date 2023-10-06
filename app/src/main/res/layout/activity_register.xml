@@ -20,6 +20,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/black" />
 
+    <ProgressBar
+        android:id="@+id/idPBLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        android:theme="@style/Theme.Store_app_pro_1.progress"
+        app:layout_constraintBottom_toTopOf="@+id/btn_new_register"
+        app:layout_constraintEnd_toStartOf="@+id/liner_check_box_accept"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relative_password_layout"
+        app:layout_constraintVertical_bias="0.518" />
 
     <TextView
         android:id="@+id/tv_register_1"
@@ -326,7 +339,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_have_account"
         app:layout_constraintEnd_toStartOf="@+id/tv_have_account"
         app:layout_constraintTop_toTopOf="@+id/tv_have_account" />
-
 
 
 

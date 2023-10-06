@@ -1,20 +1,28 @@
 package com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment;
 
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ahmed.store_app_pro_1.Constans;
+import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.FragmentProfileBinding;
 import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.about_app.AboutAppActivity;
 import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.favorite.FavoriteActivity;
@@ -136,12 +144,51 @@ public class ProfileFragment extends Fragment {
 
 
 
-
-
         binding.signOutItemSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+
+
+                    AlertDialog.Builder builder = new AlertDialog. Builder( getActivity());
+                    builder.setTitle (R.string.app_name);
+                    builder.setIcon (R.drawable.logo);
+
+                    builder.setMessage ("هل تريد تسجيل الخروج؟")
+
+                    .setCancelable (false)
+                    .setPositiveButton(  "Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(getActivity(), LoginActivity.class));
+
+                        SharedPreferences.Editor editor = getActivity().getSharedPreferences(Constans.SHARED_PREF, MODE_PRIVATE).edit();
+                        editor.putString(Constans.TOKEN, null );
+                        editor.apply();
+
+                        String token = getActivity().getSharedPreferences(Constans.SHARED_PREF, MODE_PRIVATE).getString(Constans.TOKEN, null);
+
+                        Log.e("TAG", "onClick: TOKEN"+token);
+                        getActivity().finish();
+
+
+
+                    }
+                    })
+                    .setNegativeButton(  "No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+
+                    }
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog. show();
+
+
+                alertDialog.setCanceledOnTouchOutside(true);
+                alertDialog. setCancelable(true);
+
+
 
             }
         });

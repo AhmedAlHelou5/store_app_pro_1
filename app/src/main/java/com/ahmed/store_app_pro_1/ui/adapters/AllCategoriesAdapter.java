@@ -23,7 +23,7 @@ public class AllCategoriesAdapter extends RecyclerView.Adapter<AllCategoriesAdap
     OnCategoryClickListener onCategoryClickListener;
     Context context;
 
-    public AllCategoriesAdapter(ArrayList<CategoryModel> CategoryModels, Context context,OnCategoryClickListener onCategoryClickListener) {
+    public AllCategoriesAdapter(ArrayList<CategoryModel> CategoryModels, Context context, OnCategoryClickListener onCategoryClickListener) {
         this.CategoryModels = CategoryModels;
         this.context = context;
         this.onCategoryClickListener = onCategoryClickListener;
@@ -56,12 +56,11 @@ public class AllCategoriesAdapter extends RecyclerView.Adapter<AllCategoriesAdap
         public AllCategoriesViewHolder(View itemView) {
             super(itemView);
             binding = CustomAllCategoriesItemRvBinding.bind(itemView);
-            itemView.setOnClickListener(view -> {
-                onCategoryClickListener.OnCategoryClick(product);
-
-
-
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onCategoryClickListener.OnCategoryClick(product);
+                }
             });
 
         }
@@ -72,7 +71,9 @@ public class AllCategoriesAdapter extends RecyclerView.Adapter<AllCategoriesAdap
             Glide.with(context)
                     .load(product.getIconUrl())
                     .into(binding.imageCategory);
+//            binding.imageCategory.setImageResource(product.getImage());
             binding.tvTitleCategory.setText(product.getName());
+//        binding.recColorItem.setAdapter();
 
         }
 

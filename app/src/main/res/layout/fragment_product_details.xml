@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layoutDirection="rtl"
     tools:context=".ui.activites.details.ProductDetailsFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/tv_title_category"
         android:layout_width="match_parent"
@@ -20,30 +21,40 @@
         android:textColor="@color/text_second_details_screen_color"
         android:text="@string/all_products" />
 
-    <TextView
-        android:id="@+id/tv_description_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:layout_marginHorizontal="@dimen/_3sdp"
-        android:fontFamily="@font/almarai_regular"
-        android:textSize="@dimen/_8ssp"
-        android:textColor="@color/text_description_categories_details_screen_color"
-        android:text="@string/description" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_description_category"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="right"-->
+<!--        android:layout_marginTop="@dimen/_4sdp"-->
+<!--        android:layout_marginHorizontal="@dimen/_3sdp"-->
+<!--        android:fontFamily="@font/almarai_regular"-->
+<!--        android:textSize="@dimen/_8ssp"-->
+<!--        android:textColor="@color/text_description_categories_details_screen_color"-->
+<!--        android:text="@string/description" />-->
 
+    <ProgressBar
+        android:id="@+id/idPBLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:visibility="visible"
+        android:layout_gravity="center"
+        />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_all_categories_in_product_details_screen"
         android:layout_width="match_parent"
-        android:layoutDirection="ltr"
-        android:scrollbars="vertical"
-        android:layout_marginTop="@dimen/_7sdp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        tools:listitem="@layout/custom_item_rv_all_product_for_details_product"
-        android:layout_height="match_parent"/>
-
+        android:layout_marginTop="@dimen/_7sdp"
+        android:layoutDirection="ltr"
+        android:nestedScrollingEnabled="false"
+        android:overScrollMode="never"
+        tools:itemCount="5"
+        tools:listitem="@layout/custom_item_rv_all_product_for_details_product" />
 
 
 </LinearLayout>

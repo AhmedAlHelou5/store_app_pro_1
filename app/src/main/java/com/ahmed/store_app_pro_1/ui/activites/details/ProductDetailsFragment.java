@@ -1,6 +1,8 @@
 package com.ahmed.store_app_pro_1.ui.activites.details;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,29 +15,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.ahmed.store_app_pro_1.R;
-import com.ahmed.store_app_pro_1.Utils;
+import com.ahmed.store_app_pro_1.Constans;
 import com.ahmed.store_app_pro_1.databinding.CustomItemRvAllProductForDetailsProductBinding;
 import com.ahmed.store_app_pro_1.databinding.FragmentProductDetailsBinding;
 import com.ahmed.store_app_pro_1.network.api.ApiInterface;
 import com.ahmed.store_app_pro_1.network.api.RetrofitClientInstance;
-import com.ahmed.store_app_pro_1.ui.activites.home.category_fragment.CategoryFragment;
-import com.ahmed.store_app_pro_1.ui.adapters.AllCategoriesAdapter;
+import com.ahmed.store_app_pro_1.ui.activites.cart.CartActivity;
 import com.ahmed.store_app_pro_1.ui.adapters.AllProductDetailsAdapter;
-import com.ahmed.store_app_pro_1.ui.adapters.OffersHomeAdapter;
-import com.ahmed.store_app_pro_1.ui.adapters.PopularHomeAdapter;
-import com.ahmed.store_app_pro_1.ui.adapters.ProductHomeAdapter;
 import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
-import com.ahmed.store_app_pro_1.ui.listeners.OnItemOfferClickListener;
-import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
-import com.ahmed.store_app_pro_1.ui.models.home.HomeModel;
-import com.ahmed.store_app_pro_1.ui.models.home.SliderHomeModel;
+import com.ahmed.store_app_pro_1.ui.listeners.OnItemDetailsProductAddToCartClickListener;
+import com.ahmed.store_app_pro_1.ui.models.orders.OrderItemModel;
+import com.ahmed.store_app_pro_1.ui.models.product.MainProductModel;
 import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -103,158 +98,104 @@ public class ProductDetailsFragment extends Fragment {
 
         CustomItemRvAllProductForDetailsProductBinding itemBinding =
                 CustomItemRvAllProductForDetailsProductBinding.inflate(getLayoutInflater(), container, false);
+        final boolean[] isProgressVisible = {false};
+        isProgressVisible[0] = true;
 
-//        ArrayList<ProductModel> product = Utils.FillProducts();
+        binding.idPBLoading.setVisibility(View.VISIBLE);
+
 
         ApiInterface apiInterface = RetrofitClientInstance.getRetrofitInstance().create(ApiInterface.class);
 
-        Map<String, Object> searchName = new HashMap<>();
-//        search.put("category_id", categoryId);
-        searchName.put("search_name", category);
+
+        Log.e("TAG", "FragmentProductDetailsBinding "+categoryId);
+
+
+
         Map<String, Object> searchId = new HashMap<>();
         searchId.put("category_id", categoryId);
-//        searchName.put("search_name", category);
-//            if (category==null || category==""){
-//                Call<List<ProductModel>> callId = apiInterface.GetProductByCategoryId(searchId);
-//                callId.enqueue(new Callback<List<ProductModel>>() {
-//                    @Override
-//                    public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
-//                        if (response.isSuccessful()){
-//                            assert response.body() != null;
-//                            Log.e("TAG", "onResponse: " + response.body());
-//                            ArrayList<ProductModel> products = (ArrayList<ProductModel>) response.body();
-//                            AllProductDetailsAdapter AllProductDetailsAdapter = new AllProductDetailsAdapter(products,getActivity());
+//        searchId.put("search_name", category);
+        ArrayList<ProductModel> products = new ArrayList<>();
+
+        Call<MainProductModel> callId = apiInterface.GetProductByCategoryId(searchId);
+        callId.enqueue(new Callback<MainProductModel>() {
+            @Override
+            public void onResponse(Call<MainProductModel> call, Response<MainProductModel> response) {
+                if (response.isSuccessful()){
+                    assert response.body() != null;
+                    isProgressVisible[0] = false;
+
+                    binding.idPBLoading.setVisibility(View.GONE);
+                    Log.e("TAG", "onResponse: MainProductModel " + response.body());
+
+
+                    for (int i=0;i<response.body().getData().size();i++){
+//                        if (response.body().getData().get(i).getCategoryId()==categoryId){
+                            products.add(response.body().getData().get(i));
+//                                Log.e("TAG products", "onResponse: "+products );
+                            Log.e("TAG products", "onResponse: "+products.size() );
+//                                System.out.println(products.size());
 //
-////        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(adapter);
-//                            binding.rvAllCategoriesInProductDetailsScreen.setAdapter(AllProductDetailsAdapter);
-//                            binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
-//                            binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
-//                                    LinearLayoutManager(getActivity(),
-//                                    RecyclerView.VERTICAL,false));
 //                        }
-//                    }
 //
-//                    @Override
-//                    public void onFailure(Call<List<ProductModel>> call, Throwable t) {
-//                        Toast.makeText(getActivity(), "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
-//                        Log.e("TAG", "onFailure: " + t.getMessage());
-//                    }
-//                });
-//
-//
-//            }
-
-//            else {
-//                Call<List<ProductModel>> call = apiInterface.GetProductByCategoryName(searchName);
-//
-//                call.enqueue(new Callback<List<ProductModel>>() {
-//                    @Override
-//                    public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
-//                        if (response.isSuccessful()){
-//                            assert response.body() != null;
-//                            Log.e("TAG", "onResponse: " + response.body());
-//                            ArrayList<ProductModel> products = (ArrayList<ProductModel>) response.body();
-//                            AllProductDetailsAdapter AllProductDetailsAdapter = new AllProductDetailsAdapter(products,getActivity());
-//
-////        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(adapter);
-//                            binding.rvAllCategoriesInProductDetailsScreen.setAdapter(AllProductDetailsAdapter);
-//                            binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
-//                            binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
-//                                    LinearLayoutManager(getActivity(),
-//                                    RecyclerView.VERTICAL,false));
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<List<ProductModel>> call, Throwable t) {
-//                        Toast.makeText(getActivity(), "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
-//                        Log.e("TAG", "onFailure: " + t.getMessage());
-//                    }
-//                });
-//            }
+                    }
 
 
 
 
-//
-//
-//        call.enqueue((new Callback<HomeModel>() {
-//            @Override
-//            public void onResponse(Call<HomeModel> call, Response<HomeModel> response) {
-//
-//                if (response.isSuccessful() ){
-//                    assert response.body() != null;
-//
-//                    ArrayList<CategoryModel> categories = (ArrayList<CategoryModel>) response.body().getData().getCategories();
-//
-//                    ArrayList<String> tags = new ArrayList<>();
-//
-//                    tags.add(0,"الكل");
-//                    tags.add(1,categories.get(0).getName());
-//                    tags.add(2,categories.get(1).getName());
-//                    tags.add(3,categories.get(2).getName());
-//                    tags.add(4,categories.get(3).getName());
-//
-//
-//
-//
-//
-//
-////  categories rv
-//                    AllCategoriesAdapter allCategoriesAdapter = new AllCategoriesAdapter(categories,getActivity());
-//
-//                    binding.rvAllCategoriesInProductDetailsScreen.setAdapter(allCategoriesAdapter);
-//                    binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
-//                    binding.rvAllCategoriesInProductDetailsScreen.setClipToPadding(false);
-//                    binding.rvAllCategoriesInProductDetailsScreen.setClipChildren(false);
-//                    binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
-//                            LinearLayoutManager(getActivity(),
-//                            RecyclerView.HORIZONTAL,false));
-//
-//
-//
-//
-//                }
-//                else {
-//                    Log.e("TAG", "onResponse: null " + response.body());
-////                            Log.e("TAG", "onResponse: null " + response.body().getMessage());
-//
-//
-//                }
-//
-//
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<HomeModel> call, Throwable t) {
-//                Toast.makeText(getActivity(), "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
-//                Log.e("TAG", "onFailure: " + t.getMessage());
-//
-//
-//            }
-//        }));
-//
+
+
+                    Log.e("TAG categoryId", "onResponse: "+categoryId );
+
+
+                    ArrayList<OrderItemModel> orderModels = new ArrayList<>();
+
+//                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+
+                    AllProductDetailsAdapter AllProductDetailsAdapter = new AllProductDetailsAdapter(products, getActivity(), new OnItemClickListener() {
+                        @Override
+                        public void onItemClick(ProductModel product) {
+                            Intent intent1 = new Intent(getActivity().getBaseContext(), DetailsActivity.class);
+                            intent1.putExtra("productOffer", product);
+                            getContext().startActivity(intent1);
+                        }
+
+                    }, new OnItemDetailsProductAddToCartClickListener() {
+                        @Override
+                        public void onItemClick(ProductModel productToCart) {
+                            int  count = 0;
+
+                            if (orderModels.contains(productToCart.getId())  ) {
+                                orderModels.add(new OrderItemModel(productToCart.getId(), productToCart.getName(),
+                                        productToCart.getOfferPrice(), productToCart.getImages(), count++));
+                            }
+                            orderModels.add(new OrderItemModel(productToCart.getId(), productToCart.getName(),
+                                    productToCart.getOfferPrice(), productToCart.getImages(),count++));
+                            SharedPreferences sp = getActivity().getSharedPreferences(Constans.SHARED_PREF, Context.MODE_PRIVATE);
+                             SharedPreferences.Editor editor = sp.edit();
+                            Gson gson=new Gson();
+                            String json =gson.toJson(orderModels);
+                            editor.putString( Constans.CART,json);
+                            editor.apply();
+                            editor.commit();
+
+
+//                            intent.putExtra("orderModels", orderModels);
 
 
 
+                            Toast.makeText(getActivity(), "Added Success", Toast.LENGTH_SHORT).show();
+                            Log.e("TAG", "productsToCart.size(): " + orderModels.size());
+                            Log.e("TAG", "productsToCart.size(): " + count);
+//                            Log.e("TAG", "productsToCart.size(): " + orderModels.get(0).getProductId());
+                            Log.e("TAG", "productsToCart.size(): " +    productToCart.getId());
+                            Log.e("TAG", "productsToCart.size(): " + productToCart);
 
-//        ArrayList<ProductModel> products = new ArrayList<>();
-//        if (category.contains("الكل")){
-//
-//
+//                            System.out.println(count);
 
 
-
-//            products = Utils.FillProducts();
-//            binding.tvTitleCategory.setText("كل المنتجات");
-//
-//        }
-//       else {
-////            products=Utils.getProducts(category);
-//            binding.tvTitleCategory.setText(category);
-//
-//        }
+                        }
+                    });
 
 
 
@@ -264,29 +205,24 @@ public class ProductDetailsFragment extends Fragment {
 
 
 
+                    binding.rvAllCategoriesInProductDetailsScreen.setAdapter(AllProductDetailsAdapter);
+                    binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
+                    binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
+                            LinearLayoutManager(getActivity(),
+                            RecyclerView.VERTICAL,false));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MainProductModel> call, Throwable t) {
+                Toast.makeText(getActivity(), "onFailure body" + t.getMessage(), Toast.LENGTH_LONG).show();
+                Log.e("TAG", "onFailure: " + t.getMessage());
+            }
+        });
 
 
-
-
-
-
-
-
-//        AllProductDetailsAdapter adapter = new AllProductDetailsAdapter(products,getActivity());
-//        AllProductDetailsAdapter AllProductDetailsAdapter = new AllProductDetailsAdapter(products,getActivity());
-//
-////        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(adapter);
-//        binding.rvAllCategoriesInProductDetailsScreen.setAdapter(AllProductDetailsAdapter);
-//        binding.rvAllCategoriesInProductDetailsScreen.setHasFixedSize(true);
-//        binding.rvAllCategoriesInProductDetailsScreen.setLayoutManager(new
-//                LinearLayoutManager(getActivity(),
-//                RecyclerView.VERTICAL,false));
-//
-//
-
-
-
-
+        binding.tvTitleCategory.setText(category);
+//        binding.tvDescriptionCategory.setText("");
 
 
         return binding.getRoot();

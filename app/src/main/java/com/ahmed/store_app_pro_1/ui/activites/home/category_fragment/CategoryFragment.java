@@ -3,12 +3,9 @@ package com.ahmed.store_app_pro_1.ui.activites.home.category_fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,31 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.ahmed.store_app_pro_1.R;
-import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.FragmentCategoryBinding;
 import com.ahmed.store_app_pro_1.network.api.ApiInterface;
 import com.ahmed.store_app_pro_1.network.api.RetrofitClientInstance;
-import com.ahmed.store_app_pro_1.ui.adapters.AllCategoriesAdapter;
 import com.ahmed.store_app_pro_1.ui.adapters.AllCategoriesFragmentAdapter;
-import com.ahmed.store_app_pro_1.ui.adapters.OffersHomeAdapter;
-import com.ahmed.store_app_pro_1.ui.adapters.PopularHomeAdapter;
-import com.ahmed.store_app_pro_1.ui.adapters.ProductHomeAdapter;
-import com.ahmed.store_app_pro_1.ui.adapters.SliderAdapter;
 import com.ahmed.store_app_pro_1.ui.listeners.OnCategoryClickListener;
-import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
-import com.ahmed.store_app_pro_1.ui.listeners.OnMostSolidClickListener;
-import com.ahmed.store_app_pro_1.ui.models.CategoriesModel;
 import com.ahmed.store_app_pro_1.ui.models.category.CategoryMainModel;
 import com.ahmed.store_app_pro_1.ui.models.category.CategoryModel;
-import com.ahmed.store_app_pro_1.ui.models.category.MostSoldProductModel;
-import com.ahmed.store_app_pro_1.ui.models.home.HomeModel;
-import com.ahmed.store_app_pro_1.ui.models.home.OfferModel;
-import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

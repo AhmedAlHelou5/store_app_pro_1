@@ -1,6 +1,5 @@
 package com.ahmed.store_app_pro_1.ui.adapters;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmed.store_app_pro_1.R;
-import com.ahmed.store_app_pro_1.databinding.CustomHomeItemRvBinding;
 import com.ahmed.store_app_pro_1.databinding.CustomItemOrderRvBinding;
-import com.ahmed.store_app_pro_1.ui.activites.home.profile_fragment.orders.OrderDetailsActivity;
-import com.ahmed.store_app_pro_1.ui.listeners.OnItemClickListener;
 import com.ahmed.store_app_pro_1.ui.listeners.OnOrderClickListener;
 import com.ahmed.store_app_pro_1.ui.models.OrderModel;
-import com.ahmed.store_app_pro_1.ui.models.OrderModel;
+import com.ahmed.store_app_pro_1.ui.models.orders.OrderItemModel;
+import com.ahmed.store_app_pro_1.ui.models.orders.StoreStatus;
 
 import java.util.ArrayList;
 
@@ -74,10 +71,10 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ProductVie
         public void bind(OrderModel orderList){
             this.orderList = orderList;
 
-            if (orderList.getStatus().equals("done" )|| orderList.getStatus().equals("مكتمل")){
+            if (orderList.getStatus()== StoreStatus.complete){
                 binding.tvDone.setBackgroundResource(R.drawable.bg_liner_text_order_done);
             }
-            else if (orderList.getStatus().equals("recive")||orderList.getStatus().equals("مستلم")){
+            else if (orderList.getStatus()== StoreStatus.pending){
                 binding.tvDone.setBackgroundResource(R.drawable.bg_liner_text_order_recive);
 
             }
@@ -87,9 +84,9 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ProductVie
             }
 
             binding.tvNumOrder.setText(orderList.getId()+"");
-            binding.tvCountry.setText(orderList.getCity());
-            binding.tvDone.setText(orderList.getStatus());
-            binding.tvTotalPrice.setText(orderList.getTotal()+"");
+            binding.tvCountry.setText("غزة");
+            binding.tvDone.setText(String.valueOf(orderList.getStatus()));
+            binding.tvTotalPrice.setText(String.valueOf(orderList.getTotal()));
 
 
 //        binding.recColorItem.setAdapter();

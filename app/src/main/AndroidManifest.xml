@@ -5,10 +5,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
-
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +29,6 @@
             android:name=".ui.activites.home.profile_fragment.settings.help_center.HelpCenterActivity"
             android:exported="true"
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
-
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -40,6 +46,7 @@
             android:name=".ui.activites.home.profile_fragment.settings.contact_us.ContactUsActivity"
             android:exported="true"
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="contact us" />
@@ -48,6 +55,7 @@
             android:name=".ui.activites.home.profile_fragment.settings.privacy_policy.PrivacyPolicyActivity"
             android:exported="true"
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="privacyPolicy" />
@@ -56,6 +64,7 @@
             android:name=".ui.activites.home.profile_fragment.about_app.AboutAppActivity"
             android:exported="true"
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="about" />
@@ -151,11 +160,8 @@
             android:name=".ui.activites.home.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="1" />
@@ -186,18 +192,29 @@
             android:name=".ui.activites.privacy.PrivacyActivity"
             android:exported="true"
             android:theme="@style/Theme.Store_app_pro_1.toolBar">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="privacy" />
         </activity>
         <activity
             android:name=".ui.activites.register.RegisterActivity"
-            android:exported="true">
+            android:exported="true"
+            >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
 
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="register" />
+                android:value="my_channel_01"
+                />
         </activity>
+
+
+
         <activity
             android:name=".ui.activites.login.LoginActivity"
             android:exported="true" >
@@ -223,9 +240,12 @@
         <activity
             android:name=".ui.activites.splash.SplashActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <!-- android:theme="@style/Theme.MySplash" -->
-            <!-- > -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
 
             <meta-data
                 android:name="android.app.lib_name"

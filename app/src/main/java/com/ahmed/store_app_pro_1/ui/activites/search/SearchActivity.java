@@ -14,6 +14,8 @@ import android.view.Window;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.Utils;
 import com.ahmed.store_app_pro_1.databinding.ActivitySearchBinding;
+import com.ahmed.store_app_pro_1.network.api.ApiInterface;
+import com.ahmed.store_app_pro_1.network.api.RetrofitClientInstance;
 import com.ahmed.store_app_pro_1.ui.adapters.SearchRvAdapter;
 import com.ahmed.store_app_pro_1.ui.listeners.OnSearchRvClickListener;
 import com.ahmed.store_app_pro_1.ui.models.LastSearchModel;
@@ -23,12 +25,15 @@ import java.util.ArrayList;
 public class SearchActivity extends AppCompatActivity implements OnSearchRvClickListener {
 
     ActivitySearchBinding binding;
+    boolean isProgressVisible = false;
+    ApiInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        apiInterface = RetrofitClientInstance.getRetrofitInstance().create(ApiInterface.class);
 
         Window window = getWindow();
         window.setStatusBarColor( getResources().getColor(R.color.primary_color) );
@@ -64,6 +69,7 @@ public class SearchActivity extends AppCompatActivity implements OnSearchRvClick
                     public void onItemClick(String text) {
                         Log.d("TAG Activity", "onClick: "+text.toString());
                         binding.edTextSearch.setText(text);
+
 
 
 

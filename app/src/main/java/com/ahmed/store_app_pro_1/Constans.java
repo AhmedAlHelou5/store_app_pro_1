@@ -2,6 +2,11 @@ package com.ahmed.store_app_pro_1;
 
 public class Constans {
     public static final String BASE_URL = "http://tcbike.bulbul-app.com/api/v1/";
+//    public static final String BASE_URL_SMS = "https://6gj498.api.infobip.com";
+//    public static final String API_KEY_SMS = "App fb3f74e0202eb9caf19b2f740203b94f-ac9fe0f0-7b50-462f-831d-b0a92d20b4f2";
+    public static final String MEDIA_TYPE_SMS = "application/json";
+    public static final String SENDER_SMS = "Tc-Bike App";
+    public static final String MEDIA_TYPE = "application/json";
     public static final String LOGIN = "user/login";
     public static final String REGISTER = "user/register";
     public static final String USER = "user";
@@ -12,7 +17,8 @@ public class Constans {
     public static final String GOOGLE_LOGIN = "user/google-login";
     public static final String PRODUCT = "products";
     public static final String CATEGORY = "products/categories";
-    public static final String CART = "";
+    public static final String CART = "cart";
+    public static final String SP_CART_FINAL = "cart_final";
     public static final String GET_PRODUCTS_BY_CATEGORY = "products/getProductsByCategory";
     public static final String GET_PRODUCTS_BY_ID = "products/getProductsById";
     public static final String ADD_PRODUCT_TO_FAVOURITE = "products/addProductToFavorite";
@@ -31,7 +37,6 @@ public class Constans {
     public static final String ABOUT = "about";
     public static final String CONTACT_US = "contactUs";
     public static final String GET_FAQS = "getFaqs";
-    public static final String SHARED_PREF = "sharedPref";
     public static final String TOKEN = "token";
     public static final String COLORS = "colors";
     public static final String IMAGES = "images";
@@ -66,6 +71,8 @@ public class Constans {
     public static final String NAME = "name";
     public static final String VERIFIED = "verified";
     public static final String LANG = "lang";
-
-
+    public static final String SHARED_PREF = "sharedPref";
+    public static final String CODE ="code";
+    public static final String FORGET_CODE_CHECK = "forget_code_check";
+    ;
 }

@@ -127,6 +127,7 @@
                         android:visibility="gone">
 
                         <TextView
+                            android:id="@+id/tv_what_is_our_application_all_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/lorem_terms" />
@@ -199,6 +200,7 @@
                         android:visibility="gone">
 
                         <TextView
+                            android:id="@+id/tv_what_does_our_app_do_all_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/lorem_terms" />

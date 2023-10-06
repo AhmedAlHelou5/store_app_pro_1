@@ -1,5 +1,6 @@
 package com.ahmed.store_app_pro_1.ui.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ahmed.store_app_pro_1.R;
 import com.ahmed.store_app_pro_1.databinding.CustomItemRvCartBinding;
 import com.ahmed.store_app_pro_1.ui.models.CartModel;
+import com.ahmed.store_app_pro_1.ui.models.OrderModel;
+import com.ahmed.store_app_pro_1.ui.models.orders.OrderItemModel;
+import com.ahmed.store_app_pro_1.ui.models.product.ProductModel;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -17,10 +22,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.ProductViewHolder> {
 
 
-    ArrayList<CartModel> cartList;
+    ArrayList<OrderItemModel> cartList;
+    Context context;
 
-    public ProductCartAdapter(ArrayList<CartModel> cartList) {
+    public ProductCartAdapter(ArrayList<OrderItemModel> cartList, Context context) {
         this.cartList = cartList;
+        this.context = context;
     }
 
     @NonNull
@@ -33,18 +40,21 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        CartModel popularModel = cartList.get(position);
+        OrderItemModel popularModel = cartList.get(position);
         holder.bind(popularModel);
+
     }
 
     @Override
     public int getItemCount() {
+
         return cartList.size();
+
     }
 
     class  ProductViewHolder extends RecyclerView.ViewHolder {
         CustomItemRvCartBinding binding;
-        CartModel productList;
+        OrderItemModel productList;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -53,25 +63,25 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
         }
 
 
-        public void bind(CartModel productList){
+        public void bind(OrderItemModel productList){
             this.productList = productList;
 
 
-            binding.imageCategory.setImageResource(productList.getImage());
-            binding.tvTitle.setText(productList.getTitle());
-            binding.tvPrice.setText(productList.getPrice());
+            Glide.with(context)
+                    .load(productList.getImages().get(0).getImageUrl())
+                    .into(binding.imageCategory);
+            binding.tvTitle.setText(productList.getName());
+//            binding.tvPrice.setText(String.valueOf(productList.getPrice()));
             binding.tvCount.setText(String.valueOf(productList.getQuantity()));
+            binding.tvPrice.setText(String.valueOf(productList.getPrice()));
+
+//            notifyDataSetChanged();
 
 
-
-            AtomicInteger num = new AtomicInteger();
             final AtomicInteger get_quantity = new AtomicInteger(Integer.parseInt(binding.tvCount.getText().toString()));
-            final double get_price= Double.parseDouble( binding.tvPrice.getText().toString());
-            final double get_total= get_quantity.get() *get_price;
-            if (get_quantity.get() ==0){
+//            int price = Integer.parseInt(binding.tvPrice.getText().toString());
+//            int total = Integer.parseInt(binding.tvCount.getText().toString())  * price;
 
-
-            }
 
 
 
@@ -79,9 +89,7 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
             binding.btnAdd.setOnClickListener(v -> {
                 get_quantity.getAndIncrement();
                 binding.tvCount.setText(String.valueOf(get_quantity.get()));
-//                double total=num.get()*get_price;
-
-//                binding.tvPriceAddToCart.setText(String.format(Locale.ENGLISH, "%.2f", total));
+//                binding.tvPrice.setText(String.valueOf(total));
 
 
 
@@ -91,29 +99,15 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
                 if (get_quantity.get() > 0){
                     get_quantity.getAndDecrement();
                     binding.tvCount.setText(String.valueOf(get_quantity.get()));
-//                    double total=num.get()*get_price;
-//                    binding.tvPriceAddToCart.setText(total+"");
-//                    binding.tvPriceAddToCart.setText(String.format(Locale.ENGLISH, "%.2f", total));
-
+//                    binding.tvPrice.setText(String.valueOf(total));
 
                 }
-                if (num.get()==0){
 
-
-
-
-//                binding.tvPriceAddToCart.setText(get_price+"");
-
-
-
-//                    binding.tvPriceAddToCart.setText(get_price+"");
-                }
 
 
             });
 
 
-//        binding.recColorItem.setAdapter();
 
         }
 
@@ -123,7 +117,6 @@ public class ProductCartAdapter extends RecyclerView.Adapter<ProductCartAdapter.
     }
 
 
-//textview.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
 
 
 

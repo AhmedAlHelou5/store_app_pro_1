@@ -92,5 +92,6 @@
     <string name="msg_phone_number_start_with">يجب ان يبدأ الرقم ب  972</string>
     <string name="msg_week_passwrod">كلمة المرور ضعيفة</string>
     <string name="msg_write_cnf_correctly">تأكد من كلمة المرور بشكل صحيح</string>
+    <string name="ok">"حسنا "</string>
 
 </resources>

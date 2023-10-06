@@ -42,11 +42,12 @@
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_110sdp"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_7sdp"
-
+            android:maxLines="1"
+            android:ellipsize="end"
             android:fontFamily="@font/almarai_regular"
             android:text="@string/badllat"
             android:textColor="@color/text_second_details_screen_color"
@@ -60,8 +61,7 @@
             android:id="@+id/linearLayout8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_1sdp"
             app:layout_constraintEnd_toEndOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_title">
 

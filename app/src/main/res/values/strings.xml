@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">store_app_pro_1</string>
+    <string name="app_name">Tc-Bike App</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -161,5 +161,6 @@
     <string name="msg_week_passwrod"> كلمة المرور ضعيفة \n كلمة يجب ان تكون بين 8 الى 20 \n يجب ان تحتوي على احرف كبيرة واحرف صغيرة  \n  يجب ان تحتوي على رموز   !@#$%*()-+=^
     </string>
     <string name="msg_write_cnf_correctly">تأكد من كلمة المرور بشكل صحيح</string>
+    <string name="ok">"حسنا "</string>
 
 </resources>
